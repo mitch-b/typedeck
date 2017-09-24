@@ -12,7 +12,7 @@ export class DurstenfeldShuffleService implements IShuffleService {
   /**
    * Durstenfeld shuffle algorithm
    */
-  public shuffle(cards: ICard[]): ICard[] {
+  public shuffle (cards: ICard[]): ICard[] {
     const length = cards.length
     if (length < 2) {
       throw new Error('Not enough cards to shuffle.')

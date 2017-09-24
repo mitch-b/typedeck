@@ -10,7 +10,7 @@ export class StandardUSChip extends Chip implements IChip {
   public value = this.getValue()
   public colorType = ChipColorType.StandardUS
 
-  constructor(
+  constructor (
     public color: ChipColor) {
     super(color)
   }
