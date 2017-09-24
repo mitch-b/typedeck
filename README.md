@@ -5,7 +5,7 @@ A [TypeScript](https://www.typescriptlang.org/) library for playing cards.
 ## Getting Started
 
 * See the [documentation](https://mitch-b.github.io/typedeck/).
-* See the [examples](./examples/readme.md). (Coming soon)
+* See the [examples](https://github.com/mitch-b/typedeck/tree/master/examples). (Coming soon)
 * Try it yourself!
 
 ## Features
