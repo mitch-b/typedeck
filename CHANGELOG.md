@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/mitch-b/typedeck/compare/v0.0.1...v0.1.0) (2017-09-24)
+
+
+### Features
+
+* export Player and other missing objects ([2c71f59](https://github.com/mitch-b/typedeck/commit/2c71f59))
+
+
+
 <a name="0.0.1"></a>
 ## 0.0.1 (2017-09-24)
 
