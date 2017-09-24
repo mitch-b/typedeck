@@ -13,7 +13,7 @@ const CardName = {
   Queen: 'Queen' as 'Queen',
   King: 'King' as 'King',
   Joker: 'Joker' as 'Joker'
-};
+}
 
-type CardName = (typeof CardName)[keyof typeof CardName];
-export { CardName };
+type CardName = (typeof CardName)[keyof typeof CardName]
+export { CardName }

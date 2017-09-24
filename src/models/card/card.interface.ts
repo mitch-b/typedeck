@@ -1,5 +1,5 @@
-import { CardName } from './cardName.model';
+import { CardName } from './cardName.model'
 
 export interface ICard {
-  cardName: CardName;
+  cardName: CardName
 }

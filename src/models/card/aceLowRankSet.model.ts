@@ -1,6 +1,6 @@
-import { CardName } from './cardName.model';
-import { RankSet } from './cardRanks.model';
-import { IRankSet } from './rankSet.interface';
+import { CardName } from './cardName.model'
+import { RankSet } from './cardRanks.model'
+import { IRankSet } from './rankSet.interface'
 
 export class AceLowRankSet extends RankSet implements IRankSet {
   public rankSet: CardName[] = [
@@ -18,5 +18,5 @@ export class AceLowRankSet extends RankSet implements IRankSet {
     CardName.Jack,
     CardName.Queen,
     CardName.King
-  ];
+  ]
 }

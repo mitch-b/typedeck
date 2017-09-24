@@ -5,4 +5,4 @@ enum Suit {
   Hearts
 }
 
-export { Suit };
+export { Suit }

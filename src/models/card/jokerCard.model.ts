@@ -1,6 +1,6 @@
-import { Card } from './card.model';
-import { ICard } from './card.interface';
-import { CardName } from './cardName.model';
+import { Card } from './card.model'
+import { ICard } from './card.interface'
+import { CardName } from './cardName.model'
 
 /**
  * Represents a Joker card which is
@@ -8,7 +8,7 @@ import { CardName } from './cardName.model';
  * and can have a value based on current Game (if any/if used).
  */
 export class JokerCard extends Card implements ICard {
-  constructor(cardName: CardName = CardName.Joker) {
-    super(cardName);
+  constructor (cardName: CardName = CardName.Joker) {
+    super(cardName)
   }
 }
