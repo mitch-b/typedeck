@@ -1,42 +1,30 @@
 # <img src='http://svgshare.com/i/38a.svg' height='20px' alt='TypeDeck' /> TypeDeck
-_`typedeck`_
 
 A [TypeScript](https://www.typescriptlang.org/) library for playing cards. 
 
-## All package scripts
+## Getting Started
 
-You can run the `info` script for information on each script intended to be individually run.
+* See the [documentation](https://mitch-b.github.io/typedeck/).
+* See the [examples](./examples/readme.md). (Coming soon)
+* Try it yourself!
 
-```
-yarn run info
+## Features
 
-  info:
-    Display information about the scripts
-  build:
-    (Trash and re)build the library
-  lint:
-    Lint all typescript source files
-  unit:
-    Build the library and run unit tests
-  test:
-    Lint, build, and test the library
-  watch:
-    Watch source files, rebuild library on changes, rerun relevant tests
-  cov:
-    Run tests, generate the HTML coverage report, and open it in a browser
-  docs:
-    Generate HTML API documentation and open it in a browser
-  docs:publish:
-    Generate HTML API documentation and push it to GitHub Pages
-  docs:json:
-    Generate API documentation in typedoc JSON format
-  release:
-    Bump package.json version, update CHANGELOG.md, tag a release
-  reset:
-    Delete all untracked files and reset the repo to the last commit
-  publish:
-    Reset, build, test, publish docs, and prepare release (a one-step publish process)
-```
+`typedeck` gives you types and classes to help jumpstart your card-based game. 
+
+* **Card**
+  * Simple card classes (`PlayingCard`/`JokerCard`)
+* **Declarative Types**
+  * `CardName`: `[Ace, Two, Three, ...]`
+  * `Suit`: `[Clubs, Spades, Diamonds, Hearts]`
+* **Card collections**
+  * Classes that represent multiple cards as a logical item.
+    * `Hand` - cards that belong to a player
+    * `CardPile` - cards that are frequently drawn from or added to
+    * `Deck` - extension of `CardPile` with additional game-time helpers
+* **Services**
+  * Shuffle
+* **And so much more** ... see the [documentation](https://mitch-b.github.io/typedeck/) for a full list.
 
 ## Credits
 
