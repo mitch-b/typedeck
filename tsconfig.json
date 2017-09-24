@@ -9,6 +9,7 @@
     "declaration": true,
     "importHelpers": true,
     "inlineSourceMap": true,
+    "forceConsistentCasingInFileNames": false,
     "listFiles": false,
     "traceResolution": false,
     "pretty": true,
