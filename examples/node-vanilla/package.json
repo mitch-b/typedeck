@@ -1,0 +1,12 @@
+{
+  "name": "typedeck-example-node-vanilla",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node test.js"
+  },
+  "dependencies": {
+    "typedeck": "^0.0.1"
+  },
+  "private": true
+}
