@@ -28,7 +28,7 @@
     "html-coverage": "nyc report --reporter=html",
     "send-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "docs": "yarn docs:html && opn build/docs/index.html",
-    "docs:html": "typedoc src/index.ts --excludePrivate --mode file --theme minimal --out build/docs",
+    "docs:html": "typedoc src/index.ts --excludePrivate --mode file --theme default --out build/docs",
     "docs:json": "typedoc --mode file --json build/docs/typedoc.json src/index.ts",
     "docs:publish": "yarn docs:html && gh-pages -d build/docs",
     "changelog": "standard-version",
