@@ -1,10 +1,9 @@
-import { IPlayer } from './player.interface'
 import { Player } from './player.model'
 import { IHand } from '../cardCollection/hand.interface'
 import { Hand } from '../cardCollection/hand.model'
 import { Difficulty } from './difficulty.model'
 
-export class ComputerPlayer extends Player implements IPlayer {
+export class ComputerPlayer extends Player {
 
   constructor (
     name: string,

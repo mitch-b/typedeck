@@ -1,5 +1,4 @@
 import { BaseGameType } from './gameType.model'
-import { IGameType } from './gameType.interface'
 import { ICard } from '../card/card.interface'
 import { AceHighRankSet } from '../card/aceHighRankSet.model'
 import { CardName } from '../card/cardName.model'
@@ -9,7 +8,7 @@ import { PlayingCard } from '../card/playingCard.model'
 /**
  * GameType with Hearts configuration
  */
-export class HeartsGameType extends BaseGameType implements IGameType {
+export class HeartsGameType extends BaseGameType {
   public rankSet = new AceHighRankSet()
   public cardsAllowed: ICard[] = [
     new PlayingCard(CardName.Ace, Suit.Clubs),

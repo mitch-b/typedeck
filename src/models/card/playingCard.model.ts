@@ -1,4 +1,3 @@
-import { ICard } from './card.interface'
 import { Card } from './card.model'
 import { Suit } from './suit.model'
 import { CardName } from './cardName.model'
@@ -7,7 +6,7 @@ import { CardName } from './cardName.model'
  * Represents a card that contains a Suit
  * and a Value (Rank).
  */
-export class PlayingCard extends Card implements ICard {
+export class PlayingCard extends Card {
   public suit: Suit
 
   constructor (cardName: CardName, suit: Suit) {

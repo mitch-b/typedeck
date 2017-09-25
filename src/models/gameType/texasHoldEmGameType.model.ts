@@ -1,5 +1,4 @@
 import { BaseGameType } from './gameType.model'
-import { IGameType } from './gameType.interface'
 import { ICard } from '../card/card.interface'
 import { AceHighRankSet } from '../card/aceHighRankSet.model'
 import { PlayingCard } from '../card/playingCard.model'
@@ -9,7 +8,7 @@ import { Suit } from '../card/suit.model'
 /**
  * GameType with Texas Hold'Em Poker configuration
  */
-export class TexasHoldEmPokerGameType extends BaseGameType implements IGameType {
+export class TexasHoldEmPokerGameType extends BaseGameType {
   public rankSet = new AceHighRankSet()
   public cardsAllowed: ICard[] = [
     new PlayingCard(CardName.Ace, Suit.Clubs),

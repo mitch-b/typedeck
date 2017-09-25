@@ -1,5 +1,4 @@
 import { BaseGameType } from './gameType.model'
-import { IGameType } from './gameType.interface'
 import { ICard } from '../card/card.interface'
 import { AceLowRankSet } from '../card/aceLowRankSet.model'
 import { PlayingCard } from '../card/playingCard.model'
@@ -9,7 +8,7 @@ import { Suit } from '../card/suit.model'
 /**
  * GameType with Solitaire configuration
  */
-export class SolitaireGameType extends BaseGameType implements IGameType {
+export class SolitaireGameType extends BaseGameType {
   public rankSet = new AceLowRankSet()
   public cardsAllowed: ICard[] = [
     new PlayingCard(CardName.Ace, Suit.Clubs),

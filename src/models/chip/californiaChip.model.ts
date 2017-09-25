@@ -1,12 +1,11 @@
 import { ChipColorType } from './chipColorType.model'
 import { Chip } from './chip.model'
-import { IChip } from './chip.interface'
 import { ChipColor } from './chipColor.model'
 
 /**
  * Represents a California valuing Chip
  */
-export class CaliforniaChip extends Chip implements IChip {
+export class CaliforniaChip extends Chip {
   public value = this.getValue()
   public colorType = ChipColorType.California
 

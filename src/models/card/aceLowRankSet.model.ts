@@ -1,8 +1,7 @@
 import { CardName } from './cardName.model'
 import { RankSet } from './cardRanks.model'
-import { IRankSet } from './rankSet.interface'
 
-export class AceLowRankSet extends RankSet implements IRankSet {
+export class AceLowRankSet extends RankSet {
   public rankSet: CardName[] = [
     CardName.Joker,
     CardName.Ace,
