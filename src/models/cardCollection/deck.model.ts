@@ -42,7 +42,7 @@ export class Deck extends CardPile implements IDeck {
 
   public createHand (options: HandOptions): IHand {
     const hand = new Hand()
-    this.deal(hand, options.initialDraw)
+    this.deal(hand, options.size)
     return hand
   }
 
