@@ -34,7 +34,7 @@ export class Hand extends CardCollection implements IHand {
    */
   public sortCards (cardRank: IRankSet): this {
     const cards = this.getCards()
-    if (cards.length === 0) {
+    if (!this.hasCards()) {
       throw new Error('No cards to sort.')
     }
     if (this.suitOrder.length === 0) {
