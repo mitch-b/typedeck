@@ -1,6 +1,6 @@
 import { ChipColorType } from './chipColorType.model'
-import { Chip } from './chip.model'
 import { ChipColor } from './chipColor.model'
+import { Chip } from './chip.model'
 
 /**
  * Represents a California valuing Chip
