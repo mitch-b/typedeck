@@ -10,14 +10,18 @@ export class BaseGameType implements IGameType {
   public rankSet: IRankSet = new AceHighRankSet()
   public cardsAllowed: ICard[] = []
 
-  public createDeck (options: DeckOptions): IDeck {
-    let gameCards: ICard[] = []
-    for (let i = 0; i < options.numberOfDecks; i++) {
-      gameCards.push(...this.cardsAllowed)
+  public createDeck (_options?: DeckOptions): IDeck {
+    if (_options) {
+      let gameCards: ICard[] = []
+      for (let i = 0; i < _options.numberOfDecks; i++) {
+        gameCards.push(...this.cardsAllowed)
+      }
+      if (_options.extraCards) {
+        gameCards = gameCards.concat(_options.extraCards)
+      }
+      return Deck.BuildFrom(gameCards)
+    } else {
+      return Deck.BuildFrom(this.cardsAllowed)
     }
-    if (options.extraCards) {
-      gameCards = gameCards.concat(options.extraCards)
-    }
-    return Deck.BuildFrom(gameCards)
   }
 }
