@@ -1,5 +1,11 @@
 # <img src='http://svgshare.com/i/38a.svg' height='20px' alt='TypeDeck' /> TypeDeck
 
+[![Build Status](https://travis-ci.org/mitch-b/typedeck.svg?branch=master)](https://travis-ci.org/mitch-b/typedeck)
+[![NPM version](https://img.shields.io/npm/v/typedeck.svg)](https://www.npmjs.com/package/typedeck)
+[![codecov](https://codecov.io/gh/mitch-b/typedeck/branch/master/graph/badge.svg)](https://codecov.io/gh/mitch-b/typedeck)
+[![dependencies Status](https://david-dm.org/mitch-b/typedeck/status.svg)](https://david-dm.org/mitch-b/typedeck)
+[![devDependencies Status](https://david-dm.org/mitch-b/typedeck/dev-status.svg)](https://david-dm.org/mitch-b/typedeck?type=dev)
+
 A [TypeScript](https://www.typescriptlang.org/) library for playing cards. 
 
 ## Getting Started
