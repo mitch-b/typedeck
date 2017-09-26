@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/mitch-b/typedeck/compare/v0.2.1...v0.3.0) (2017-09-26)
+
+
+### Bug Fixes
+
+* **build:** Windows path issue resolved for testing platform ([5b059c3](https://github.com/mitch-b/typedeck/commit/5b059c3))
+
+
+### Features
+
+* **cardCollection:** add helpers to reduce repeated code ([8c9f28c](https://github.com/mitch-b/typedeck/commit/8c9f28c))
+* **deck:** createDeck options are now optional ([7404dd3](https://github.com/mitch-b/typedeck/commit/7404dd3))
+* **handOptions:** remove unused yet required properties ([89a5477](https://github.com/mitch-b/typedeck/commit/89a5477))
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/mitch-b/typedeck/compare/v0.2.0...v0.2.1) (2017-09-26)
 
