@@ -2,7 +2,6 @@
 const cpx = require("cpx");
 const isWin = /^win/.test(process.platform);
 const Transform = require("stream").Transform;
-const path = require('path');
 const pkg = require('../../package');
 const req = (modulePath) => 'require("' + modulePath + '")';
 const calculatedSeparator = isWin ? '\\\\' : '/';
