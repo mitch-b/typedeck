@@ -1,11 +1,10 @@
 import { CardName } from './cardName.model'
 import { ICard } from './card.interface'
-import { MapIndexable } from '../../common/mapIndexable.interface'
 
 /**
  * Represents a generic card.
  */
-export class Card implements ICard, MapIndexable {
+export class Card implements ICard {
   public cardName: CardName
 
   constructor (cardName: CardName) {

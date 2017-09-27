@@ -20,7 +20,7 @@ export class CardPile extends CardCollection implements ICardPile {
   }
 
   public takeCardFromBottom (): ICard {
-    if (this.hasCards()) {
+    if (!this.isEmpty()) {
       return this.getCards().pop() as ICard
     }
     throw new Error('No cards remaining in pile.')
@@ -28,7 +28,7 @@ export class CardPile extends CardCollection implements ICardPile {
 
   public takeCardsFromBottom (amount: number): ICard[] {
     let pulledCards: ICard[] = []
-    while (this.hasCards() && pulledCards.length < amount) {
+    while (!this.isEmpty() && pulledCards.length < amount) {
       pulledCards.push(this.getCards().pop() as ICard)
     }
     return pulledCards

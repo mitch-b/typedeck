@@ -1,4 +1,3 @@
-import { MapIndexable } from '../../common/mapIndexable.interface'
 import { IChip } from './chip.interface'
 import { ChipColor } from './chipColor.model'
 import { ChipColorType } from './chipColorType.model'
@@ -7,7 +6,7 @@ import { ChipColorType } from './chipColorType.model'
  * Represents a generic chip - typically used
  * in Poker style games.
  */
-export class Chip implements IChip, MapIndexable {
+export class Chip implements IChip {
   public value = this.getValue()
 
   constructor (

@@ -46,10 +46,10 @@ export class CardCollection implements ICardCollection {
   }
 
   public takeCard (): ICard {
-    if (this.hasCards()) {
+    if (!this.isEmpty()) {
       return this.getCards().shift() as ICard
     }
-    throw new Error('No cards remaining in pile.')
+    throw new Error('No cards remaining in pile')
   }
 
   /**
@@ -62,7 +62,7 @@ export class CardCollection implements ICardCollection {
     }
     // tslint:disable-next-line:prefer-const
     let pulledCards: ICard[] = []
-    while (this.hasCards() && pulledCards.length < amount) {
+    while (!this.isEmpty() && pulledCards.length < amount) {
       pulledCards.push(this.getCards().shift() as ICard)
     }
     return pulledCards
@@ -77,12 +77,27 @@ export class CardCollection implements ICardCollection {
     return this
   }
 
+  public hasCard (card: ICard): boolean {
+    return this.getCards().indexOf(card) > -1
+  }
+
+  public hasCards (cards: ICard[]): boolean {
+    if (!this.hasCard(cards.shift() as ICard)) {
+      return false
+    }
+    if (cards && cards.length > 0) {
+      return this.hasCards(cards)
+    } else {
+      return true
+    }
+  }
+
   public getCount (): number {
     return this.getCards().length
   }
 
-  public hasCards (): boolean {
-    return this.getCount() > 0
+  public isEmpty (): boolean {
+    return this.getCount() === 0
   }
 
   public shuffle (): void {

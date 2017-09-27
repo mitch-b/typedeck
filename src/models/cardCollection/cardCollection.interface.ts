@@ -8,6 +8,8 @@ export interface ICardCollection {
   takeCard (): ICard
   takeCards (amount: number): ICard[]
   getCount (): number
-  hasCards (): boolean
+  isEmpty (): boolean
+  hasCard (card: ICard): boolean
+  hasCards (cards: ICard[]): boolean
   shuffle (): void
 }
