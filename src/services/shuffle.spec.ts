@@ -10,13 +10,25 @@ test('does shuffle', async t => {
   const service = new DurstenfeldShuffleService()
   const shuffledCards: ICard[] = [
     new Card(CardName.Ace),
+    new Card(CardName.Two),
+    new Card(CardName.Three),
+    new Card(CardName.Four),
     new Card(CardName.Five),
-    new Card(CardName.Six)
+    new Card(CardName.Six),
+    new Card(CardName.Seven),
+    new Card(CardName.Eight),
+    new Card(CardName.Nine)
   ]
   const staticCards: ICard[] = [
     new Card(CardName.Ace),
+    new Card(CardName.Two),
+    new Card(CardName.Three),
+    new Card(CardName.Four),
     new Card(CardName.Five),
-    new Card(CardName.Six)
+    new Card(CardName.Six),
+    new Card(CardName.Seven),
+    new Card(CardName.Eight),
+    new Card(CardName.Nine)
   ]
   service.shuffle(shuffledCards)
   let allEquivalent = true
