@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/mitch-b/typedeck/compare/v0.3.2...v0.4.0) (2017-09-27)
+
+
+### Bug Fixes
+
+* **cardCollection:** Fix removal of specific cards by using new object equality service ([e0cbab4](https://github.com/mitch-b/typedeck/commit/e0cbab4))
+
+
+### Features
+
+* **IObjectComparer:** New common object comparer interface ([e72d765](https://github.com/mitch-b/typedeck/commit/e72d765))
+
+
+
 <a name="0.3.2"></a>
 ## [0.3.2](https://github.com/mitch-b/typedeck/compare/v0.3.1...v0.3.2) (2017-09-27)
 
