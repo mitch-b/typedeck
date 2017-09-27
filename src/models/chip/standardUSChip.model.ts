@@ -6,7 +6,6 @@ import { Chip } from './chip.model'
  * Represents a StandardUS valuing Chip
  */
 export class StandardUSChip extends Chip {
-  public value = this.getValue()
   public colorType = ChipColorType.StandardUS
 
   constructor (
@@ -18,8 +17,8 @@ export class StandardUSChip extends Chip {
     return `${ChipColor[this.color]}`
   }
 
-  public getValue (color: ChipColor = this.color) {
-    switch (color) {
+  public getValue (_color: ChipColor = this.color) {
+    switch (_color) {
       case ChipColor.White:
         return 1
       case ChipColor.Pink:
@@ -36,7 +35,7 @@ export class StandardUSChip extends Chip {
       default:
         throw new Error(
           // tslint:disable-next-line:max-line-length
-          `Unable to determine value of ${ChipColor[this.color]} Chip for ${ChipColorType[this.colorType]}`
+          `Unable to determine value of ${ChipColor[_color]} Chip for ${ChipColorType[this.colorType]}`
         )
     }
   }

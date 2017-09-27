@@ -7,8 +7,6 @@ import { ChipColorType } from './chipColorType.model'
  * in Poker style games.
  */
 export class Chip implements IChip {
-  public value = this.getValue()
-
   constructor (
     public color: ChipColor,
     public colorType: ChipColorType = ChipColorType.StandardUS) {
