@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>JokerCard | typedeck</title>
+	<title>StringifyComparer | typedeck</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="jokercard.html">JokerCard</a>
+					<a href="stringifycomparer.html">StringifyComparer</a>
 				</li>
 			</ul>
-			<h1>Class JokerCard</h1>
+			<h1>Class StringifyComparer</h1>
 		</div>
 	</div>
 </header>
@@ -69,9 +69,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents a Joker card which is
-							not contained within any specific Suit
-						and can have a value based on current Game (if any/if used).</p>
+						<p>Compares objects using <code>JSON.stringify</code></p>
 					</div>
 				</div>
 			</section>
@@ -79,19 +77,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="card.html" class="tsd-signature-type">Card</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">JokerCard</span>
-							</li>
-						</ul>
+						<span class="target">StringifyComparer</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/icard.html" class="tsd-signature-type">ICard</a></li>
+					<li><a href="../interfaces/iobjectcomparer.html" class="tsd-signature-type">IObjectComparer</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -99,105 +92,40 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="jokercard.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-inherited">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="jokercard.html#cardname" class="tsd-kind-icon">card<wbr>Name</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="jokercard.html#getindex" class="tsd-kind-icon">get<wbr>Index</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="jokercard.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="stringifycomparer.html#areequivalent" class="tsd-kind-icon">are<wbr>Equivalent</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Joker<wbr>Card<span class="tsd-signature-symbol">(</span>cardName<span class="tsd-signature-symbol">?: </span><a href="../globals.html#cardname" class="tsd-signature-type">CardName</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="jokercard.html" class="tsd-signature-type">JokerCard</a></li>
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="areequivalent" class="tsd-anchor"></a>
+					<h3>are<wbr>Equivalent</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">are<wbr>Equivalent<span class="tsd-signature-symbol">(</span>objA<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, objB<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="card.html">Card</a>.<a href="card.html#constructor">constructor</a></p>
+								<p>Implementation of <a href="../interfaces/iobjectcomparer.html">IObjectComparer</a>.<a href="../interfaces/iobjectcomparer.html#areequivalent">areEquivalent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/card/jokerCard.model.ts#L9">models/card/jokerCard.model.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/common/stringifyComparer.model.ts#L7">common/stringifyComparer.model.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> cardName: <a href="../globals.html#cardname" class="tsd-signature-type">CardName</a><span class="tsd-signature-symbol"> =&nbsp;CardName.Joker</span></h5>
+									<h5>objA: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>objB: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="jokercard.html" class="tsd-signature-type">JokerCard</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a name="cardname" class="tsd-anchor"></a>
-					<h3>card<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">card<wbr>Name<span class="tsd-signature-symbol">:</span> <a href="../globals.html#cardname" class="tsd-signature-type">CardName</a></div>
-					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/icard.html">ICard</a>.<a href="../interfaces/icard.html#cardname">cardName</a></p>
-						<p>Inherited from <a href="card.html">Card</a>.<a href="card.html#cardname">cardName</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/card/card.model.ts#L8">models/card/card.model.ts:8</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a name="getindex" class="tsd-anchor"></a>
-					<h3>get<wbr>Index</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Index<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/icard.html">ICard</a>.<a href="../interfaces/icard.html#getindex">getIndex</a></p>
-								<p>Inherited from <a href="card.html">Card</a>.<a href="card.html#getindex">getIndex</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/card/card.model.ts#L18">models/card/card.model.ts:18</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a name="tostring" class="tsd-anchor"></a>
-					<h3>to<wbr>String</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="card.html">Card</a>.<a href="card.html#tostring">toString</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/card/card.model.ts#L14">models/card/card.model.ts:14</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -216,19 +144,10 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="jokercard.html" class="tsd-kind-icon">Joker<wbr>Card</a>
+						<a href="stringifycomparer.html" class="tsd-kind-icon">Stringify<wbr>Comparer</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-								<a href="jokercard.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="jokercard.html#cardname" class="tsd-kind-icon">card<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="jokercard.html#getindex" class="tsd-kind-icon">get<wbr>Index</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="jokercard.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="stringifycomparer.html#areequivalent" class="tsd-kind-icon">are<wbr>Equivalent</a>
 							</li>
 						</ul>
 					</li>

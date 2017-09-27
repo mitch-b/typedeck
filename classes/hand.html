@@ -103,10 +103,11 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="hand.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-inherited">
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="hand.html#friendlyname" class="tsd-kind-icon">friendly<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="hand.html#suitorder" class="tsd-kind-icon">suit<wbr>Order</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -114,10 +115,12 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="hand.html#addcard" class="tsd-kind-icon">add<wbr>Card</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="hand.html#addcards" class="tsd-kind-icon">add<wbr>Cards</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="hand.html#cardatindex" class="tsd-kind-icon">card<wbr>AtIndex</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="hand.html#getcards" class="tsd-kind-icon">get<wbr>Cards</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="hand.html#getcount" class="tsd-kind-icon">get<wbr>Count</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="hand.html#hascard" class="tsd-kind-icon">has<wbr>Card</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="hand.html#hascards" class="tsd-kind-icon">has<wbr>Cards</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="hand.html#indexofcard" class="tsd-kind-icon">index<wbr>OfCard</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="hand.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="hand.html#playcard" class="tsd-kind-icon">play<wbr>Card</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="hand.html#removecards" class="tsd-kind-icon">remove<wbr>Cards</a></li>
@@ -144,7 +147,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/hand.model.ts#L13">models/cardCollection/hand.model.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/hand.model.ts#L13">models/cardCollection/hand.model.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -158,7 +161,7 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="friendlyname" class="tsd-anchor"></a>
@@ -167,7 +170,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#friendlyname">friendlyName</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L20">models/cardCollection/cardCollection.model.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L22">models/cardCollection/cardCollection.model.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -177,6 +180,16 @@
 							&quot;In Play&quot;, etc.</p>
 						</div>
 					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="suitorder" class="tsd-anchor"></a>
+					<h3>suit<wbr>Order</h3>
+					<div class="tsd-signature tsd-kind-icon">suit<wbr>Order<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">Suit.Clubs</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Suit.Spades</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Suit.Diamonds</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Suit.Hearts</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[Suit.Clubs, Suit.Spades, Suit.Diamonds, Suit.Hearts]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/hand.model.ts#L13">models/cardCollection/hand.model.ts:13</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -193,7 +206,7 @@
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#addcard">addCard</a></p>
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#addcard">addCard</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L27">models/cardCollection/cardCollection.model.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L30">models/cardCollection/cardCollection.model.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -218,7 +231,7 @@
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#addcards">addCards</a></p>
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#addcards">addCards</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L31">models/cardCollection/cardCollection.model.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L34">models/cardCollection/cardCollection.model.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -228,6 +241,31 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="cardatindex" class="tsd-anchor"></a>
+					<h3>card<wbr>AtIndex</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">card<wbr>AtIndex<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/icard.html" class="tsd-signature-type">ICard</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#cardatindex">cardAtIndex</a></p>
+								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#cardatindex">cardAtIndex</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L120">models/cardCollection/cardCollection.model.ts:120</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/icard.html" class="tsd-signature-type">ICard</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -243,7 +281,7 @@
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#getcards">getCards</a></p>
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#getcards">getCards</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L71">models/cardCollection/cardCollection.model.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L74">models/cardCollection/cardCollection.model.ts:74</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/icard.html" class="tsd-signature-type">ICard</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -262,7 +300,7 @@
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#getcount">getCount</a></p>
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#getcount">getCount</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L95">models/cardCollection/cardCollection.model.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L98">models/cardCollection/cardCollection.model.ts:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -281,7 +319,7 @@
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#hascard">hasCard</a></p>
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#hascard">hasCard</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L80">models/cardCollection/cardCollection.model.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L83">models/cardCollection/cardCollection.model.ts:83</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -306,7 +344,7 @@
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#hascards">hasCards</a></p>
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#hascards">hasCards</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L84">models/cardCollection/cardCollection.model.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L87">models/cardCollection/cardCollection.model.ts:87</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -316,6 +354,31 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="indexofcard" class="tsd-anchor"></a>
+					<h3>index<wbr>OfCard</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">index<wbr>OfCard<span class="tsd-signature-symbol">(</span>card<span class="tsd-signature-symbol">: </span><a href="../interfaces/icard.html" class="tsd-signature-type">ICard</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#indexofcard">indexOfCard</a></p>
+								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#indexofcard">indexOfCard</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L110">models/cardCollection/cardCollection.model.ts:110</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>card: <a href="../interfaces/icard.html" class="tsd-signature-type">ICard</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -331,7 +394,7 @@
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#isempty">isEmpty</a></p>
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L99">models/cardCollection/cardCollection.model.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L102">models/cardCollection/cardCollection.model.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -349,7 +412,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#playcard">playCard</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/hand.model.ts#L27">models/cardCollection/hand.model.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/hand.model.ts#L27">models/cardCollection/hand.model.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -383,7 +446,7 @@
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#removecards">removeCards</a></p>
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#removecards">removeCards</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L36">models/cardCollection/cardCollection.model.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L39">models/cardCollection/cardCollection.model.ts:39</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -407,7 +470,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#setcards">setCards</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L75">models/cardCollection/cardCollection.model.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L78">models/cardCollection/cardCollection.model.ts:78</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -432,7 +495,7 @@
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#shuffle">shuffle</a></p>
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#shuffle">shuffle</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L103">models/cardCollection/cardCollection.model.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L106">models/cardCollection/cardCollection.model.ts:106</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -450,7 +513,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#sortcards">sortCards</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/hand.model.ts#L35">models/cardCollection/hand.model.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/hand.model.ts#L35">models/cardCollection/hand.model.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -485,7 +548,7 @@
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#takecard">takeCard</a></p>
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#takecard">takeCard</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L48">models/cardCollection/cardCollection.model.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L51">models/cardCollection/cardCollection.model.ts:51</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/icard.html" class="tsd-signature-type">ICard</a></h4>
@@ -504,7 +567,7 @@
 								<p>Implementation of <a href="../interfaces/ihand.html">IHand</a>.<a href="../interfaces/ihand.html#takecards">takeCards</a></p>
 								<p>Inherited from <a href="cardcollection.html">CardCollection</a>.<a href="cardcollection.html#takecards">takeCards</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/e38db53/src/models/cardCollection/cardCollection.model.ts#L59">models/cardCollection/cardCollection.model.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/372c9cb/src/models/cardCollection/cardCollection.model.ts#L62">models/cardCollection/cardCollection.model.ts:62</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -548,11 +611,17 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="hand.html#friendlyname" class="tsd-kind-icon">friendly<wbr>Name</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="hand.html#suitorder" class="tsd-kind-icon">suit<wbr>Order</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="hand.html#addcard" class="tsd-kind-icon">add<wbr>Card</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="hand.html#addcards" class="tsd-kind-icon">add<wbr>Cards</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="hand.html#cardatindex" class="tsd-kind-icon">card<wbr>AtIndex</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="hand.html#getcards" class="tsd-kind-icon">get<wbr>Cards</a>
@@ -565,6 +634,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="hand.html#hascards" class="tsd-kind-icon">has<wbr>Cards</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="hand.html#indexofcard" class="tsd-kind-icon">index<wbr>OfCard</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="hand.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
