@@ -213,3 +213,36 @@ test('throws error if taking more cards than available', async t => {
     t.deepEqual(err.message, 'No cards remaining in pile')
   }
 })
+
+test('can identify index of card', async t => {
+  const cardCollection = new CardCollection()
+  const card1 = new PlayingCard(CardName.Ace, Suit.Spades)
+  const card2 = new PlayingCard(CardName.Ace, Suit.Clubs)
+  const card3 = new PlayingCard(CardName.Ace, Suit.Hearts)
+  cardCollection.addCards([card1, card2, card3])
+  t.true(cardCollection.indexOfCard(new PlayingCard(CardName.Ace, Suit.Spades)) === 0)
+  t.true(cardCollection.indexOfCard(new PlayingCard(CardName.Ace, Suit.Clubs)) === 1)
+  t.true(cardCollection.indexOfCard(new PlayingCard(CardName.Ace, Suit.Hearts)) === 2)
+  t.true(cardCollection.indexOfCard(new PlayingCard(CardName.Queen, Suit.Hearts)) === -1)
+})
+
+test('can return card at index', async t => {
+  const cardCollection = new CardCollection()
+  const card1 = new PlayingCard(CardName.Ace, Suit.Spades)
+  const card2 = new PlayingCard(CardName.Ace, Suit.Clubs)
+  const card3 = new PlayingCard(CardName.Ace, Suit.Hearts)
+  cardCollection.addCards([card1, card2, card3])
+  t.true(cardCollection.cardAtIndex(2) === card3)
+  try {
+    cardCollection.cardAtIndex(3)
+    t.fail('Error should have thrown')
+  } catch (err) {
+    t.deepEqual(err.message, 'Card collection does not contain card at index')
+  }
+  try {
+    cardCollection.cardAtIndex(-5)
+    t.fail('Error should have thrown')
+  } catch (err) {
+    t.deepEqual(err.message, 'Card collection does not contain card at index')
+  }
+})

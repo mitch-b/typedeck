@@ -12,4 +12,6 @@ export interface ICardCollection {
   hasCard (card: ICard): boolean
   hasCards (cards: ICard[]): boolean
   shuffle (): void
+  indexOfCard (card: ICard): number
+  cardAtIndex (index: number): ICard
 }

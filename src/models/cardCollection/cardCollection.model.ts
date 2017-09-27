@@ -2,6 +2,8 @@ import { ICard } from '../card/card.interface'
 import { DurstenfeldShuffleService } from '../../services/shuffle.service'
 import { ICardCollection } from './cardCollection.interface'
 import { IShuffleService } from '../../services/shuffleService.interface'
+import { IObjectComparer } from '../../common/objectComparer.interface'
+import { StringifyComparer } from '../../common/stringifyComparer.model'
 
 /**
  * Basic class to represent a grouping of ICards.
@@ -19,6 +21,7 @@ export class CardCollection implements ICardCollection {
    */
   public friendlyName: string
   private shuffleService: IShuffleService = new DurstenfeldShuffleService()
+  private objectComparer: IObjectComparer = new StringifyComparer()
 
   constructor (private cards: ICard[] = []) {
 
@@ -35,7 +38,7 @@ export class CardCollection implements ICardCollection {
 
   public removeCards (cards: ICard[]): this {
     cards.forEach((card) => {
-      const position: number = this.getCards().indexOf(card)
+      const position: number = this.indexOfCard(card)
       if (position > -1) {
         this.getCards().splice(position, 1)
       } else {
@@ -102,5 +105,23 @@ export class CardCollection implements ICardCollection {
 
   public shuffle (): void {
     this.setCards(this.shuffleService.shuffle(this.getCards()))
+  }
+
+  public indexOfCard (card: ICard): number {
+    for (let i = 0; i < this.getCount(); i++) {
+      const loopCard = this.getCards()[i] as ICard
+      if (this.objectComparer.areEquivalent(card, loopCard)) {
+        return i
+      }
+    }
+    return -1
+  }
+
+  public cardAtIndex (index: number): ICard {
+    if (index >= 0 && index <= (this.getCount() - 1)) {
+      return this.getCards()[index] as ICard
+    } else {
+      throw new Error('Card collection does not contain card at index')
+    }
   }
 }
