@@ -10,7 +10,7 @@ import { IRankSet } from '../card/rankSet.interface'
  */
 export class Hand extends CardCollection implements IHand {
 
-  private suitOrder: Suit[] = [Suit.Clubs, Suit.Spades, Suit.Diamonds, Suit.Hearts]
+  public suitOrder: Suit[] = [Suit.Clubs, Suit.Spades, Suit.Diamonds, Suit.Hearts]
 
   constructor (cards: ICard[] = []) {
     super(cards) // CardCollection.constructor
@@ -35,15 +35,15 @@ export class Hand extends CardCollection implements IHand {
   public sortCards (cardRank: IRankSet): this {
     const cards = this.getCards()
     if (this.isEmpty()) {
-      throw new Error('No cards to sort.')
+      throw new Error('No cards to sort')
     }
     if (this.suitOrder.length === 0) {
-      throw new Error('No suit order defined.')
+      throw new Error('No suit order defined')
     }
 
     let sortedCardsBySuit: ICard[] = []
     const cardsBySuit = new Map<Suit, ICard[]>(
-      Array.from(MapExtensions.GroupBy(cards, (card: any) => card.suit).entries()).sort()
+      Array.from(MapExtensions.GroupBy(cards, (card: any) => this.suitOrder.indexOf(card.suit)).entries()).sort()
     )
 
     cardsBySuit.forEach((suitCards: ICard[]) => {
@@ -51,10 +51,6 @@ export class Hand extends CardCollection implements IHand {
         return cardRank.getRankValue(a) - cardRank.getRankValue(b)
       }))
     })
-
-    if (sortedCardsBySuit.length !== cards.length) {
-      throw new Error('After sorting, card length changed. Cancelling sort.')
-    }
 
     this.setCards(sortedCardsBySuit)
     return this
