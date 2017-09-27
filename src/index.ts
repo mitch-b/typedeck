@@ -5,6 +5,8 @@ export { Suit } from './models/card/suit.model'
 export { ChipColor } from './models/chip/chipColor.model'
 export { ChipColorType } from './models/chip/chipColorType.model'
 export { Difficulty } from './models/player/difficulty.model'
+export { IObjectComparer } from './common/objectComparer.interface'
+export { StringifyComparer } from './common/stringifyComparer.model'
 
 export { ICard } from './models/card/card.interface'
 export { IRankSet } from './models/card/rankSet.interface'
