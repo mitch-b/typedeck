@@ -16,7 +16,7 @@ export class BaseGameType implements IGameType {
       for (let i = 0; i < _options.numberOfDecks; i++) {
         gameCards.push(...this.cardsAllowed)
       }
-      if (_options.extraCards) {
+      if (_options.extraCards && _options.extraCards.length > 0) {
         gameCards = gameCards.concat(_options.extraCards)
       }
       return Deck.BuildFrom(gameCards)
