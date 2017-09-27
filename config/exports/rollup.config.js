@@ -3,8 +3,8 @@ import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 
 export default {
-    entry: 'build/module/index.js',
-    sourceMap: true,
+    input: 'build/module/index.js',
+    sourcemap: true,
     plugins: [
         nodeResolve({
             browser: true
