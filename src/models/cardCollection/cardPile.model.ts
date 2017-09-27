@@ -23,7 +23,7 @@ export class CardPile extends CardCollection implements ICardPile {
     if (!this.isEmpty()) {
       return this.getCards().pop() as ICard
     }
-    throw new Error('No cards remaining in pile.')
+    throw new Error('No cards remaining in pile')
   }
 
   public takeCardsFromBottom (amount: number): ICard[] {

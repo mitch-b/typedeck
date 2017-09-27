@@ -78,7 +78,7 @@ export class CardCollection implements ICardCollection {
   }
 
   public hasCard (card: ICard): boolean {
-    return this.getCards().indexOf(card) > -1
+    return this.getCards().some((c: ICard) => c.getIndex() === card.getIndex())
   }
 
   public hasCards (cards: ICard[]): boolean {

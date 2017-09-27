@@ -33,7 +33,7 @@ export class Deck extends CardPile implements IDeck {
       cardNames.forEach((cardName) =>
         cards.push(new PlayingCard(cardName, suit))))
 
-    if (extraCards) {
+    if (extraCards && extraCards.length > 0) {
       cards = cards.concat(extraCards)
     }
 

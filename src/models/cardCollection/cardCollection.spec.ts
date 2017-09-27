@@ -213,13 +213,3 @@ test('throws error if taking more cards than available', async t => {
     t.deepEqual(err.message, 'No cards remaining in pile')
   }
 })
-
-test('returns false if card is undefined or null', async t => {
-  const cardCollection = new CardCollection()
-  const card1 = new PlayingCard(CardName.Ace, Suit.Spades)
-  const card2 = new PlayingCard(CardName.Ace, Suit.Clubs)
-  const card3 = new PlayingCard(CardName.Ace, Suit.Hearts)
-  cardCollection.addCards([card1, card2, card3])
-
-  t.false(cardCollection.hasCard({} as ICard))
-})
