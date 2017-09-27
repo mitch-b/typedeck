@@ -7,7 +7,7 @@ export class ComputerPlayer extends Player {
 
   constructor (
     name: string,
-    hand: IHand,
+    hand: IHand = new Hand(),
     public difficulty: Difficulty = Difficulty.Normal) {
     super(name, hand)
   }

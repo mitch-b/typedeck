@@ -9,16 +9,13 @@ import { IPlayer } from './player.interface'
  */
 export class Player implements IPlayer {
   public id: string
-  public score: number
+  public score: number = 0
 
   constructor (
     public name: string,
-    private hand: IHand,
+    private hand: IHand = new Hand(),
     randomStringService: IRandomStringService = new MathRandomStringService()) {
     this.id = randomStringService.get(7)
-    if (!this.hand) {
-      this.hand = new Hand()
-    }
   }
 
   public updateScore (score: number): this {
