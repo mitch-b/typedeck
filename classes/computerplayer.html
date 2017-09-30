@@ -124,14 +124,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Computer<wbr>Player<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, hand<span class="tsd-signature-symbol">?: </span><a href="../interfaces/ihand.html" class="tsd-signature-type">IHand</a>, difficulty<span class="tsd-signature-symbol">?: </span><a href="../globals.html#difficulty" class="tsd-signature-type">Difficulty</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="computerplayer.html" class="tsd-signature-type">ComputerPlayer</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Computer<wbr>Player<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, hand<span class="tsd-signature-symbol">?: </span><a href="../interfaces/ihand.html" class="tsd-signature-type">IHand</a>, difficulty<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Difficulty.Easy</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Normal</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Hard</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Expert</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="computerplayer.html" class="tsd-signature-type">ComputerPlayer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="player.html">Player</a>.<a href="player.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/86ebaa5/src/models/player/computerPlayer.model.ts#L6">models/player/computerPlayer.model.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/291661a/src/models/player/computerPlayer.model.ts#L6">models/player/computerPlayer.model.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -143,7 +143,7 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hand: <a href="../interfaces/ihand.html" class="tsd-signature-type">IHand</a><span class="tsd-signature-symbol"> =&nbsp;new Hand()</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> difficulty: <a href="../globals.html#difficulty" class="tsd-signature-type">Difficulty</a><span class="tsd-signature-symbol"> =&nbsp;Difficulty.Normal</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> difficulty: <span class="tsd-signature-type">Difficulty.Easy</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Normal</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Hard</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Expert</span><span class="tsd-signature-symbol"> =&nbsp;Difficulty.Normal</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="computerplayer.html" class="tsd-signature-type">ComputerPlayer</a></h4>
@@ -156,10 +156,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="difficulty" class="tsd-anchor"></a>
 					<h3>difficulty</h3>
-					<div class="tsd-signature tsd-kind-icon">difficulty<span class="tsd-signature-symbol">:</span> <a href="../globals.html#difficulty" class="tsd-signature-type">Difficulty</a></div>
+					<div class="tsd-signature tsd-kind-icon">difficulty<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Difficulty.Easy</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Normal</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Hard</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Expert</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/86ebaa5/src/models/player/computerPlayer.model.ts#L11">models/player/computerPlayer.model.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/291661a/src/models/player/computerPlayer.model.ts#L11">models/player/computerPlayer.model.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -171,7 +171,7 @@
 						<p>Implementation of <a href="../interfaces/iplayer.html">IPlayer</a>.<a href="../interfaces/iplayer.html#id">id</a></p>
 						<p>Inherited from <a href="player.html">Player</a>.<a href="player.html#id">id</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/86ebaa5/src/models/player/player.model.ts#L11">models/player/player.model.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/291661a/src/models/player/player.model.ts#L11">models/player/player.model.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,7 +183,7 @@
 						<p>Implementation of <a href="../interfaces/iplayer.html">IPlayer</a>.<a href="../interfaces/iplayer.html#name">name</a></p>
 						<p>Inherited from <a href="player.html">Player</a>.<a href="player.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/86ebaa5/src/models/player/player.model.ts#L15">models/player/player.model.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/291661a/src/models/player/player.model.ts#L15">models/player/player.model.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -195,7 +195,7 @@
 						<p>Implementation of <a href="../interfaces/iplayer.html">IPlayer</a>.<a href="../interfaces/iplayer.html#score">score</a></p>
 						<p>Inherited from <a href="player.html">Player</a>.<a href="player.html#score">score</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/86ebaa5/src/models/player/player.model.ts#L12">models/player/player.model.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/291661a/src/models/player/player.model.ts#L12">models/player/player.model.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -214,7 +214,7 @@
 								<p>Implementation of <a href="../interfaces/iplayer.html">IPlayer</a>.<a href="../interfaces/iplayer.html#gethand">getHand</a></p>
 								<p>Inherited from <a href="player.html">Player</a>.<a href="player.html#gethand">getHand</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/86ebaa5/src/models/player/player.model.ts#L26">models/player/player.model.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/291661a/src/models/player/player.model.ts#L26">models/player/player.model.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/ihand.html" class="tsd-signature-type">IHand</a></h4>
@@ -225,19 +225,19 @@
 					<a name="setdifficulty" class="tsd-anchor"></a>
 					<h3>set<wbr>Difficulty</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Difficulty<span class="tsd-signature-symbol">(</span>difficulty<span class="tsd-signature-symbol">: </span><a href="../globals.html#difficulty" class="tsd-signature-type">Difficulty</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Difficulty<span class="tsd-signature-symbol">(</span>difficulty<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Difficulty.Easy</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Normal</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Hard</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Expert</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/86ebaa5/src/models/player/computerPlayer.model.ts#L24">models/player/computerPlayer.model.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/291661a/src/models/player/computerPlayer.model.ts#L24">models/player/computerPlayer.model.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>difficulty: <a href="../globals.html#difficulty" class="tsd-signature-type">Difficulty</a></h5>
+									<h5>difficulty: <span class="tsd-signature-type">Difficulty.Easy</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Normal</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Hard</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Difficulty.Expert</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -256,7 +256,7 @@
 								<p>Implementation of <a href="../interfaces/iplayer.html">IPlayer</a>.<a href="../interfaces/iplayer.html#sethand">setHand</a></p>
 								<p>Inherited from <a href="player.html">Player</a>.<a href="player.html#sethand">setHand</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/86ebaa5/src/models/player/player.model.ts#L30">models/player/player.model.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/291661a/src/models/player/player.model.ts#L30">models/player/player.model.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -280,7 +280,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="player.html">Player</a>.<a href="player.html#tostring">toString</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/86ebaa5/src/models/player/computerPlayer.model.ts#L29">models/player/computerPlayer.model.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/291661a/src/models/player/computerPlayer.model.ts#L29">models/player/computerPlayer.model.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -299,7 +299,7 @@
 								<p>Implementation of <a href="../interfaces/iplayer.html">IPlayer</a>.<a href="../interfaces/iplayer.html#updatescore">updateScore</a></p>
 								<p>Inherited from <a href="player.html">Player</a>.<a href="player.html#updatescore">updateScore</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/86ebaa5/src/models/player/player.model.ts#L21">models/player/player.model.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/291661a/src/models/player/player.model.ts#L21">models/player/player.model.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -322,7 +322,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/86ebaa5/src/models/player/computerPlayer.model.ts#L15">models/player/computerPlayer.model.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/291661a/src/models/player/computerPlayer.model.ts#L15">models/player/computerPlayer.model.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
