@@ -6,7 +6,7 @@ import { Difficulty } from './difficulty.model'
 export class ComputerPlayer extends Player {
 
   constructor (
-    name: string,
+    name: string = '',
     hand: IHand = new Hand(),
     public difficulty: Difficulty = Difficulty.Normal) {
     super(name, hand)

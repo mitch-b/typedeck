@@ -12,7 +12,7 @@ export class Player implements IPlayer {
   public score: number = 0
 
   constructor (
-    public name: string,
+    public name: string = '',
     private hand: IHand = new Hand(),
     randomStringService: IRandomStringService = new MathRandomStringService()) {
     this.id = randomStringService.get(7)
