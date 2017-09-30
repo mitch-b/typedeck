@@ -14,7 +14,7 @@ test('chip color is set', async t => {
 test('chip color is printed', async t => {
   const chip = new StandardUSChip(ChipColor.Black)
   t.deepEqual(chip.color, ChipColor.Black)
-  t.deepEqual(chip.toString(), ChipColor.Black)
+  t.deepEqual(chip.toString(), ChipColor[ChipColor.Black])
   t.deepEqual(chip.toString(), 'Black')
 })
 
@@ -95,6 +95,6 @@ test('brown chip throws exception', async t => {
     chip.getValue()
     t.fail('Error should have thrown')
   } catch (err) {
-    t.deepEqual(err.message, `Unable to determine value of ${chipColor} Chip for ${ChipColorType.StandardUS}`)
+    t.deepEqual(err.message, `Unable to determine value of ${ChipColor[chipColor]} Chip for ${ChipColorType[ChipColorType.StandardUS]}`)
   }
 })

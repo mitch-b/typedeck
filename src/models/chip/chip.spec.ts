@@ -20,7 +20,7 @@ test('chip type can be set', async t => {
 test('chip color is printed', async t => {
   const chip = new Chip(ChipColor.Black)
   t.deepEqual(chip.color, ChipColor.Black)
-  t.deepEqual(chip.toString(), ChipColor.Black)
+  t.deepEqual(chip.toString(), ChipColor[ChipColor.Black])
   t.deepEqual(chip.toString(), 'Black')
 })
 
