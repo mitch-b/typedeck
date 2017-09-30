@@ -14,6 +14,11 @@ test('create player without hand', async t => {
   t.true(player.getHand().isEmpty())
 })
 
+test('create player without a name', async t => {
+  const player = new Player()
+  t.true(player.name === '')
+})
+
 test('update player score', async t => {
   const playerName = 'GenericPlayerName'
   const player = new Player(playerName)

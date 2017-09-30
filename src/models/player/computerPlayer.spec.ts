@@ -14,6 +14,11 @@ test('create computerPlayer without hand', async t => {
   t.true(player.getHand().isEmpty())
 })
 
+test('create computerPlayer without a name', async t => {
+  const player = new ComputerPlayer()
+  t.true(player.name === '')
+})
+
 test('computerPlayer prints out name', async t => {
   const playerName = 'GenericComputerPlayerName'
   const player = new ComputerPlayer(playerName)
