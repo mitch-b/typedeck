@@ -10,6 +10,8 @@
     "importHelpers": true,
     "inlineSourceMap": true,
     "forceConsistentCasingInFileNames": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "listFiles": false,
     "traceResolution": false,
     "pretty": true,
