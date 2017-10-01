@@ -1,5 +1,5 @@
 import { Suit } from '../card/suit.model'
-import { CardCollection } from './cardCollection.model'
+import { CardPile } from './cardPile.model'
 import { MapExtensions } from '../../common/mapExtensions.model'
 import { IHand } from './hand.interface'
 import { ICard } from '../card/card.interface'
@@ -8,14 +8,12 @@ import { IRankSet } from '../card/rankSet.interface'
 /**
  * Represents a group of cards assigned to an IPlayer
  */
-export class Hand extends CardCollection implements IHand {
-
+export class Hand extends CardPile implements IHand {
+  public name = 'Hand'
   public suitOrder: Suit[] = [Suit.Clubs, Suit.Spades, Suit.Diamonds, Suit.Hearts]
 
   constructor (cards: ICard[] = []) {
-    super(cards) // CardCollection.constructor
-
-    this.friendlyName = 'Hand' // default name
+    super(cards) // CardPile.constructor
   }
 
   /**

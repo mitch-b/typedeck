@@ -12,6 +12,17 @@ test('is empty with no cards', async t => {
   t.true(hand.isEmpty(), 'isEmpty() should have been true')
 })
 
+test('has default name', async t => {
+  const hand = new Hand()
+  t.deepEqual(hand.name, 'Hand')
+})
+
+test('can assign name', async t => {
+  const hand = new Hand()
+  hand.name = 'Player 1 Hand'
+  t.deepEqual(hand.name, 'Player 1 Hand')
+})
+
 test('has cards when initialized with them', async t => {
   const cards: ICard[] = [
     new PlayingCard(CardName.Eight, Suit.Diamonds),
