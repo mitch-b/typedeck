@@ -16,10 +16,9 @@ import { IDeck } from './deck.interface'
  * throughout the duration of the ongoing game.
  */
 export class Deck extends CardPile implements IDeck {
+  public name = 'Deck'
   constructor (cards: ICard[] = []) {
     super(cards) // CardPile.constructor
-
-    this.friendlyName = 'Deck' // default name
   }
 
   public static BuildFrom (cards: ICard[] = []): Deck {
@@ -42,12 +41,16 @@ export class Deck extends CardPile implements IDeck {
 
   public createHand (options: HandOptions): IHand {
     const hand = new Hand()
-    this.deal(hand, options.size)
+    this.deal(hand, options.size, false)
     return hand
   }
 
-  public deal (hand: IHand, size: number): this {
-    hand.addCards(this.takeCards(size))
+  public deal (hand: IHand, /** Amount of cards to deal into Hand */ size: number, /** Deal cards to top of hand */ frontOfHand: boolean = false): this {
+    if (frontOfHand) {
+      hand.addCards(this.takeCards(size))
+    } else {
+      hand.addCardsToBottom(this.takeCards(size))
+    }
     return this
   }
 }

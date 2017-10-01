@@ -1,5 +1,5 @@
 import { test } from 'ava'
-import { ICard, Deck, CardName, Suit, PlayingCard, HandOptions, Hand } from 'typedeck'
+import { ICard, Deck, CardName, Suit, PlayingCard, HandOptions, Hand, JokerCard } from 'typedeck'
 
 test('empty without cards in constructor', async t => {
   const emptyCards: ICard[] = []
@@ -10,6 +10,17 @@ test('empty without cards in constructor', async t => {
 test('is empty with no cards', async t => {
   const deck = new Deck()
   t.true(deck.isEmpty(), 'isEmpty() should have been true')
+})
+
+test('has default name', async t => {
+  const deck = new Deck()
+  t.deepEqual(deck.name, 'Deck')
+})
+
+test('can assign name', async t => {
+  const deck = new Deck()
+  deck.name = 'Main Deck'
+  t.deepEqual(deck.name, 'Main Deck')
 })
 
 test('has cards when initialized with them', async t => {
@@ -93,4 +104,36 @@ test('deals to a Hand', async t => {
   const hand = new Hand()
   deck.deal(hand, 4)
   t.true(hand.getCount() === 4, 'Did not deal hand with expected cards')
+})
+
+test('deals to top of Hand', async t => {
+  const cards: ICard[] = [
+    new PlayingCard(CardName.Eight, Suit.Diamonds),
+    new PlayingCard(CardName.Two, Suit.Clubs),
+    new PlayingCard(CardName.King, Suit.Spades),
+    new PlayingCard(CardName.Seven, Suit.Hearts)
+  ]
+  const deck = Deck.BuildFrom(cards)
+  const hand = new Hand([
+    new JokerCard()
+  ])
+  deck.deal(hand, 4, true)
+  t.true(hand.getCount() === 5, 'Did not deal hand with expected cards')
+  t.deepEqual(hand.takeCard(), new PlayingCard(CardName.Eight, Suit.Diamonds), 'Did not deal hand with expected cards')
+})
+
+test('deals to bottom of Hand', async t => {
+  const cards: ICard[] = [
+    new PlayingCard(CardName.Eight, Suit.Diamonds),
+    new PlayingCard(CardName.Two, Suit.Clubs),
+    new PlayingCard(CardName.King, Suit.Spades),
+    new PlayingCard(CardName.Seven, Suit.Hearts)
+  ]
+  const deck = Deck.BuildFrom(cards)
+  const hand = new Hand([
+    new JokerCard()
+  ])
+  deck.deal(hand, 4, false)
+  t.true(hand.getCount() === 5, 'Did not deal hand with expected cards')
+  t.deepEqual(hand.takeCard(), new JokerCard(), 'Did not deal hand with expected cards')
 })

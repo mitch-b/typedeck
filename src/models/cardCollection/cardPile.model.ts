@@ -9,10 +9,9 @@ import { ICard } from '../card/card.interface'
  * class.
  */
 export class CardPile extends CardCollection implements ICardPile {
+  public name = 'Pile'
   constructor (cards: ICard[] = []) {
     super(cards) // CardCollection.constructor
-
-    this.friendlyName = 'Pile' // default name
   }
 
   public addCardsToBottom (cards: ICard[]): void {

@@ -1,11 +1,25 @@
 import { test } from 'ava'
-import { Player, Hand, PlayingCard, CardName, Suit } from 'typedeck'
+import { Player, Hand, PlayingCard, CardName, Suit, MathRandomStringService } from 'typedeck'
 
 test('create player with hand', async t => {
   const playerName = 'GenericPlayerName'
   const playerHand = new Hand()
   const player = new Player(playerName, playerHand)
   t.true(player.getHand().isEmpty())
+})
+
+test('player created with random name generator', async t => {
+  const playerName = 'GenericPlayerName'
+  const playerHand = new Hand()
+  const stringGenerator = new MathRandomStringService()
+  const player = new Player(playerName, playerHand, stringGenerator)
+  t.deepEqual(player.toString(), playerName)
+})
+
+test('player has an id', async t => {
+  const playerName = 'GenericPlayerName'
+  const player = new Player(playerName)
+  t.true(player.id.length > 0, 'Player ID was not generated')
 })
 
 test('create player without hand', async t => {
