@@ -35,4 +35,8 @@ export class Player implements IPlayer {
   public toString (): string {
     return `${this.name}`
   }
+
+  public getIndex (): string {
+    return this.id
+  }
 }
