@@ -8,12 +8,22 @@ export class PokerHandResult {
    */
   public handType: PokerHandType
   /**
+   * Description
+   */
+  public description: string = 'Uninitialized'
+  /**
+   * Comparable value of current hand
+   * to rank above or below another
+   * `PokerHandResult`.
+   */
+  public value: number = 0
+  /**
    * All cards used to determine
    * result.
    */
-  public cards: PlayingCard[]
+  public cards: PlayingCard[] = []
   /**
    * Cards in result.
    */
-  public cardsUsed: PlayingCard[]
+  public cardsUsed: PlayingCard[] = []
 }

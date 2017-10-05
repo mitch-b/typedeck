@@ -56,22 +56,22 @@ export class PokerScoreService implements IPokerScoreService {
   }
 
   score (...allCards: PlayingCard[][]): PokerHandResult {
-      // return the best poker hand from a set or sets of cards
-    let cards = sanitise(allCards)
+    // return the best poker hand from a set or sets of cards
+    let cards = this.sanitise(allCards)
 
-      // start empty
-    let best = result(cards)
+    // start empty
+    let best = new PokerHandResult()
+    best.cards = cards
 
-      // find best hand
-    for (let combination of _combinations(cards, 5)) {
-          // calculate value of 5 cards
-      let result = calculate(combination)
+    // find best hand
+    for (let combination of this.combinations(cards, 5)) {
+      // calculate value of 5 cards
+      let result = this.calculate(combination)
       if (result.value > best.value) {
         best = result
       }
     }
-
-      // finish with best result
+    // finish with best result
     return best
   }
 
@@ -103,7 +103,7 @@ export class PokerScoreService implements IPokerScoreService {
     // everything else
     for (let i = 0; i < cards.length - groups; i++) {
       let head = cards.slice(i, (i + 1))
-      let tails = combinations(cards.slice(i + 1), (groups - 1))
+      let tails = this.combinations(cards.slice(i + 1), (groups - 1))
       for (let tail of tails) {
         result.push(head.concat(tail))
       }
@@ -137,15 +137,15 @@ export class PokerScoreService implements IPokerScoreService {
   }
 
   isStraight (ranked: PlayingCard[][]): boolean {
-        // must have 5 different cards
+    // must have 5 different cards
     if (!ranked[4]) {
       return false
     }
 
     // could be wheel if r1 is 'ace' and r4 is '2'
     if (ranked[0][0].cardName === CardName.Ace &&
-        ranked[1][0].cardName === CardName.Five &&
-        ranked[4][0].cardName === CardName.Two) {
+      ranked[1][0].cardName === CardName.Five &&
+      ranked[4][0].cardName === CardName.Two) {
       // hand is 'ace' '5' '4' '3' '2'
       ranked.push(ranked.shift() as PlayingCard[])
       // ace is now low
@@ -190,7 +190,11 @@ export class PokerScoreService implements IPokerScoreService {
   }
 
   result (card: PlayingCard[], description: string, rankValue: number): PokerHandResult {
-    
+    let result = new PokerHandResult()
+    result.cards = card
+    result.value = rankValue
+    result.description = description
+    return result
   }
 
   calculate (cards: PlayingCard[]): PokerHandResult {
