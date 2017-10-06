@@ -160,18 +160,10 @@ export class PokerScoreService implements IPokerScoreService {
 
   isFlush (cards: PlayingCard[]): boolean {
     // all suits match is flush
-    let suit = cards[0].suit
-
-    for (let card of cards) {
-      if (card.suit !== suit) {
-        return false
-      }
-    }
-
-    return true
+    return cards.every((card: PlayingCard) => card.suit === cards[0].suit)
   }
 
-  value (ranked: PlayingCard[][], primary: number): number {
+  value (ranked: PlayingCard[][], handType: PokerHandType): number {
     // primary wins the rest are kickers
     let str = ''
 
@@ -186,7 +178,7 @@ export class PokerScoreService implements IPokerScoreService {
     }
 
     // to integer
-    return (primary * 10000000000) + parseInt(str, 10)
+    return (handType * 10000000000) + parseInt(str, 10)
   }
 
   result (card: PlayingCard[], description: string, handType: PokerHandType, rankValue: number): PokerHandResult {
