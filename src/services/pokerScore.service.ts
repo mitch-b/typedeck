@@ -55,7 +55,7 @@ export class PokerScoreService implements IPokerScoreService {
     return result.handType * 10000000000
   }
 
-  score (...allCards: PlayingCard[][]): PokerHandResult {
+  score (allCards: PlayingCard[]): PokerHandResult {
     // return the best poker hand from a set or sets of cards
     let cards = this.sanitise(allCards)
 
@@ -75,7 +75,7 @@ export class PokerScoreService implements IPokerScoreService {
     return best
   }
 
-  sanitise (allCards: PlayingCard[][]): PlayingCard[] {
+  sanitise (allCards: PlayingCard[]): PlayingCard[] {
     // concatenate
     let cards: PlayingCard[] = [].concat.apply([], allCards)
     return cards
@@ -189,8 +189,9 @@ export class PokerScoreService implements IPokerScoreService {
     return (primary * 10000000000) + parseInt(str, 10)
   }
 
-  result (card: PlayingCard[], description: string, rankValue: number): PokerHandResult {
+  result (card: PlayingCard[], description: string, handType: PokerHandType, rankValue: number): PokerHandResult {
     let result = new PokerHandResult()
+    result.handType = handType
     result.cards = card
     result.value = rankValue
     result.description = description
@@ -202,25 +203,25 @@ export class PokerScoreService implements IPokerScoreService {
     const isFlush = this.isFlush(cards)
     const isStraight = this.isStraight(ranked)
     if (isStraight && isFlush && ranked[0][0].cardName === CardName.Ace) {
-      return this.result(cards, 'royal flush', this.value(ranked, 9))
+      return this.result(cards, 'royal flush', PokerHandType.RoyalFlush, this.value(ranked, 9))
     } else if (isStraight && isFlush) {
-      return this.result(cards, 'straight flush', this.value(ranked, 8))
+      return this.result(cards, 'straight flush', PokerHandType.StraightFlush, this.value(ranked, 8))
     } else if (ranked[0].length === 4) {
-      return this.result(cards, 'four of a kind', this.value(ranked, 7))
+      return this.result(cards, 'four of a kind', PokerHandType.FourOfAKind, this.value(ranked, 7))
     } else if (ranked[0].length === 3 && ranked[1].length === 2) {
-      return this.result(cards, 'full house', this.value(ranked, 6))
+      return this.result(cards, 'full house', PokerHandType.FullHouse, this.value(ranked, 6))
     } else if (isFlush) {
-      return this.result(cards, 'flush', this.value(ranked, 5))
+      return this.result(cards, 'flush', PokerHandType.Flush, this.value(ranked, 5))
     } else if (isStraight) {
-      return this.result(cards, 'straight', this.value(ranked, 4))
+      return this.result(cards, 'straight', PokerHandType.Straight, this.value(ranked, 4))
     } else if (ranked[0].length === 3) {
-      return this.result(cards, 'three of a kind', this.value(ranked, 3))
+      return this.result(cards, 'three of a kind', PokerHandType.ThreeOfAKind, this.value(ranked, 3))
     } else if (ranked[0].length === 2 && ranked[1].length === 2) {
-      return this.result(cards, 'two pair', this.value(ranked, 2))
+      return this.result(cards, 'two pair', PokerHandType.TwoPair, this.value(ranked, 2))
     } else if (ranked[0].length === 2) {
-      return this.result(cards, 'one pair', this.value(ranked, 1))
+      return this.result(cards, 'one pair', PokerHandType.OnePair, this.value(ranked, 1))
     } else {
-      return this.result(cards, 'high card', this.value(ranked, 0))
+      return this.result(cards, 'high card', PokerHandType.HighCard, this.value(ranked, 0))
     }
   }
 }

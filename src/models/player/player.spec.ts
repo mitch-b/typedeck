@@ -43,3 +43,9 @@ test('player prints out name', async t => {
   const player = new Player(playerName)
   t.deepEqual(player.toString(), playerName)
 })
+
+test('player id is same as index', async t => {
+  const playerName = 'GenericPlayerName'
+  const player = new Player(playerName)
+  t.deepEqual(player.id, player.getIndex())
+})
