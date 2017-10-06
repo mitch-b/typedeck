@@ -61,7 +61,6 @@ export class PokerScoreService implements IPokerScoreService {
 
     // start empty
     let best = new PokerHandResult()
-    best.cards = cards
 
     // find best hand
     for (let combination of this.combinations(cards, 5)) {
@@ -181,39 +180,30 @@ export class PokerScoreService implements IPokerScoreService {
     return (handType * 10000000000) + parseInt(str, 10)
   }
 
-  result (card: PlayingCard[], description: string, handType: PokerHandType, rankValue: number): PokerHandResult {
-    let result = new PokerHandResult()
-    result.handType = handType
-    result.cards = card
-    result.value = rankValue
-    result.description = description
-    return result
-  }
-
   calculate (cards: PlayingCard[]): PokerHandResult {
     const ranked: PlayingCard[][] = this.ranked(cards)
     const isFlush = this.isFlush(cards)
     const isStraight = this.isStraight(ranked)
     if (isStraight && isFlush && ranked[0][0].cardName === CardName.Ace) {
-      return this.result(cards, 'royal flush', PokerHandType.RoyalFlush, this.value(ranked, 9))
+      return new PokerHandResult(cards, this.value(ranked, 9)).setHandType(PokerHandType.RoyalFlush)
     } else if (isStraight && isFlush) {
-      return this.result(cards, 'straight flush', PokerHandType.StraightFlush, this.value(ranked, 8))
+      return new PokerHandResult(cards, this.value(ranked, 8)).setHandType(PokerHandType.StraightFlush)
     } else if (ranked[0].length === 4) {
-      return this.result(cards, 'four of a kind', PokerHandType.FourOfAKind, this.value(ranked, 7))
+      return new PokerHandResult(cards, this.value(ranked, 7)).setHandType(PokerHandType.FourOfAKind)
     } else if (ranked[0].length === 3 && ranked[1].length === 2) {
-      return this.result(cards, 'full house', PokerHandType.FullHouse, this.value(ranked, 6))
+      return new PokerHandResult(cards, this.value(ranked, 6)).setHandType(PokerHandType.FullHouse)
     } else if (isFlush) {
-      return this.result(cards, 'flush', PokerHandType.Flush, this.value(ranked, 5))
+      return new PokerHandResult(cards, this.value(ranked, 5)).setHandType(PokerHandType.Flush)
     } else if (isStraight) {
-      return this.result(cards, 'straight', PokerHandType.Straight, this.value(ranked, 4))
+      return new PokerHandResult(cards, this.value(ranked, 4)).setHandType(PokerHandType.Straight)
     } else if (ranked[0].length === 3) {
-      return this.result(cards, 'three of a kind', PokerHandType.ThreeOfAKind, this.value(ranked, 3))
+      return new PokerHandResult(cards, this.value(ranked, 3)).setHandType(PokerHandType.ThreeOfAKind)
     } else if (ranked[0].length === 2 && ranked[1].length === 2) {
-      return this.result(cards, 'two pair', PokerHandType.TwoPair, this.value(ranked, 2))
+      return new PokerHandResult(cards, this.value(ranked, 2)).setHandType(PokerHandType.TwoPair)
     } else if (ranked[0].length === 2) {
-      return this.result(cards, 'one pair', PokerHandType.OnePair, this.value(ranked, 1))
+      return new PokerHandResult(cards, this.value(ranked, 1)).setHandType(PokerHandType.OnePair)
     } else {
-      return this.result(cards, 'high card', PokerHandType.HighCard, this.value(ranked, 0))
+      return new PokerHandResult(cards, this.value(ranked, 0)).setHandType(PokerHandType.HighCard)
     }
   }
 }

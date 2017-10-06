@@ -8,10 +8,6 @@ export class PokerHandResult {
    */
   public handType: PokerHandType
   /**
-   * Description
-   */
-  public description: string = 'Uninitialized'
-  /**
    * Comparable value of current hand
    * to rank above or below another
    * `PokerHandResult`.
@@ -26,4 +22,16 @@ export class PokerHandResult {
    * Cards in result.
    */
   public cardsUsed: PlayingCard[] = []
+
+  constructor (
+    cards: PlayingCard[] = [],
+    value: number = 0) {
+    this.cards = cards
+    this.value = value
+  }
+
+  setHandType (type: PokerHandType): this {
+    this.handType = type
+    return this
+  }
 }
