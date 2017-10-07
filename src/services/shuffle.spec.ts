@@ -8,17 +8,6 @@ import {
 
 test('does shuffle', async t => {
   const service = new DurstenfeldShuffleService()
-  const shuffledCards: ICard[] = [
-    new Card(CardName.Ace),
-    new Card(CardName.Two),
-    new Card(CardName.Three),
-    new Card(CardName.Four),
-    new Card(CardName.Five),
-    new Card(CardName.Six),
-    new Card(CardName.Seven),
-    new Card(CardName.Eight),
-    new Card(CardName.Nine)
-  ]
   const staticCards: ICard[] = [
     new Card(CardName.Ace),
     new Card(CardName.Two),
@@ -28,9 +17,14 @@ test('does shuffle', async t => {
     new Card(CardName.Six),
     new Card(CardName.Seven),
     new Card(CardName.Eight),
-    new Card(CardName.Nine)
+    new Card(CardName.Nine),
+    new Card(CardName.Ten),
+    new Card(CardName.Jack),
+    new Card(CardName.Queen),
+    new Card(CardName.King),
+    new Card(CardName.Joker)
   ]
-  service.shuffle(shuffledCards)
+  const shuffledCards = service.shuffle([...staticCards])
   let allEquivalent = true
   for (let i = 0; i < shuffledCards.length; i++) {
     if (staticCards[i].getIndex() !== shuffledCards[i].getIndex()) {

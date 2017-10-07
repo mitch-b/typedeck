@@ -4,7 +4,8 @@ import {
   PokerHandType,
   CardName,
   Suit,
-  PokerScoreService
+  PokerScoreService,
+  Hand
 } from 'typedeck'
 
 function getHands (type: PokerHandType): PlayingCard[][] {
@@ -29,9 +30,19 @@ function getHands (type: PokerHandType): PlayingCard[][] {
 test('exception thrown for invalid card amount tested', async t => {
   const service = new PokerScoreService()
   const handsToTest: PlayingCard[][] = getHands(PokerHandType.OnePair)
-
   try {
     service.scoreCards(handsToTest[0].splice(0, 1))
+    t.fail('Error should have thrown')
+  } catch (err) {
+    t.deepEqual(err.message, 'Poker Scoring: Invalid cards provided. Please send only 5 cards.')
+  }
+})
+
+test('exception thrown for invalid hand card amount tested', async t => {
+  const service = new PokerScoreService()
+  const handToTest: Hand = new Hand(getHands(PokerHandType.OnePair)[0].splice(0, 1))
+  try {
+    service.scoreHand(handToTest)
     t.fail('Error should have thrown')
   } catch (err) {
     t.deepEqual(err.message, 'Poker Scoring: Invalid cards provided. Please send only 5 cards.')
