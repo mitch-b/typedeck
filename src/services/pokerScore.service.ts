@@ -5,7 +5,7 @@ import { IndexedMap } from '../common/indexedMap.model'
 import { IPokerScoreService } from './pokerScoreService.interface'
 import { PlayingCard } from '../models/card/playingCard.model'
 import { PokerHandType } from '../models/poker/pokerHandType.model'
-import { PokerScoringError } from '../errors/PokerScoring.error'
+import { PokerScoringError } from '../errors/pokerScoring.error'
 import { TexasHoldEmPokerGameType } from '../models/gameType/texasHoldEmGameType.model'
 import { CardName } from '../models/card/cardName.model'
 
