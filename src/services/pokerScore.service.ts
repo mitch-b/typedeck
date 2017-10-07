@@ -5,7 +5,6 @@ import { IndexedMap } from '../common/indexedMap.model'
 import { IPokerScoreService } from './pokerScoreService.interface'
 import { PlayingCard } from '../models/card/playingCard.model'
 import { PokerHandType } from '../models/poker/pokerHandType.model'
-import { InvalidArgumentError } from '../errors/InvalidArgument.error'
 import { PokerScoringError } from '../errors/PokerScoring.error'
 import { TexasHoldEmPokerGameType } from '../models/gameType/texasHoldEmGameType.model'
 import { CardName } from '../models/card/cardName.model'
@@ -15,12 +14,9 @@ export class PokerScoreService implements IPokerScoreService {
   private gameType = new TexasHoldEmPokerGameType()
 
   public scoreHand (hand: IHand, communityCards: PlayingCard[] = []): PokerHandResult {
-    if (!hand) {
-      throw new InvalidArgumentError('hand not specified')
-    }
     const playerHand = [...hand.getCards().concat(communityCards)] as PlayingCard[]
-    if (playerHand.length !== 5) {
-      throw new PokerScoringError('Invalid cards provided. Please send only 5 cards.')
+    if (playerHand.length < 5) {
+      throw new PokerScoringError('Invalid cards provided. Please send at least 5 cards.')
     }
     return this.scoreCards(playerHand)
   }
@@ -28,8 +24,8 @@ export class PokerScoreService implements IPokerScoreService {
   public scoreCards (cards: PlayingCard[], communityCards: PlayingCard[] = []): PokerHandResult {
     let bestHand = new PokerHandResult()
     const playerCards = [...cards.concat(communityCards)] as PlayingCard[]
-    if (playerCards.length !== 5) {
-      throw new PokerScoringError('Invalid cards provided. Please send only 5 cards.')
+    if (playerCards.length < 5) {
+      throw new PokerScoringError('Invalid cards provided. Please send at least 5 cards.')
     }
     // find best hand
     for (const combination of this.combinations(cards, 5)) {
@@ -45,8 +41,8 @@ export class PokerScoreService implements IPokerScoreService {
     const result = new IndexedMap<IPlayer, PokerHandResult>()
     players.forEach((player) => {
       const playerHand = [...player.getHand().getCards().concat(communityCards)] as PlayingCard[]
-      if (playerHand.length !== 5) {
-        throw new PokerScoringError(`Invalid cards provided for ${player}. Please send only 5 cards.`)
+      if (playerHand.length < 5) {
+        throw new PokerScoringError(`Invalid cards provided for ${player}. Please send at least 5 cards.`)
       }
       result.add(player, this.scoreCards(playerHand))
     })
@@ -54,8 +50,8 @@ export class PokerScoreService implements IPokerScoreService {
   }
 
   public getScoreRank (result: PokerHandResult): number {
-    if (result.cards.length !== 5) {
-      throw new PokerScoringError('Invalid cards provided. Please send only 5 cards.')
+    if (result.cards.length < 5) {
+      throw new PokerScoringError('Invalid cards provided. Please send at least 5 cards.')
     }
     result.value = this.value(this.ranked(result.cards), result.handType as number)
     return result.value
@@ -64,11 +60,6 @@ export class PokerScoreService implements IPokerScoreService {
   private combinations (cards: PlayingCard[], groups: number): PlayingCard[][] {
     // card combinations with the given size
     let result: PlayingCard[][] = []
-
-    // not enough cards
-    if (groups > cards.length) {
-      return result
-    }
 
     // one group
     if (groups === cards.length) {

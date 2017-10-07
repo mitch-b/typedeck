@@ -9,6 +9,8 @@ export { StringifyComparer } from './common/stringifyComparer.model'
 export { MapIndexable } from './common/mapIndexable.interface'
 export { MapExtensions } from './common/mapExtensions.model'
 export { PokerHandType } from './models/poker/pokerHandType.model'
+export { InvalidArgumentError } from './errors/invalidArgument.error'
+export { PokerScoringError } from './errors/pokerScoring.error'
 
 export { ICard } from './models/card/card.interface'
 export { IRankSet } from './models/card/rankSet.interface'
