@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IPlayer | typedeck</title>
+	<title>PokerScoreService | typedeck</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="iplayer.html">IPlayer</a>
+					<a href="pokerscoreservice.html">PokerScoreService</a>
 				</li>
 			</ul>
-			<h1>Interface IPlayer</h1>
+			<h1>Class PokerScoreService</h1>
 		</div>
 	</div>
 </header>
@@ -70,20 +70,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="mapindexable.html" class="tsd-signature-type">MapIndexable</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">IPlayer</span>
-							</li>
-						</ul>
+						<span class="target">PokerScoreService</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
-				<h3>Implemented by</h3>
+				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../classes/computerplayer.html" class="tsd-signature-type">ComputerPlayer</a></li>
-					<li><a href="../classes/player.html" class="tsd-signature-type">Player</a></li>
+					<li><a href="../interfaces/ipokerscoreservice.html" class="tsd-signature-type">IPokerScoreService</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -91,138 +85,121 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-external">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="iplayer.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="iplayer.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="iplayer.html#score" class="tsd-kind-icon">score</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="iplayer.html#gethand" class="tsd-kind-icon">get<wbr>Hand</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="iplayer.html#getindex" class="tsd-kind-icon">get<wbr>Index</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="iplayer.html#sethand" class="tsd-kind-icon">set<wbr>Hand</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="iplayer.html#updatescore" class="tsd-kind-icon">update<wbr>Score</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="pokerscoreservice.html#getscorerank" class="tsd-kind-icon">get<wbr>Score<wbr>Rank</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="pokerscoreservice.html#scorecards" class="tsd-kind-icon">score<wbr>Cards</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="pokerscoreservice.html#scorehand" class="tsd-kind-icon">score<wbr>Hand</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="pokerscoreservice.html#scoreplayers" class="tsd-kind-icon">score<wbr>Players</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/9fe8809/src/models/player/player.interface.ts#L5">models/player/player.interface.ts:5</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/9fe8809/src/models/player/player.interface.ts#L6">models/player/player.interface.ts:6</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="score" class="tsd-anchor"></a>
-					<h3>score</h3>
-					<div class="tsd-signature tsd-kind-icon">score<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/9fe8809/src/models/player/player.interface.ts#L7">models/player/player.interface.ts:7</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="gethand" class="tsd-anchor"></a>
-					<h3>get<wbr>Hand</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Hand<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ihand.html" class="tsd-signature-type">IHand</a></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="getscorerank" class="tsd-anchor"></a>
+					<h3>get<wbr>Score<wbr>Rank</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Score<wbr>Rank<span class="tsd-signature-symbol">(</span>result<span class="tsd-signature-symbol">: </span><a href="pokerhandresult.html" class="tsd-signature-type">PokerHandResult</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ipokerscoreservice.html">IPokerScoreService</a>.<a href="../interfaces/ipokerscoreservice.html#getscorerank">getScoreRank</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/9fe8809/src/models/player/player.interface.ts#L9">models/player/player.interface.ts:9</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="ihand.html" class="tsd-signature-type">IHand</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-					<a name="getindex" class="tsd-anchor"></a>
-					<h3>get<wbr>Index</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Index<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="mapindexable.html">MapIndexable</a>.<a href="mapindexable.html#getindex">getIndex</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/9fe8809/src/common/mapIndexable.interface.ts#L6">common/mapIndexable.interface.ts:6</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="sethand" class="tsd-anchor"></a>
-					<h3>set<wbr>Hand</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Hand<span class="tsd-signature-symbol">(</span>hand<span class="tsd-signature-symbol">: </span><a href="ihand.html" class="tsd-signature-type">IHand</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="iplayer.html" class="tsd-signature-type">IPlayer</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/9fe8809/src/models/player/player.interface.ts#L10">models/player/player.interface.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/9fe8809/src/services/pokerScore.service.ts#L52">services/pokerScore.service.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>hand: <a href="ihand.html" class="tsd-signature-type">IHand</a></h5>
+									<h5>result: <a href="pokerhandresult.html" class="tsd-signature-type">PokerHandResult</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="iplayer.html" class="tsd-signature-type">IPlayer</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="updatescore" class="tsd-anchor"></a>
-					<h3>update<wbr>Score</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">update<wbr>Score<span class="tsd-signature-symbol">(</span>score<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="iplayer.html" class="tsd-signature-type">IPlayer</a></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="scorecards" class="tsd-anchor"></a>
+					<h3>score<wbr>Cards</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">score<wbr>Cards<span class="tsd-signature-symbol">(</span>cards<span class="tsd-signature-symbol">: </span><a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span>, communityCards<span class="tsd-signature-symbol">?: </span><a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="pokerhandresult.html" class="tsd-signature-type">PokerHandResult</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ipokerscoreservice.html">IPokerScoreService</a>.<a href="../interfaces/ipokerscoreservice.html#scorecards">scoreCards</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/9fe8809/src/models/player/player.interface.ts#L11">models/player/player.interface.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/9fe8809/src/services/pokerScore.service.ts#L24">services/pokerScore.service.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>score: <span class="tsd-signature-type">number</span></h5>
+									<h5>cards: <a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> communityCards: <a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="iplayer.html" class="tsd-signature-type">IPlayer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="pokerhandresult.html" class="tsd-signature-type">PokerHandResult</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="scorehand" class="tsd-anchor"></a>
+					<h3>score<wbr>Hand</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">score<wbr>Hand<span class="tsd-signature-symbol">(</span>hand<span class="tsd-signature-symbol">: </span><a href="../interfaces/ihand.html" class="tsd-signature-type">IHand</a>, communityCards<span class="tsd-signature-symbol">?: </span><a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="pokerhandresult.html" class="tsd-signature-type">PokerHandResult</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ipokerscoreservice.html">IPokerScoreService</a>.<a href="../interfaces/ipokerscoreservice.html#scorehand">scoreHand</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/9fe8809/src/services/pokerScore.service.ts#L16">services/pokerScore.service.ts:16</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>hand: <a href="../interfaces/ihand.html" class="tsd-signature-type">IHand</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> communityCards: <a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="pokerhandresult.html" class="tsd-signature-type">PokerHandResult</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="scoreplayers" class="tsd-anchor"></a>
+					<h3>score<wbr>Players</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">score<wbr>Players<span class="tsd-signature-symbol">(</span>players<span class="tsd-signature-symbol">: </span><a href="../interfaces/iplayer.html" class="tsd-signature-type">IPlayer</a><span class="tsd-signature-symbol">[]</span>, communityCards<span class="tsd-signature-symbol">?: </span><a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="indexedmap.html" class="tsd-signature-type">IndexedMap</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplayer.html" class="tsd-signature-type">IPlayer</a><span class="tsd-signature-symbol">, </span><a href="pokerhandresult.html" class="tsd-signature-type">PokerHandResult</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ipokerscoreservice.html">IPokerScoreService</a>.<a href="../interfaces/ipokerscoreservice.html#scoreplayers">scorePlayers</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/9fe8809/src/services/pokerScore.service.ts#L40">services/pokerScore.service.ts:40</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>players: <a href="../interfaces/iplayer.html" class="tsd-signature-type">IPlayer</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> communityCards: <a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="indexedmap.html" class="tsd-signature-type">IndexedMap</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplayer.html" class="tsd-signature-type">IPlayer</a><span class="tsd-signature-symbol">, </span><a href="pokerhandresult.html" class="tsd-signature-type">PokerHandResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -240,29 +217,20 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-is-external">
-						<a href="iplayer.html" class="tsd-kind-icon">IPlayer</a>
+					<li class="current tsd-kind-class tsd-is-external">
+						<a href="pokerscoreservice.html" class="tsd-kind-icon">Poker<wbr>Score<wbr>Service</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="iplayer.html#id" class="tsd-kind-icon">id</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="pokerscoreservice.html#getscorerank" class="tsd-kind-icon">get<wbr>Score<wbr>Rank</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="iplayer.html#name" class="tsd-kind-icon">name</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="pokerscoreservice.html#scorecards" class="tsd-kind-icon">score<wbr>Cards</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="iplayer.html#score" class="tsd-kind-icon">score</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="pokerscoreservice.html#scorehand" class="tsd-kind-icon">score<wbr>Hand</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="iplayer.html#gethand" class="tsd-kind-icon">get<wbr>Hand</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-								<a href="iplayer.html#getindex" class="tsd-kind-icon">get<wbr>Index</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="iplayer.html#sethand" class="tsd-kind-icon">set<wbr>Hand</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="iplayer.html#updatescore" class="tsd-kind-icon">update<wbr>Score</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="pokerscoreservice.html#scoreplayers" class="tsd-kind-icon">score<wbr>Players</a>
 							</li>
 						</ul>
 					</li>
