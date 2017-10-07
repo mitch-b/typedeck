@@ -11,6 +11,7 @@ A [TypeScript](https://www.typescriptlang.org/) library for playing cards.
 ## Getting Started
 
 * See the [documentation](https://mitch-b.github.io/typedeck/).
+* See code on [GitHub](https://github.com/mitch-b/typedeck/).
 * Try it yourself!
 
 ## Features
@@ -29,9 +30,12 @@ A [TypeScript](https://www.typescriptlang.org/) library for playing cards.
     * `Deck` - extension of `CardPile` with additional game-time helpers
 * **Services**
   * Shuffle
+  * Poker Hand Scoring
 * **And so much more** ... see the [documentation](https://mitch-b.github.io/typedeck/) for a full list.
 
 ## Credits
 
 * Card images by Ben Davis from the Noun Project
 * This library package is built from work by Jason Dreyzehner's [typescript-starter](https://github.com/bitjson/typescript-starter) project. This was the building block for docs, code coverage, and testing (among others). 
+* Poker hand scoring from [@kequc](https://bitbucket.org/Kequc/poker-hand/)
+  * [How to score a poker hand in JavaScript](http://www.kequc.com/2016/07/31/how-to-score-a-poker-hand-in-javascript)

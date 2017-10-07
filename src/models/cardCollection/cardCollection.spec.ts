@@ -119,13 +119,7 @@ test('can take multiple cards', async t => {
   t.true(cardCollection.getCount() === 1)
 })
 
-test('can shuffle cards', async t => {
-  const staticCards: ICard[] = [
-    new PlayingCard(CardName.Ace, Suit.Spades),
-    new PlayingCard(CardName.Ace, Suit.Clubs),
-    new PlayingCard(CardName.Ace, Suit.Hearts),
-    new PlayingCard(CardName.Ace, Suit.Diamonds)
-  ]
+test('shuffles cards', async t => {
   const injectedCards: ICard[] = [
     new PlayingCard(CardName.Ace, Suit.Spades),
     new PlayingCard(CardName.Ace, Suit.Clubs),
@@ -133,25 +127,12 @@ test('can shuffle cards', async t => {
     new PlayingCard(CardName.Ace, Suit.Diamonds)
   ]
 
-  // ensure equivalent first
   const cardCollection = new CardCollection(injectedCards)
-  let cardsInCollection = cardCollection.getCards()
-  for (let i = 0; i < cardsInCollection.length; i++) {
-    t.deepEqual(cardsInCollection[i].getIndex(), staticCards[i].getIndex())
-  }
+  const initialLength = cardCollection.getCount()
 
   cardCollection.shuffle()
 
-  // now prove shuffled
-  cardsInCollection = cardCollection.getCards()
-  let allEquivalent = true
-  for (let i = 0; i < cardsInCollection.length; i++) {
-    if (cardsInCollection[i].getIndex() !== staticCards[i].getIndex()) {
-      allEquivalent = false
-      break
-    }
-  }
-  t.false(allEquivalent)
+  t.true(cardCollection.getCount() === initialLength, 'After shuffling cards, card count no longer equivalent')
 })
 
 test('throws error if removing card not in collection', async t => {
