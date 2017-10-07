@@ -20,22 +20,25 @@ export class PokerScoreService implements IPokerScoreService {
     }
     const playerHand = [...hand.getCards().concat(communityCards)] as PlayingCard[]
     if (playerHand.length !== 5) {
-      throw new PokerScoringError('Too many cards provided. Please send only 5 cards.')
+      throw new PokerScoringError('Invalid cards provided. Please send only 5 cards.')
     }
     return this.scoreCards(playerHand)
   }
 
   public scoreCards (cards: PlayingCard[], communityCards: PlayingCard[] = []): PokerHandResult {
-    let result = new PokerHandResult()
+    let bestHand = new PokerHandResult()
     const playerCards = [...cards.concat(communityCards)] as PlayingCard[]
     if (playerCards.length !== 5) {
-      throw new PokerScoringError('Too many cards provided. Please send only 5 cards.')
+      throw new PokerScoringError('Invalid cards provided. Please send only 5 cards.')
     }
-    // TODO: determine result!
-    result.cards = playerCards
-    result.handType = PokerHandType.OnePair
-    result.cardsUsed = [...playerCards.slice(0, 2)]
-    return result
+    // find best hand
+    for (const combination of this.combinations(cards, 5)) {
+      const result = this.calculate(combination)
+      if (result.value > bestHand.value) {
+        bestHand = result
+      }
+    }
+    return bestHand
   }
 
   public scorePlayers (players: IPlayer[], communityCards: PlayingCard[] = []): IndexedMap<IPlayer, PokerHandResult> {
@@ -43,7 +46,7 @@ export class PokerScoreService implements IPokerScoreService {
     players.forEach((player) => {
       const playerHand = [...player.getHand().getCards().concat(communityCards)] as PlayingCard[]
       if (playerHand.length !== 5) {
-        throw new PokerScoringError(`Too many cards provided for ${player}. Please send only 5 cards.`)
+        throw new PokerScoringError(`Invalid cards provided for ${player}. Please send only 5 cards.`)
       }
       result.add(player, this.scoreCards(playerHand))
     })
@@ -51,36 +54,14 @@ export class PokerScoreService implements IPokerScoreService {
   }
 
   public getScoreRank (result: PokerHandResult): number {
-    // TODO: determine score!
-    return result.handType * 10000000000
-  }
-
-  score (allCards: PlayingCard[]): PokerHandResult {
-    // return the best poker hand from a set or sets of cards
-    let cards = this.sanitise(allCards)
-
-    // start empty
-    let best = new PokerHandResult()
-
-    // find best hand
-    for (let combination of this.combinations(cards, 5)) {
-      // calculate value of 5 cards
-      let result = this.calculate(combination)
-      if (result.value > best.value) {
-        best = result
-      }
+    if (result.cards.length !== 5) {
+      throw new PokerScoringError('Invalid cards provided. Please send only 5 cards.')
     }
-    // finish with best result
-    return best
+    result.value = this.value(this.ranked(result.cards), result.handType as number)
+    return result.value
   }
 
-  sanitise (allCards: PlayingCard[]): PlayingCard[] {
-    // concatenate
-    let cards: PlayingCard[] = [].concat.apply([], allCards)
-    return cards
-  }
-
-  combinations (cards: PlayingCard[], groups: number): PlayingCard[][] {
+  private combinations (cards: PlayingCard[], groups: number): PlayingCard[][] {
     // card combinations with the given size
     let result: PlayingCard[][] = []
 
@@ -111,7 +92,7 @@ export class PokerScoreService implements IPokerScoreService {
     return result
   }
 
-  ranked (cards: PlayingCard[]): PlayingCard[][] {
+  private ranked (cards: PlayingCard[]): PlayingCard[][] {
     // split cards by rank
     let result: PlayingCard[][] = []
 
@@ -135,7 +116,7 @@ export class PokerScoreService implements IPokerScoreService {
     return result
   }
 
-  isStraight (ranked: PlayingCard[][]): boolean {
+  private isStraight (ranked: PlayingCard[][]): boolean {
     // must have 5 different cards
     if (!ranked[4]) {
       return false
@@ -157,12 +138,12 @@ export class PokerScoreService implements IPokerScoreService {
     return (r1 - r4) === 4
   }
 
-  isFlush (cards: PlayingCard[]): boolean {
+  private isFlush (cards: PlayingCard[]): boolean {
     // all suits match is flush
     return cards.every((card: PlayingCard) => card.suit === cards[0].suit)
   }
 
-  value (ranked: PlayingCard[][], handType: PokerHandType): number {
+  private value (ranked: PlayingCard[][], handType: PokerHandType): number {
     // primary wins the rest are kickers
     let str = ''
 
@@ -180,7 +161,7 @@ export class PokerScoreService implements IPokerScoreService {
     return (handType * 10000000000) + parseInt(str, 10)
   }
 
-  calculate (cards: PlayingCard[]): PokerHandResult {
+  private calculate (cards: PlayingCard[]): PokerHandResult {
     const ranked: PlayingCard[][] = this.ranked(cards)
     const isFlush = this.isFlush(cards)
     const isStraight = this.isStraight(ranked)
