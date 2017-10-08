@@ -8,7 +8,22 @@ test('chip has type of StandardUS', async t => {
 
 test('chip color is set', async t => {
   const chip = new StandardUSChip(ChipColor.Black)
+  t.deepEqual(chip.colorType, ChipColorType.StandardUS)
   t.deepEqual(chip.color, ChipColor.Black)
+})
+
+test('chip color is set and type set', async t => {
+  const chip = new StandardUSChip(ChipColor.Black, ChipColorType.StandardUS)
+  t.deepEqual(chip.colorType, ChipColorType.StandardUS)
+  t.deepEqual(chip.color, ChipColor.Black)
+})
+
+test('chip color is set and type set with override', async t => {
+  const overrideValue = 45
+  const chip = new StandardUSChip(ChipColor.Black, ChipColorType.StandardUS, overrideValue)
+  t.deepEqual(chip.colorType, ChipColorType.StandardUS)
+  t.deepEqual(chip.color, ChipColor.Black)
+  t.deepEqual(chip.getValue(), overrideValue)
 })
 
 test('chip color is printed', async t => {

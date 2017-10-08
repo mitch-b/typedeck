@@ -11,6 +11,20 @@ test('chip color is set', async t => {
   t.deepEqual(chip.color, ChipColor.Black)
 })
 
+test('chip color is set and type set', async t => {
+  const chip = new CaliforniaChip(ChipColor.Black, ChipColorType.California)
+  t.deepEqual(chip.colorType, ChipColorType.California)
+  t.deepEqual(chip.color, ChipColor.Black)
+})
+
+test('chip color is set and type set with override', async t => {
+  const overrideValue = 45
+  const chip = new CaliforniaChip(ChipColor.Black, ChipColorType.California, overrideValue)
+  t.deepEqual(chip.colorType, ChipColorType.California)
+  t.deepEqual(chip.color, ChipColor.Black)
+  t.deepEqual(chip.getValue(), overrideValue)
+})
+
 test('chip color is printed', async t => {
   const chip = new CaliforniaChip(ChipColor.Black)
   t.deepEqual(chip.color, ChipColor.Black)
