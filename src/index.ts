@@ -43,7 +43,7 @@ export { Hand } from './models/cardCollection/hand.model'
 export { Deck } from './models/cardCollection/deck.model'
 
 export { Chip } from './models/chip/chip.model'
-export { StandardUSChip } from './models/chip/standardUSChip.model'
+export { StandardChip } from './models/chip/standardChip.model'
 export { CaliforniaChip } from './models/chip/californiaChip.model'
 export { ChipCollection } from './models/chipCollection/chipCollection.model'
 
@@ -60,3 +60,6 @@ export { ICardImageService } from './services/cardImageService.interface'
 
 export { IPokerScoreService } from './services/pokerScoreService.interface'
 export { PokerScoreService } from './services/pokerScore.service'
+
+export { IChipService } from './services/chipService.interface'
+export { ChipService } from './services/chip.service'

@@ -15,12 +15,12 @@ export class ChipService implements IChipService {
    * match the `needValue` requested.
    * @param chipCollection Chips to create `needValue` from
    * @param needValue Amount requested from chips
-   * @param chipClass Class of Chip to return
+   * @param chipType Class of Chip to return
    */
   makeChange (
       chipCollection: IChipCollection,
       needValue: number,
-      chipClass: typeof Chip): IChip[] {
+      chipType: typeof Chip): IChip[] {
 
     const currentValue = chipCollection.getValue()
     if (needValue > currentValue) {
@@ -69,12 +69,16 @@ export class ChipService implements IChipService {
     const breakChip = orderedChips[i]
     chipCollection.removeChips([breakChip])
 
-    let newChip = new chipClass(ChipColor.White)
+    let newChip = new chipType(ChipColor.White)
     console.log(newChip.valueMap.keys())
 
+    // get list of chips (from passed in IChip implementation)
+    // that have a value less than the one we're breaking up
     let sortedColorValues = Array.from(newChip.valueMap.entries()).sort((a: [ChipColor, number], b: [ChipColor, number]) => {
       return a[1] - b[1]
-    })
+    }).filter((combo: [ChipColor, number]) => combo[1] < breakChip.getValue())
+
+
     for (let c of sortedColorValues) {
       
     }

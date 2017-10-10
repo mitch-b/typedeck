@@ -1,5 +1,5 @@
 export enum ChipColorType {
-  StandardUS,
+  Standard,
   California,
   WynnLasVegas
 }

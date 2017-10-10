@@ -15,5 +15,5 @@ export interface IChipService {
    * `chipCollection` and the return value are chips that
    * match the `needValue` requested.
    */
-  makeChange (chipCollection: IChipCollection, needValue: number, chipClass: typeof Chip): IChip[]
+  makeChange (chipCollection: IChipCollection, needValue: number, chipType: typeof Chip): IChip[]
 }

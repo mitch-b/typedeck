@@ -3,12 +3,12 @@ import { ChipColor } from './chipColor.model'
 import { Chip } from './chip.model'
 
 /**
- * Represents a StandardUS valuing Chip
+ * Represents a Standard valuing Chip
  */
-export class StandardUSChip extends Chip {
+export class StandardChip extends Chip {
   constructor (
     color: ChipColor,
-    colorType: ChipColorType = ChipColorType.StandardUS,
+    colorType: ChipColorType = ChipColorType.Standard,
     overrideValue: number = 0) {
     super(color, colorType, overrideValue)
     this.configureDefaultColorValues()
@@ -17,11 +17,10 @@ export class StandardUSChip extends Chip {
   private configureDefaultColorValues (): void {
     this
       .setColorValue(ChipColor.White, 1)
-      .setColorValue(ChipColor.Pink, 2.5)
       .setColorValue(ChipColor.Red, 5)
+      .setColorValue(ChipColor.Blue, 10)
+      .setColorValue(ChipColor.Gray, 20)
       .setColorValue(ChipColor.Green, 25)
-      .setColorValue(ChipColor.Yellow, 25)
-      .setColorValue(ChipColor.Blue, 50)
       .setColorValue(ChipColor.Black, 100)
   }
 }

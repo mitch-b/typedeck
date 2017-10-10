@@ -11,7 +11,7 @@ export class Chip implements IChip {
 
   constructor (
     public color: ChipColor,
-    public colorType: ChipColorType = ChipColorType.StandardUS,
+    public colorType: ChipColorType = ChipColorType.Standard,
     public overrideValue: number = 0) {
   }
 
