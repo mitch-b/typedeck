@@ -4,7 +4,6 @@ import { IObjectComparer } from '../../common/objectComparer.interface'
 import { StringifyComparer } from '../../common/stringifyComparer.model'
 import { IChipService } from '../../services/chipService.interface'
 import { ChipService } from '../../services/chip.service'
-import { StandardUSChip } from '../chip/standardUSChip.model'
 
 /**
  * Basic class to represent a grouping of IChips.
@@ -97,7 +96,7 @@ export class ChipCollection implements IChipCollection {
       throw new Error(`Not enough chips (${currentValue}) to satisfy requested amount ${amount}`)
     }
     console.log(this.getChips())
-    let newChips = this.chipService.makeChange(this, amount, StandardUSChip)
+    let newChips = this.chipService.makeChange(this, amount, this.getChips()[0].constructor as any)
     console.log(this.getChips())
     return newChips
   }

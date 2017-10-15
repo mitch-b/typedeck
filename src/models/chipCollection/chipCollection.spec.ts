@@ -5,7 +5,7 @@ import {
   ChipCollection,
   ChipColor,
   ChipColorType,
-  StandardUSChip
+  StandardChip
 } from 'typedeck'
 
 test('empty without chips in constructor', async t => {
@@ -21,8 +21,8 @@ test('is empty with no chips', async t => {
 
 test('has chips when initialized with them', async t => {
   const chips: IChip[] = [
-    new Chip(ChipColor.Black, ChipColorType.StandardUS),
-    new Chip(ChipColor.Blue, ChipColorType.StandardUS)
+    new StandardChip(ChipColor.Black),
+    new StandardChip(ChipColor.Blue)
   ]
   const chipCollection = new ChipCollection(chips)
   t.false(chipCollection.isEmpty(), 'was empty')
@@ -32,7 +32,7 @@ test('has chips when initialized with them', async t => {
 
 test('adds a single chip', async t => {
   const chipCollection = new ChipCollection()
-  const chip1 = new Chip(ChipColor.Blue, ChipColorType.StandardUS)
+  const chip1 = new StandardChip(ChipColor.Blue)
   chipCollection.addChip(chip1)
   t.false(chipCollection.isEmpty(), 'Chip was not added')
   t.true(chipCollection.getChipCount() === 1, 'Chip count not matching')
@@ -41,8 +41,8 @@ test('adds a single chip', async t => {
 
 test('adds multiple chips', async t => {
   const chipCollection = new ChipCollection()
-  const chip1 = new Chip(ChipColor.Blue, ChipColorType.StandardUS)
-  const chip2 = new Chip(ChipColor.Blue, ChipColorType.StandardUS)
+  const chip1 = new StandardChip(ChipColor.Blue)
+  const chip2 = new StandardChip(ChipColor.Blue)
   chipCollection.addChips([chip1, chip2])
   t.false(chipCollection.isEmpty(), 'Chips were not added')
   t.deepEqual(chipCollection.getChips()[0], chip1, 'Chip that was added did not match entry in collection')
@@ -51,8 +51,8 @@ test('adds multiple chips', async t => {
 
 test('sets multiple chips', async t => {
   const chipCollection = new ChipCollection()
-  const chip1 = new Chip(ChipColor.Blue, ChipColorType.StandardUS)
-  const chip2 = new Chip(ChipColor.Blue, ChipColorType.StandardUS)
+  const chip1 = new Chip(ChipColor.Blue, ChipColorType.Standard)
+  const chip2 = new Chip(ChipColor.Blue, ChipColorType.Standard)
   chipCollection.setChips([chip1, chip2])
   t.false(chipCollection.isEmpty(), 'Chips were not added')
   t.deepEqual(chipCollection.getChips()[0], chip1, 'Chip that was added did not match entry in collection')
@@ -61,10 +61,10 @@ test('sets multiple chips', async t => {
 
 test('takes chips', async t => {
   const chipCollection = new ChipCollection()
-  const chip1 = new StandardUSChip(ChipColor.Blue)
-  const chip2 = new StandardUSChip(ChipColor.Black)
+  const chip1 = new StandardChip(ChipColor.Blue)
+  const chip2 = new StandardChip(ChipColor.Black)
   chipCollection.setChips([chip1, chip2])
-  const chipsPulled = chipCollection.takeValue(5)
+  const chipsPulled = chipCollection.takeValue(10)
   const chipsPulledValue = chipsPulled.reduce((a: number, b: IChip) => a + b.getValue(), 0)
-  t.deepEqual(chipsPulledValue, 5)
+  t.deepEqual(chipsPulledValue, 10)
 })

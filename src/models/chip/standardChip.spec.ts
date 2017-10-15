@@ -48,15 +48,6 @@ test('chip white is 1', async t => {
   t.deepEqual(chip.getValue(chipColor), expectedValue)
 })
 
-test('chip pink is 2.5', async t => {
-  const chipColor = ChipColor.Pink
-  const expectedValue = 2.5
-  const chip = new StandardChip(chipColor)
-  t.deepEqual(chip.color, chipColor)
-  t.deepEqual(chip.getValue(), expectedValue)
-  t.deepEqual(chip.getValue(chipColor), expectedValue)
-})
-
 test('chip red is 5', async t => {
   const chipColor = ChipColor.Red
   const expectedValue = 5
@@ -66,27 +57,27 @@ test('chip red is 5', async t => {
   t.deepEqual(chip.getValue(chipColor), expectedValue)
 })
 
+test('chip blue is 10', async t => {
+  const chipColor = ChipColor.Blue
+  const expectedValue = 10
+  const chip = new StandardChip(chipColor)
+  t.deepEqual(chip.color, chipColor)
+  t.deepEqual(chip.getValue(), expectedValue)
+  t.deepEqual(chip.getValue(chipColor), expectedValue)
+})
+
+test('chip gray is 20', async t => {
+  const chipColor = ChipColor.Gray
+  const expectedValue = 20
+  const chip = new StandardChip(chipColor)
+  t.deepEqual(chip.color, chipColor)
+  t.deepEqual(chip.getValue(), expectedValue)
+  t.deepEqual(chip.getValue(chipColor), expectedValue)
+})
+
 test('chip green is 25', async t => {
   const chipColor = ChipColor.Green
   const expectedValue = 25
-  const chip = new StandardChip(chipColor)
-  t.deepEqual(chip.color, chipColor)
-  t.deepEqual(chip.getValue(), expectedValue)
-  t.deepEqual(chip.getValue(chipColor), expectedValue)
-})
-
-test('chip yellow is 25', async t => {
-  const chipColor = ChipColor.Yellow
-  const expectedValue = 25
-  const chip = new StandardChip(chipColor)
-  t.deepEqual(chip.color, chipColor)
-  t.deepEqual(chip.getValue(), expectedValue)
-  t.deepEqual(chip.getValue(chipColor), expectedValue)
-})
-
-test('chip blue is 50', async t => {
-  const chipColor = ChipColor.Blue
-  const expectedValue = 50
   const chip = new StandardChip(chipColor)
   t.deepEqual(chip.color, chipColor)
   t.deepEqual(chip.getValue(), expectedValue)
