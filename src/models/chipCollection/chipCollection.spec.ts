@@ -60,11 +60,12 @@ test('sets multiple chips', async t => {
 })
 
 test('takes chips', async t => {
+  const takeChipValue = 3
   const chipCollection = new ChipCollection()
   const chip1 = new StandardChip(ChipColor.Blue)
   const chip2 = new StandardChip(ChipColor.Black)
   chipCollection.setChips([chip1, chip2])
-  const chipsPulled = chipCollection.takeValue(10)
+  const chipsPulled = chipCollection.takeValue(takeChipValue)
   const chipsPulledValue = chipsPulled.reduce((a: number, b: IChip) => a + b.getValue(), 0)
-  t.deepEqual(chipsPulledValue, 10)
+  t.deepEqual(chipsPulledValue, takeChipValue)
 })

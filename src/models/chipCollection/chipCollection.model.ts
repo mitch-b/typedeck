@@ -95,9 +95,6 @@ export class ChipCollection implements IChipCollection {
     if (amount > currentValue) {
       throw new Error(`Not enough chips (${currentValue}) to satisfy requested amount ${amount}`)
     }
-    console.log(this.getChips())
-    let newChips = this.chipService.makeChange(this, amount, this.getChips()[0].constructor as any)
-    console.log(this.getChips())
-    return newChips
+    return this.chipService.makeChange(this, amount, this.getChips()[0].constructor as any)
   }
 }

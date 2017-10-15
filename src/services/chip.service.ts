@@ -19,7 +19,6 @@ export class ChipService implements IChipService {
    * @param chipType Class of Chip to return
    */
   public makeChange (chipCollection: IChipCollection, needValue: number, chipType: typeof Chip = StandardChip): IChip[] {
-    console.log(`Requesting change from a collection that has ${chipCollection.getChipCount()} chips in it`)
     const currentValue = chipCollection.getValue()
     if (needValue > currentValue) {
       throw new Error(`Not enough chips (${currentValue}) to satisfy requested amount ${needValue}`)
