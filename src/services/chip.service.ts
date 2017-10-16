@@ -26,7 +26,10 @@ export class ChipService implements IChipService {
       throw new Error(`makeChange requires a positive Chip amount needed`)
     }
 
-    const orderedChips = chipCollection.getChips().sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
+    const orderedChips = chipCollection.getChips()
+                          .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
+                          .filter((chip: IChip) => chip.getValue() <= needValue)
+    const reverseOrderedChips = [...orderedChips.reverse()]
 
     // check if chipCollection contains a single chip to fulfill needValue
     for (const chip of orderedChips) {
@@ -39,28 +42,29 @@ export class ChipService implements IChipService {
     }
 
     // check if we can add up multiple chips to fulfill needValue
-    let pulledChips: IChipCollection = new ChipCollection()
-    let i = 0
-    while (pulledChips.getValue() < needValue) {
-      pulledChips.addChip(orderedChips[i++])
-      if (orderedChips[i]) {
-        if (pulledChips.getValue() + orderedChips[i].getValue() > needValue) {
-          break
-        }
-      } else {
-        break
-      }
+    // check backwards first
+    let pulledChips: IChip[] = this.chipsUnderOrEqualToValue(needValue, reverseOrderedChips)
+    if (this.sumOfChips(pulledChips) === needValue) {
+      chipCollection.removeChips(pulledChips)
+      return [...pulledChips]
     }
-    if (pulledChips.getValue() === needValue) {
-      chipCollection.removeChips(pulledChips.getChips())
-      return [...pulledChips.getChips()]
+
+    // check forwards next
+    pulledChips = this.chipsUnderOrEqualToValue(needValue, orderedChips)
+    const amountCanBePulledUnderNeedValue = this.sumOfChips(pulledChips)
+    if (amountCanBePulledUnderNeedValue === needValue) {
+      chipCollection.removeChips(pulledChips)
+      return [...pulledChips]
     }
+
+    const breakChip: IChip = orderedChips
+      .filter((chip: IChip) => amountCanBePulledUnderNeedValue + chip.getValue() > needValue)
+      .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())[0]
 
     // orderedChips[i] is a chip that when added to our currently pulled chips,
     // is larger than our requested amount. we should break it up into smaller denominations
     // to allow us to meet the specific requested amount
-    const breakChip = orderedChips[i]
-    const remainingValueNeeded = (needValue - pulledChips.getValue())
+    const remainingValueNeeded = (needValue - amountCanBePulledUnderNeedValue)
     chipCollection.removeChips([breakChip])
     chipCollection.addChips([...this.createChipsFromAmount(breakChip.getValue(), chipType)])
 
@@ -78,10 +82,10 @@ export class ChipService implements IChipService {
         return a[1] - b[1]
       })
       .filter((combo: [ChipColor, number]) => combo[1] < amount)
-      .map((entry: [ChipColor, number]) => new chipType(entry[0]))
+      .map<Chip>((entry: [ChipColor, number]) => new chipType(entry[0]))
 
     if (sortedChips.length < 1) {
-      throw new Error(`Incompatible Chip class to fulfill ${amount}`)
+      throw new Error(`Incompatible Chip class to fulfill a value of '${amount}'`)
     }
 
     let index = sortedChips.length - 1
@@ -101,4 +105,24 @@ export class ChipService implements IChipService {
 
   // Consolidate chips into higher value chips if possible
   // consolidate(chipCollection: IChipCollection)
+
+  private sumOfChips (chips: IChip[]): number {
+    return chips.reduce((a: number, b: IChip) => a + b.getValue(), 0)
+  }
+
+  private chipsUnderOrEqualToValue (needValue: number, chips: IChip[]): IChip[] {
+    const pulledChips = new ChipCollection()
+    let i = 0
+    while (pulledChips.getValue() < needValue) {
+      pulledChips.addChip(chips[i++])
+      if (chips[i]) {
+        if (pulledChips.getValue() + chips[i].getValue() > needValue) {
+          break
+        }
+      } else {
+        break
+      }
+    }
+    return [...pulledChips.getChips()]
+  }
 }
