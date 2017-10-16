@@ -28,6 +28,7 @@ export class ChipService implements IChipService {
 
     const orderedChips = chipCollection.getChips()
       .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
+    const reversedChips = [...orderedChips].reverse()
 
     // Diagnostics
     console.log(`Analyzing Chips to get ${needValue}`)
@@ -55,9 +56,13 @@ export class ChipService implements IChipService {
     // has 10, 25, 25, 25, 25
     // has 5, 10, 10, 10, 25, 25, 25 ( how do i find the 2 '10's? )
 
-    const pulledChips: IChip[] = this.chipsUnderOrEqualToValue(needValue, orderedChips)
+    let pulledChips: IChip[] = this.chipsUnderOrEqualToValue(needValue, reversedChips)
+    let breakChip: IChip = reversedChips[pulledChips.length]
+    if (pulledChips.length === 0) {
+      pulledChips = this.chipsUnderOrEqualToValue(needValue, orderedChips)
+      breakChip = orderedChips[pulledChips.length]
+    }
     const amountCanBePulledUnderNeedValue = this.valueOfChips(pulledChips)
-    const breakChip = orderedChips[pulledChips.length]
 
     if (!breakChip) {
       throw new Error(`Couldn't determine breakChip`)
