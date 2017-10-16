@@ -27,50 +27,7 @@ export class ChipService implements IChipService {
     }
 
     const orderedChips = chipCollection.getChips()
-                          .sort((a: IChip, b: IChip) => b.getValue() - a.getValue())
-                          // .filter((chip: IChip) => chip.getValue() <= needValue)
-    const reverseOrderedChips = [...orderedChips.reverse()]
-
-    // check if chipCollection contains a single chip to fulfill needValue
-    for (const chip of orderedChips) {
-      if (chip.getValue() === needValue) {
-        chipCollection.removeChips([chip])
-        console.log(`Solved! [1]: ${needValue}`)
-        console.log(
-          orderedChips.map((chip: IChip) => chip.getValue())
-        )
-        return [chip]
-      } else if (chip.getValue() > needValue) {
-        break
-      }
-    }
-
-    // check if we can add up multiple chips to fulfill needValue
-    // check backwards first
-    let pulledChips: IChip[] = this.chipsUnderOrEqualToValue(needValue, reverseOrderedChips)
-    if (this.valueOfChips(pulledChips) === needValue) {
-      chipCollection.removeChips(pulledChips)
-      console.log(`Solved! [2]: ${needValue}`)
-      console.log(
-        orderedChips.map((chip: IChip) => chip.getValue())
-      )
-      return [...pulledChips]
-    }
-
-    // check forwards next
-    pulledChips = this.chipsUnderOrEqualToValue(needValue, orderedChips)
-    const amountCanBePulledUnderNeedValue = this.valueOfChips(pulledChips)
-    if (amountCanBePulledUnderNeedValue === needValue) {
-      chipCollection.removeChips(pulledChips)
-      console.log(`Solved! [3]: ${needValue}`)
-      console.log(
-        orderedChips.map((chip: IChip) => chip.getValue())
-      )
-      return [...pulledChips]
-    }
-    // ask for: 27
-    // has: 1, 1, 5, 10, 20, 100
-    // has: 5, 10, 10, 10
+      .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
 
     // Diagnostics
     console.log(`Analyzing Chips to get ${needValue}`)
@@ -78,35 +35,28 @@ export class ChipService implements IChipService {
       orderedChips.map((chip: IChip) => chip.getValue())
     )
 
-    let i = 0
-    let j = 0
-    let chipz = new ChipCollection()
-    while (i < orderedChips.length) {
-      chipz.addChip(orderedChips[i])
-      j = i + 1
-      while (chipz.getValue() < needValue &&
-        j < orderedChips.length) {
-        chipz.addChip(orderedChips[i + (j++)])
-      }
-      if (chipz.getChipCount() === 1) {
-        break // since it's ordered, we can't do better by continuing
-      }
-      if (chipz.getValue() === needValue) {
-        chipCollection.removeChips(chipz.getChips())
-        console.log(`Solved! [4]: ${needValue}`)
-        console.log(
-          orderedChips.map((chip: IChip) => chip.getValue())
-        )
-        return [...chipz.getChips()]
-      }
-      chipz = new ChipCollection()
-      i++
+    let matchedCombination = this.hasCombinationOfAmount(needValue, orderedChips)
+    if (matchedCombination.length > 0) {
+      console.log(`Success [1]! ${needValue}`)
+      console.log(
+        orderedChips.map((chip: IChip) => chip.getValue())
+      )
+      // success!
+      chipCollection.removeChips(matchedCombination)
+      return [...matchedCombination]
     }
+
+    // ask for: 27
+    // has: 1, 1, 5, 10, 20, 100
+    // has: 5, 10, 10, 10
 
     // ask for: 20
     // has: 10, 100
     // has 10, 25, 25, 25, 25
     // has 5, 10, 10, 10, 25, 25, 25 ( how do i find the 2 '10's? )
+
+    const pulledChips: IChip[] = this.chipsUnderOrEqualToValue(needValue, orderedChips)
+    const amountCanBePulledUnderNeedValue = this.valueOfChips(pulledChips)
     const breakChip = orderedChips[pulledChips.length]
 
     if (!breakChip) {
@@ -116,13 +66,12 @@ export class ChipService implements IChipService {
     // orderedChips[i] is a chip that when added to our currently pulled chips,
     // is larger than our requested amount. we should break it up into smaller denominations
     // to allow us to meet the specific requested amount
-    const remainingValueNeeded = (needValue - amountCanBePulledUnderNeedValue)
+    console.log(`Right now, can only pull ${amountCanBePulledUnderNeedValue}`)
+    console.log(`Breaking: ${breakChip}`)
     chipCollection.removeChips([breakChip])
-    chipCollection.addChips([...this.createChipsFromAmount(breakChip.getValue(), chipType)])
-
-    if (remainingValueNeeded === needValue) {
-      throw new Error('Available chips in chipClass cannot be used to generate change requested')
-    }
+    const newChips = this.createChipsFromAmount(breakChip.getValue(), chipType)
+    console.log(`Broke ${breakChip} into: ${newChips.map((c: IChip) => c.getValue())}`)
+    chipCollection.addChips([...newChips])
 
     return this.makeChange(chipCollection, needValue, chipType)
   }
@@ -178,6 +127,42 @@ export class ChipService implements IChipService {
         break
       }
     }
+    if (pulledChips.getValue() > needValue) {
+      return [] as IChip[]
+    }
     return [...pulledChips.getChips()]
+  }
+
+  /**
+   * https://codereview.stackexchange.com/a/7025
+   * @param amount
+   * @param chips
+   */
+  private hasCombinationOfAmount (amount: number, chips: IChip[]): IChip[] {
+    const iteratedChips = [...chips]
+    const options: IChip[][] = []
+    console.log(`Querying for options of ${iteratedChips.map((chip) => chip.getValue())}`)
+    let fn = function (temp: IChip[], iteratedChips: IChip[], options: IChip[][]) {
+      if (!temp && !iteratedChips) {
+        return undefined
+      }
+      if (!iteratedChips || iteratedChips.length === 0) {
+        options.push(temp)
+      } else {
+        fn([...temp, iteratedChips[0]], iteratedChips.slice(1), options)
+        fn(temp, iteratedChips.slice(1), options)
+      }
+      return options
+    }
+    let availableOptions = fn([] as IChip[], iteratedChips, options)
+    let matchingOptions = (availableOptions as IChip[][])
+      .filter((chipArr: IChip[]) => this.valueOfChips(chipArr) === amount)
+      .sort((a: IChip[], b: IChip[]) => b.length - a.length)
+
+    if (matchingOptions.length > 0) {
+      return matchingOptions[0]
+    } else {
+      return [] as IChip[]
+    }
   }
 }
