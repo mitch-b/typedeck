@@ -27,14 +27,18 @@ export class ChipService implements IChipService {
     }
 
     const orderedChips = chipCollection.getChips()
-                          .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
-                          .filter((chip: IChip) => chip.getValue() <= needValue)
+                          .sort((a: IChip, b: IChip) => b.getValue() - a.getValue())
+                          // .filter((chip: IChip) => chip.getValue() <= needValue)
     const reverseOrderedChips = [...orderedChips.reverse()]
 
     // check if chipCollection contains a single chip to fulfill needValue
     for (const chip of orderedChips) {
       if (chip.getValue() === needValue) {
         chipCollection.removeChips([chip])
+        console.log(`Solved! [1]: ${needValue}`)
+        console.log(
+          orderedChips.map((chip: IChip) => chip.getValue())
+        )
         return [chip]
       } else if (chip.getValue() > needValue) {
         break
@@ -46,6 +50,10 @@ export class ChipService implements IChipService {
     let pulledChips: IChip[] = this.chipsUnderOrEqualToValue(needValue, reverseOrderedChips)
     if (this.valueOfChips(pulledChips) === needValue) {
       chipCollection.removeChips(pulledChips)
+      console.log(`Solved! [2]: ${needValue}`)
+      console.log(
+        orderedChips.map((chip: IChip) => chip.getValue())
+      )
       return [...pulledChips]
     }
 
@@ -54,11 +62,22 @@ export class ChipService implements IChipService {
     const amountCanBePulledUnderNeedValue = this.valueOfChips(pulledChips)
     if (amountCanBePulledUnderNeedValue === needValue) {
       chipCollection.removeChips(pulledChips)
+      console.log(`Solved! [3]: ${needValue}`)
+      console.log(
+        orderedChips.map((chip: IChip) => chip.getValue())
+      )
       return [...pulledChips]
     }
     // ask for: 27
     // has: 1, 1, 5, 10, 20, 100
     // has: 5, 10, 10, 10
+
+    // Diagnostics
+    console.log(`Analyzing Chips to get ${needValue}`)
+    console.log(
+      orderedChips.map((chip: IChip) => chip.getValue())
+    )
+
     let i = 0
     let j = 0
     let chipz = new ChipCollection()
@@ -74,6 +93,10 @@ export class ChipService implements IChipService {
       }
       if (chipz.getValue() === needValue) {
         chipCollection.removeChips(chipz.getChips())
+        console.log(`Solved! [4]: ${needValue}`)
+        console.log(
+          orderedChips.map((chip: IChip) => chip.getValue())
+        )
         return [...chipz.getChips()]
       }
       chipz = new ChipCollection()
