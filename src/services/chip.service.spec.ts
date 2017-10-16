@@ -63,7 +63,12 @@ test('can split chips by breaking up a chip and giving smaller denominations com
   const chipsOfRequestedValue = new ChipCollection(service.makeChange(chipCollection, requestedAmount))
   t.true(chipsOfRequestedValue.getValue() === requestedAmount, 'Amount pulled did not match requested')
   t.true(chipCollection.getValue() === initialValue - requestedAmount, 'Chips left in collection do not match pulled')
-  for (const chip of chipsOfRequestedValue.getChips()) {
-    console.log(`Left with ${chip}`)
-  }
+})
+
+test('can create chips from amount 31', async t => {
+  const service = new ChipService()
+  const requestedChips = 31
+  const chips = service.createChipsFromAmount(requestedChips)
+  const chipsValue = service.valueOfChips(chips)
+  t.true(chipsValue === requestedChips, 'Amount pulled did not match requested')
 })

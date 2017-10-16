@@ -46,6 +46,9 @@ export class ChipCollection implements IChipCollection {
   }
 
   public removeChips (chips: IChip[]): IChipCollection {
+    if (chips.length === 0) {
+      return this
+    }
     chips.forEach((chip: IChip) => {
       const position: number = this.indexOfChip(chip)
       if (position > -1) {

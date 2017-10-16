@@ -44,22 +44,51 @@ export class ChipService implements IChipService {
     // check if we can add up multiple chips to fulfill needValue
     // check backwards first
     let pulledChips: IChip[] = this.chipsUnderOrEqualToValue(needValue, reverseOrderedChips)
-    if (this.sumOfChips(pulledChips) === needValue) {
+    if (this.valueOfChips(pulledChips) === needValue) {
       chipCollection.removeChips(pulledChips)
       return [...pulledChips]
     }
 
     // check forwards next
     pulledChips = this.chipsUnderOrEqualToValue(needValue, orderedChips)
-    const amountCanBePulledUnderNeedValue = this.sumOfChips(pulledChips)
+    const amountCanBePulledUnderNeedValue = this.valueOfChips(pulledChips)
     if (amountCanBePulledUnderNeedValue === needValue) {
       chipCollection.removeChips(pulledChips)
       return [...pulledChips]
     }
+    // ask for: 27
+    // has: 1, 1, 5, 10, 20, 100
+    // has: 5, 10, 10, 10
+    let i = 0
+    let j = 0
+    let chipz = new ChipCollection()
+    while (i < orderedChips.length) {
+      chipz.addChip(orderedChips[i])
+      j = i + 1
+      while (chipz.getValue() < needValue &&
+        j < orderedChips.length) {
+        chipz.addChip(orderedChips[i + (j++)])
+      }
+      if (chipz.getChipCount() === 1) {
+        break // since it's ordered, we can't do better by continuing
+      }
+      if (chipz.getValue() === needValue) {
+        chipCollection.removeChips(chipz.getChips())
+        return [...chipz.getChips()]
+      }
+      chipz = new ChipCollection()
+      i++
+    }
 
-    const breakChip: IChip = orderedChips
-      .filter((chip: IChip) => amountCanBePulledUnderNeedValue + chip.getValue() > needValue)
-      .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())[0]
+    // ask for: 20
+    // has: 10, 100
+    // has 10, 25, 25, 25, 25
+    // has 5, 10, 10, 10, 25, 25, 25 ( how do i find the 2 '10's? )
+    const breakChip = orderedChips[pulledChips.length]
+
+    if (!breakChip) {
+      throw new Error(`Couldn't determine breakChip`)
+    }
 
     // orderedChips[i] is a chip that when added to our currently pulled chips,
     // is larger than our requested amount. we should break it up into smaller denominations
@@ -75,7 +104,7 @@ export class ChipService implements IChipService {
     return this.makeChange(chipCollection, needValue, chipType)
   }
 
-  public createChipsFromAmount (amount: number, chipType: typeof Chip): IChip[] {
+  public createChipsFromAmount (amount: number, chipType: typeof Chip = StandardChip): IChip[] {
     let sampleChip = new chipType(ChipColor.White)
     let sortedChips = Array.from(sampleChip.valueMap.entries())
       .sort((a: [ChipColor, number], b: [ChipColor, number]) => {
@@ -106,7 +135,10 @@ export class ChipService implements IChipService {
   // Consolidate chips into higher value chips if possible
   // consolidate(chipCollection: IChipCollection)
 
-  private sumOfChips (chips: IChip[]): number {
+  public valueOfChips (chips: IChip[]): number {
+    if (!chips || chips.length === 0) {
+      return 0
+    }
     return chips.reduce((a: number, b: IChip) => a + b.getValue(), 0)
   }
 
