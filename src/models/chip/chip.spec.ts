@@ -1,9 +1,9 @@
 import { test } from 'ava'
 import { Chip, ChipColorType, ChipColor } from 'typedeck'
 
-test('chip has type of StandardUS if not specified', async t => {
+test('chip has type of Standard if not specified', async t => {
   const chip = new Chip(ChipColor.Black)
-  t.deepEqual(chip.colorType, ChipColorType.StandardUS)
+  t.deepEqual(chip.colorType, ChipColorType.Standard)
 })
 
 test('chip color is set', async t => {
@@ -30,11 +30,45 @@ test('chip color is same as index', async t => {
   t.deepEqual(chip.toString(), chip.getIndex())
 })
 
-test('chip value is 0', async t => {
+test('chip value throws error unless set', async t => {
   const chipColor = ChipColor.White
-  const expectedValue = 0
   const chip = new Chip(chipColor)
   t.deepEqual(chip.color, chipColor)
-  t.deepEqual(chip.getValue(), expectedValue)
-  t.deepEqual(chip.getValue(chipColor), expectedValue)
+  try {
+    chip.getValue()
+    t.fail('Error should have thrown')
+  } catch (err) {
+    t.deepEqual(err.message,
+      `Unable to determine value of ${ChipColor[chipColor]} Chip for ${ChipColorType[ChipColorType.Standard]}`)
+  }
+})
+
+test('chip value returns override value', async t => {
+  const chipColor = ChipColor.White
+  const overrideValue = 10
+  const chip = new Chip(chipColor, ChipColorType.Standard, overrideValue)
+  t.deepEqual(chip.color, chipColor)
+  t.deepEqual(chip.getValue(), overrideValue)
+  t.deepEqual(chip.getValue(chipColor), overrideValue)
+})
+
+test('chip value returns override value after creation', async t => {
+  const chipColor = ChipColor.White
+  const overrideValue = 10
+  const chip = new Chip(chipColor, ChipColorType.Standard)
+  chip.setColorValue(chipColor, 1000)
+  chip.setValue(overrideValue)
+  t.deepEqual(chip.color, chipColor)
+  t.deepEqual(chip.getValue(), overrideValue)
+  t.deepEqual(chip.getValue(chipColor), overrideValue)
+})
+
+test('chip value can be set by color', async t => {
+  const chipColor = ChipColor.White
+  const chipValue = 20
+  const chip = new Chip(chipColor)
+  chip.setColorValue(chipColor, chipValue)
+  t.deepEqual(chip.color, chipColor)
+  t.deepEqual(chip.getValue(), chipValue)
+  t.deepEqual(chip.getValue(chipColor), chipValue)
 })
