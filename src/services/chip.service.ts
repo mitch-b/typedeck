@@ -20,7 +20,6 @@ export class ChipService implements IChipService {
    */
   public makeChange (chipCollection: IChipCollection, needValue: number, chipType: typeof Chip = StandardChip): IChip[] {
     const currentValue = chipCollection.getValue()
-    let isDiagnosticRun = true
     if (needValue > currentValue) {
       throw new Error(`Not enough chips (${currentValue}) to satisfy requested amount ${needValue}`)
     } else if (needValue <= 0) {
@@ -31,22 +30,8 @@ export class ChipService implements IChipService {
       .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
     const reversedChips = [...orderedChips].reverse()
 
-    if (isDiagnosticRun) {
-      // Diagnostics
-      console.log(`Analyzing Chips to get ${needValue}`)
-      console.log(
-        orderedChips.map((chip: IChip) => chip.getValue())
-      )
-    }
-
     let matchedCombination = this.hasCombinationOfAmount(needValue, orderedChips)
     if (matchedCombination.length > 0) {
-      if (isDiagnosticRun) {
-        console.log(`Success [1]! ${needValue}`)
-        console.log(
-          orderedChips.map((chip: IChip) => chip.getValue())
-        )
-      }
       // success!
       chipCollection.removeChips(matchedCombination)
       return [...matchedCombination]
@@ -67,7 +52,6 @@ export class ChipService implements IChipService {
       pulledChips = this.chipsUnderOrEqualToValue(needValue, orderedChips)
       breakChip = orderedChips[pulledChips.length]
     }
-    const amountCanBePulledUnderNeedValue = this.valueOfChips(pulledChips)
 
     if (!breakChip) {
       throw new Error(`Couldn't determine breakChip`)
@@ -76,27 +60,34 @@ export class ChipService implements IChipService {
     // orderedChips[i] is a chip that when added to our currently pulled chips,
     // is larger than our requested amount. we should break it up into smaller denominations
     // to allow us to meet the specific requested amount
-    if (isDiagnosticRun) {
-      console.log(`Right now, can only pull ${amountCanBePulledUnderNeedValue}`)
-      console.log(`Breaking: ${breakChip}`)
-    }
     chipCollection.removeChips([breakChip])
-    const newChips = this.createChipsFromAmount(breakChip.getValue(), chipType)
-    if (isDiagnosticRun) {
-      console.log(`Broke ${breakChip} into: ${newChips.map((c: IChip) => c.getValue())}`)
-    }
+    const newChips = this.createChips(breakChip.getValue(), false, chipType)
     chipCollection.addChips([...newChips])
 
     return this.makeChange(chipCollection, needValue, chipType)
   }
 
-  public createChipsFromAmount (amount: number, chipType: typeof Chip = StandardChip): IChip[] {
+  public createChips (
+      amount: number,
+      canBeSingleChip: boolean = true,
+      chipType: typeof Chip = StandardChip): IChip[] {
+    if (amount <= 0) {
+      return []
+    }
+    let lessThanComparison = (size: number, amount: number): boolean => {
+      return size < amount
+    }
+    let lessThanOrEqualComparison = (size: number, amount: number): boolean => {
+      return size <= amount
+    }
     let sampleChip = new chipType(ChipColor.White)
     let sortedChips = Array.from(sampleChip.valueMap.entries())
       .sort((a: [ChipColor, number], b: [ChipColor, number]) => {
         return a[1] - b[1]
       })
-      .filter((combo: [ChipColor, number]) => combo[1] < amount)
+      .filter((combo: [ChipColor, number]) =>
+        canBeSingleChip ? lessThanOrEqualComparison(combo[1], amount)
+                        : lessThanComparison(combo[1], amount))
       .map<Chip>((entry: [ChipColor, number]) => new chipType(entry[0]))
 
     if (sortedChips.length < 1) {
@@ -122,13 +113,13 @@ export class ChipService implements IChipService {
   // consolidate(chipCollection: IChipCollection)
 
   public valueOfChips (chips: IChip[]): number {
-    if (!chips || chips.length === 0) {
+    if (chips.length === 0) {
       return 0
     }
     return chips.reduce((a: number, b: IChip) => a + b.getValue(), 0)
   }
 
-  private chipsUnderOrEqualToValue (needValue: number, chips: IChip[]): IChip[] {
+  public chipsUnderOrEqualToValue (needValue: number, chips: IChip[]): IChip[] {
     const pulledChips = new ChipCollection()
     let i = 0
     while (pulledChips.getValue() < needValue) {
@@ -156,7 +147,7 @@ export class ChipService implements IChipService {
     const iteratedChips = [...chips]
     const options: IChip[][] = []
     let fn = function (temp: IChip[], iteratedChips: IChip[], options: IChip[][]) {
-      if (!temp && !iteratedChips) {
+      if (temp.length === 0 && iteratedChips.length === 0) {
         return undefined
       }
       if (!iteratedChips || iteratedChips.length === 0) {

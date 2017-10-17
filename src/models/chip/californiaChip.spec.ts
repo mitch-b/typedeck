@@ -38,8 +38,8 @@ test('chip color is same as index', async t => {
   t.deepEqual(chip.toString(), chip.getIndex())
 })
 
-test('chip white is 1', async t => {
-  const chipColor = ChipColor.White
+test('chip blue is 1', async t => {
+  const chipColor = ChipColor.Blue
   const expectedValue = 1
   const chip = new CaliforniaChip(chipColor)
   t.deepEqual(chip.color, chipColor)
@@ -47,8 +47,8 @@ test('chip white is 1', async t => {
   t.deepEqual(chip.getValue(chipColor), expectedValue)
 })
 
-test('brown chip throws exception', async t => {
-  const chipColor = ChipColor.Brown
+test('gold chip throws exception', async t => {
+  const chipColor = ChipColor.Gold
   const chip = new CaliforniaChip(chipColor)
 
   try {

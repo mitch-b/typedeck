@@ -16,6 +16,14 @@ export class CaliforniaChip extends Chip {
 
   private configureDefaultColorValues (): void {
     this
-      .setColorValue(ChipColor.White, 1)
+      .setColorValue(ChipColor.Blue, 1)
+      .setColorValue(ChipColor.Green, 2)
+      .setColorValue(ChipColor.Red, 3)
+      .setColorValue(ChipColor.Yellow, 5)
+      .setColorValue(ChipColor.Brown, 10)
+      .setColorValue(ChipColor.Black, 20)
+      .setColorValue(ChipColor.Purple, 25)
+      .setColorValue(ChipColor.White, 100)
+      .setColorValue(ChipColor.Gray, 500)
   }
 }
