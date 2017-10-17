@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Card | typedeck</title>
+	<title>ChipService | typedeck</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,43 +56,28 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="card.html">Card</a>
+					<a href="chipservice.html">ChipService</a>
 				</li>
 			</ul>
-			<h1>Class Card</h1>
+			<h1>Class ChipService</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents a generic card.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Card</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="playingcard.html" class="tsd-signature-type">PlayingCard</a>
-							</li>
-							<li>
-								<a href="jokercard.html" class="tsd-signature-type">JokerCard</a>
-							</li>
-						</ul>
+						<span class="target">ChipService</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/icard.html" class="tsd-signature-type">ICard</a></li>
+					<li><a href="../interfaces/ichipservice.html" class="tsd-signature-type">IChipService</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -100,101 +85,146 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="card.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="card.html#cardname" class="tsd-kind-icon">card<wbr>Name</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="card.html#getindex" class="tsd-kind-icon">get<wbr>Index</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="card.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chipservice.html#chipsunderorequaltovalue" class="tsd-kind-icon">chips<wbr>Under<wbr>OrEqual<wbr>ToValue</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chipservice.html#createchips" class="tsd-kind-icon">create<wbr>Chips</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chipservice.html#makechange" class="tsd-kind-icon">make<wbr>Change</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chipservice.html#valueofchips" class="tsd-kind-icon">value<wbr>OfChips</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Card<span class="tsd-signature-symbol">(</span>cardName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CardName.Ace</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Two</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Three</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Four</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Five</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Six</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Seven</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Eight</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Nine</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Ten</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Jack</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Queen</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.King</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Joker</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="card.html" class="tsd-signature-type">Card</a></li>
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="chipsunderorequaltovalue" class="tsd-anchor"></a>
+					<h3>chips<wbr>Under<wbr>OrEqual<wbr>ToValue</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">chips<wbr>Under<wbr>OrEqual<wbr>ToValue<span class="tsd-signature-symbol">(</span>needValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, chips<span class="tsd-signature-symbol">: </span><a href="../interfaces/ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ichipservice.html">IChipService</a>.<a href="../interfaces/ichipservice.html#chipsunderorequaltovalue">chipsUnderOrEqualToValue</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/05a00e7/src/models/card/card.model.ts#L8">models/card/card.model.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/05a00e7/src/services/chip.service.ts#L96">services/chip.service.ts:96</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>cardName: <span class="tsd-signature-type">CardName.Ace</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Two</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Three</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Four</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Five</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Six</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Seven</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Eight</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Nine</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Ten</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Jack</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Queen</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.King</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Joker</span></h5>
+									<h5>needValue: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>chips: <a href="../interfaces/ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="card.html" class="tsd-signature-type">Card</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="cardname" class="tsd-anchor"></a>
-					<h3>card<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">card<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CardName.Ace</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Two</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Three</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Four</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Five</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Six</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Seven</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Eight</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Nine</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Ten</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Jack</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Queen</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.King</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CardName.Joker</span></div>
-					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/icard.html">ICard</a>.<a href="../interfaces/icard.html#cardname">cardName</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/05a00e7/src/models/card/card.model.ts#L8">models/card/card.model.ts:8</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getindex" class="tsd-anchor"></a>
-					<h3>get<wbr>Index</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Index<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/icard.html">ICard</a>.<a href="../interfaces/icard.html#getindex">getIndex</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/05a00e7/src/models/card/card.model.ts#L18">models/card/card.model.ts:18</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="tostring" class="tsd-anchor"></a>
-					<h3>to<wbr>String</h3>
+					<a name="createchips" class="tsd-anchor"></a>
+					<h3>create<wbr>Chips</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Chips<span class="tsd-signature-symbol">(</span>amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, canBeSingleChip<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, chipType<span class="tsd-signature-symbol">?: </span><a href="chip.html" class="tsd-signature-type">Chip</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ichipservice.html">IChipService</a>.<a href="../interfaces/ichipservice.html#createchips">createChips</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/05a00e7/src/models/card/card.model.ts#L14">models/card/card.model.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/05a00e7/src/services/chip.service.ts#L54">services/chip.service.ts:54</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>amount: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> canBeSingleChip: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> chipType: <a href="chip.html" class="tsd-signature-type">Chip</a><span class="tsd-signature-symbol"> =&nbsp;StandardChip</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="makechange" class="tsd-anchor"></a>
+					<h3>make<wbr>Change</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">make<wbr>Change<span class="tsd-signature-symbol">(</span>chipCollection<span class="tsd-signature-symbol">: </span><a href="../interfaces/ichipcollection.html" class="tsd-signature-type">IChipCollection</a>, needValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, chipType<span class="tsd-signature-symbol">?: </span><a href="chip.html" class="tsd-signature-type">Chip</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ichipservice.html">IChipService</a>.<a href="../interfaces/ichipservice.html#makechange">makeChange</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/05a00e7/src/services/chip.service.ts#L21">services/chip.service.ts:21</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The service should accept an <code>IChipCollection</code> and
+										a requested specific amount of chip value, and be able to
+										&quot;break&quot; or &quot;make change&quot; to swap out chips to meet that
+										exact need. These chips are removed from the incoming
+										<code>chipCollection</code> and the return value are chips that
+									match the <code>needValue</code> requested.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chipCollection: <a href="../interfaces/ichipcollection.html" class="tsd-signature-type">IChipCollection</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Chips to create <code>needValue</code> from</p>
+									</div>
+								</li>
+								<li>
+									<h5>needValue: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Amount requested from chips</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> chipType: <a href="chip.html" class="tsd-signature-type">Chip</a><span class="tsd-signature-symbol"> =&nbsp;StandardChip</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Class of Chip to return</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="valueofchips" class="tsd-anchor"></a>
+					<h3>value<wbr>OfChips</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">value<wbr>OfChips<span class="tsd-signature-symbol">(</span>chips<span class="tsd-signature-symbol">: </span><a href="../interfaces/ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ichipservice.html">IChipService</a>.<a href="../interfaces/ichipservice.html#valueofchips">valueOfChips</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/05a00e7/src/services/chip.service.ts#L89">services/chip.service.ts:89</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chips: <a href="../interfaces/ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -213,19 +243,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="card.html" class="tsd-kind-icon">Card</a>
+						<a href="chipservice.html" class="tsd-kind-icon">Chip<wbr>Service</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="card.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="card.html#cardname" class="tsd-kind-icon">card<wbr>Name</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="chipservice.html#chipsunderorequaltovalue" class="tsd-kind-icon">chips<wbr>Under<wbr>OrEqual<wbr>ToValue</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="card.html#getindex" class="tsd-kind-icon">get<wbr>Index</a>
+								<a href="chipservice.html#createchips" class="tsd-kind-icon">create<wbr>Chips</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="card.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
+								<a href="chipservice.html#makechange" class="tsd-kind-icon">make<wbr>Change</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="chipservice.html#valueofchips" class="tsd-kind-icon">value<wbr>OfChips</a>
 							</li>
 						</ul>
 					</li>
