@@ -201,3 +201,14 @@ test('value of chips is 0', async t => {
   const service = new ChipService()
   t.true(service.valueOfChips([]) === 0)
 })
+
+test('throws error if requesting chip value that cant be split into', async t => {
+  const service = new ChipService()
+  const hasValue = 0.5
+  try {
+    service.createChips(hasValue, true, StandardChip)
+    t.fail('Error should have thrown')
+  } catch (err) {
+    t.deepEqual(err.message, `Incompatible Chip class to fulfill a value of '${hasValue}'`)
+  }
+})

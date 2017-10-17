@@ -37,15 +37,6 @@ export class ChipService implements IChipService {
       return [...matchedCombination]
     }
 
-    // ask for: 27
-    // has: 1, 1, 5, 10, 20, 100
-    // has: 5, 10, 10, 10
-
-    // ask for: 20
-    // has: 10, 100
-    // has 10, 25, 25, 25, 25
-    // has 5, 10, 10, 10, 25, 25, 25 ( how do i find the 2 '10's? )
-
     let pulledChips: IChip[] = this.chipsUnderOrEqualToValue(needValue, reversedChips)
     let breakChip: IChip = reversedChips[pulledChips.length]
     if (pulledChips.length === 0) {
@@ -53,13 +44,6 @@ export class ChipService implements IChipService {
       breakChip = orderedChips[pulledChips.length]
     }
 
-    if (!breakChip) {
-      throw new Error(`Couldn't determine breakChip`)
-    }
-
-    // orderedChips[i] is a chip that when added to our currently pulled chips,
-    // is larger than our requested amount. we should break it up into smaller denominations
-    // to allow us to meet the specific requested amount
     chipCollection.removeChips([breakChip])
     const newChips = this.createChips(breakChip.getValue(), false, chipType)
     chipCollection.addChips([...newChips])
@@ -74,20 +58,14 @@ export class ChipService implements IChipService {
     if (amount <= 0) {
       return []
     }
-    let lessThanComparison = (size: number, amount: number): boolean => {
-      return size < amount
-    }
-    let lessThanOrEqualComparison = (size: number, amount: number): boolean => {
-      return size <= amount
-    }
     let sampleChip = new chipType(ChipColor.White)
     let sortedChips = Array.from(sampleChip.valueMap.entries())
       .sort((a: [ChipColor, number], b: [ChipColor, number]) => {
         return a[1] - b[1]
       })
       .filter((combo: [ChipColor, number]) =>
-        canBeSingleChip ? lessThanOrEqualComparison(combo[1], amount)
-                        : lessThanComparison(combo[1], amount))
+        canBeSingleChip ? combo[1] <= amount
+                        : combo[1] < amount)
       .map<Chip>((entry: [ChipColor, number]) => new chipType(entry[0]))
 
     if (sortedChips.length < 1) {
@@ -104,13 +82,9 @@ export class ChipService implements IChipService {
         index--
       }
     }
-    // console.log(`Creating chips to meet need`)
-    // console.log(createdChips)
+
     return createdChips
   }
-
-  // Consolidate chips into higher value chips if possible
-  // consolidate(chipCollection: IChipCollection)
 
   public valueOfChips (chips: IChip[]): number {
     if (chips.length === 0) {

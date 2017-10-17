@@ -69,3 +69,88 @@ test('takes chips', async t => {
   const chipsPulledValue = chipsPulled.reduce((a: number, b: IChip) => a + b.getValue(), 0)
   t.deepEqual(chipsPulledValue, takeChipValue)
 })
+
+test('removes no chips', async t => {
+  const chipCollection = new ChipCollection()
+  const chip1 = new StandardChip(ChipColor.Blue)
+  const chip2 = new StandardChip(ChipColor.Black)
+  chipCollection.setChips([chip1, chip2])
+  chipCollection.removeChips([])
+  t.deepEqual(chipCollection.getChipCount(), 2)
+})
+
+test('removes one chip', async t => {
+  const chipCollection = new ChipCollection()
+  const chip1 = new StandardChip(ChipColor.Blue)
+  const chip2 = new StandardChip(ChipColor.Black)
+  chipCollection.setChips([chip1, chip2])
+  chipCollection.removeChips([chip1])
+  t.deepEqual(chipCollection.getChipCount(), 1)
+  t.deepEqual(chipCollection.getChips(), [chip2])
+})
+
+test('throws error when removing chip that doesnt exist', async t => {
+  const chipCollection = new ChipCollection()
+  const chip1 = new StandardChip(ChipColor.Blue)
+  const chip2 = new StandardChip(ChipColor.Black)
+  chipCollection.setChips([chip1, chip2])
+  try {
+    chipCollection.removeChips([new StandardChip(ChipColor.White)])
+    t.fail('Error should have thrown')
+  } catch (err) {
+    t.deepEqual(err.message, `Chip does not exist in collection`)
+  }
+})
+
+test('index of chip is provided', async t => {
+  const chipCollection = new ChipCollection()
+  const chip1 = new StandardChip(ChipColor.Blue)
+  const chip2 = new StandardChip(ChipColor.Black)
+  const chip3 = new StandardChip(ChipColor.Red)
+  chipCollection.setChips([chip1, chip2, chip3])
+  const position = chipCollection.indexOfChip(chip2)
+  t.true(position === 1)
+})
+
+test('index -1 for chip that doesnt exist', async t => {
+  const chipCollection = new ChipCollection()
+  const chip1 = new StandardChip(ChipColor.Blue)
+  const chip2 = new StandardChip(ChipColor.Black)
+  const chip3 = new StandardChip(ChipColor.Red)
+  const chip4 = new StandardChip(ChipColor.Green)
+  chipCollection.setChips([chip1, chip2, chip3])
+  const position = chipCollection.indexOfChip(chip4)
+  t.true(position === -1)
+})
+
+test('takeValue throws error if more requested than in collection', async t => {
+  const takeChipValue = 300
+  const chipCollection = new ChipCollection()
+  const chip1 = new StandardChip(ChipColor.Blue)
+  const chip2 = new StandardChip(ChipColor.Black)
+  chipCollection.setChips([chip1, chip2])
+  const chipCollectionValue = chipCollection.getValue()
+  try {
+    chipCollection.takeValue(takeChipValue)
+    t.fail('Error should have thrown')
+  } catch (err) {
+    t.deepEqual(err.message, `Not enough chips (${chipCollectionValue}) to satisfy requested amount ${takeChipValue}`)
+  }
+})
+
+test('getValue returns all chips value', async t => {
+  const chipCollection = new ChipCollection()
+  const chip1 = new StandardChip(ChipColor.Blue)
+  const chip2 = new StandardChip(ChipColor.Black)
+  chipCollection.setChips([chip1, chip2])
+  const chipCollectionValue = chipCollection.getValue()
+  t.true(chipCollectionValue === 110)
+})
+
+test('getValue can have chips passed in', async t => {
+  const chipCollection = new ChipCollection()
+  const chip1 = new StandardChip(ChipColor.Blue)
+  const chip2 = new StandardChip(ChipColor.Black)
+  const calculatedValue = chipCollection.getValue([chip1, chip2])
+  t.true(calculatedValue === 110)
+})

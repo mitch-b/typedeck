@@ -16,4 +16,28 @@ export interface IChipService {
    * match the `needValue` requested.
    */
   makeChange (chipCollection: IChipCollection, needValue: number, chipType: typeof Chip): IChip[]
+
+  /**
+   * Given an amount, and a `Chip` class
+   * that has a specified `IChip.valueMap`,
+   * return an `IChip[]` that has a value to
+   * match requested `amount`
+   */
+  createChips (
+    amount: number,
+    canBeSingleChip: boolean,
+    chipType: typeof Chip): IChip[]
+
+  /**
+   * Return sum of each `IChip.getValue()`
+   */
+  valueOfChips (chips: IChip[]): number
+
+  /**
+   * Returns an `IChip[]` which contains
+   * chips whose sum is less than or equal
+   * to the requested amount based on provided
+   * chips.
+   */
+  chipsUnderOrEqualToValue (needValue: number, chips: IChip[]): IChip[]
 }
