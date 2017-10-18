@@ -9,17 +9,17 @@ export interface IPokerScoreService {
    * Retrieves cards from `IHand`
    * and calls `scoreCards(ICard[])`.
    */
-  scoreHand (hand: IHand, communityCards: PlayingCard[]): PokerHandResult
+  scoreHand (hand: IHand, communityCards?: PlayingCard[]): PokerHandResult
   /**
    * Determine `PokerHandResult` from
    * cards.
    */
-  scoreCards (cards: PlayingCard[], communityCards: PlayingCard[]): PokerHandResult
+  scoreCards (cards: PlayingCard[], communityCards?: PlayingCard[]): PokerHandResult
   /**
    * Return a Map of IPlayer objects and associated
    * PokerHandResult objects.
    */
-  scorePlayers (players: IPlayer[], communityCards: PlayingCard[]): IndexedMap<IPlayer, PokerHandResult>
+  scorePlayers (players: IPlayer[], communityCards?: PlayingCard[]): IndexedMap<IPlayer, PokerHandResult>
   /**
    * Return numeric value of PokerHandResult.
    * A larger number indicates the better hand.
