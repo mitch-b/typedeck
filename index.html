@@ -64,7 +64,7 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="-img-src-http-svgshare-com-i-38a-svg-height-20px-alt-typedeck-typedeck"><img src='http://svgshare.com/i/38a.svg' height='20px' alt='TypeDeck' /> TypeDeck</h1>
+				<h1 id="-img-src-http-svgshare-com-i-38a-svg-height-24px-alt-typedeck-typedeck"><img src='http://svgshare.com/i/38a.svg' height='24px' alt='TypeDeck' /> TypeDeck</h1>
 				<p><a href="https://travis-ci.org/mitch-b/typedeck"><img src="https://travis-ci.org/mitch-b/typedeck.svg?branch=master" alt="Build Status"></a>
 					<a href="https://www.npmjs.com/package/typedeck"><img src="https://img.shields.io/npm/v/typedeck.svg" alt="NPM version"></a>
 					<a href="https://codecov.io/gh/mitch-b/typedeck"><img src="https://codecov.io/gh/mitch-b/typedeck/branch/master/graph/badge.svg" alt="codecov"></a>
@@ -84,6 +84,13 @@
 							<li>Simple card classes (<code>PlayingCard</code>/<code>JokerCard</code>)</li>
 						</ul>
 					</li>
+					<li><strong>Chip</strong><ul>
+							<li>Provided Chip classes and standard values<ul>
+									<li>Values can be overridden, and custom Chip classes</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
 					<li><strong>Declarative Types</strong><ul>
 							<li><code>CardName</code>: <code>[Ace, Two, Three, ...]</code></li>
 							<li><code>Suit</code>: <code>[Clubs, Spades, Diamonds, Hearts]</code></li>
@@ -99,12 +106,29 @@
 						</ul>
 					</li>
 					<li><strong>Services</strong><ul>
-							<li>Shuffle</li>
-							<li>Poker Hand Scoring</li>
+							<li>Shuffle<ul>
+									<li>Shuffle any <code>ICard</code> implementation</li>
+								</ul>
+							</li>
+							<li>Poker Hand Scoring<ul>
+									<li>Texas Hold Em Hand Detection</li>
+									<li>Winner scoring/determination</li>
+								</ul>
+							</li>
+							<li>Chip management<ul>
+									<li>Taking specific values</li>
+									<li>Creating chips from value</li>
+									<li>Breaking chips to get specific value</li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 					<li><strong>And so much more</strong> ... see the <a href="https://mitch-b.github.io/typedeck/">documentation</a> for a full list.</li>
 				</ul>
+				<h2 id="customization">Customization</h2>
+				<p>Most features support parameters that implement either an interface or
+					a base class. You can create your own type of Card that implements <code>ICard</code> or
+				a Chip with special chip color values which extends <code>Chip</code> base class. </p>
 				<h2 id="credits">Credits</h2>
 				<ul>
 					<li>Card images by Ben Davis from the Noun Project</li>
