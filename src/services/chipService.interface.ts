@@ -15,7 +15,7 @@ export interface IChipService {
    * `chipCollection` and the return value are chips that
    * match the `needValue` requested.
    */
-  makeChange (chipCollection: IChipCollection, needValue: number, chipType: typeof Chip): IChip[]
+  makeChange (chipCollection: IChipCollection, needValue: number, chipType?: typeof Chip): IChip[]
 
   /**
    * Given an amount, and a `Chip` class
@@ -25,8 +25,8 @@ export interface IChipService {
    */
   createChips (
     amount: number,
-    canBeSingleChip: boolean,
-    chipType: typeof Chip): IChip[]
+    canBeSingleChip?: boolean,
+    chipType?: typeof Chip): IChip[]
 
   /**
    * Return sum of each `IChip.getValue()`
