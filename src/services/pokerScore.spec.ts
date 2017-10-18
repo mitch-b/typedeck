@@ -10,7 +10,7 @@ import {
   PokerHandResult
 } from 'typedeck'
 
-function getHands (type: PokerHandType): PlayingCard[][] {
+let getHands = (type: PokerHandType): PlayingCard[][] => {
   switch (type) {
     case PokerHandType.HighCard:
       return [
