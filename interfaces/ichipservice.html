@@ -95,8 +95,8 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ichipservice.html#chipsunderorequaltovalue" class="tsd-kind-icon">chips<wbr>Under<wbr>OrEqual<wbr>ToValue</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ichipservice.html#createchips" class="tsd-kind-icon">create<wbr>Chips</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ichipservice.html#getnextchiptobreak" class="tsd-kind-icon">get<wbr>Next<wbr>Chip<wbr>ToBreak</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ichipservice.html#makechange" class="tsd-kind-icon">make<wbr>Change</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ichipservice.html#valueofchips" class="tsd-kind-icon">value<wbr>OfChips</a></li>
 							</ul>
@@ -107,40 +107,6 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="chipsunderorequaltovalue" class="tsd-anchor"></a>
-					<h3>chips<wbr>Under<wbr>OrEqual<wbr>ToValue</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">chips<wbr>Under<wbr>OrEqual<wbr>ToValue<span class="tsd-signature-symbol">(</span>needValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, chips<span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/0f42993/src/services/chipService.interface.ts#L42">services/chipService.interface.ts:42</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an <code>IChip[]</code> which contains
-										chips whose sum is less than or equal
-										to the requested amount based on provided
-									chips.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>needValue: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>chips: <a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="createchips" class="tsd-anchor"></a>
 					<h3>create<wbr>Chips</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -150,7 +116,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/0f42993/src/services/chipService.interface.ts#L26">services/chipService.interface.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/72228d7/src/services/chipService.interface.ts#L26">services/chipService.interface.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -178,6 +144,39 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getnextchiptobreak" class="tsd-anchor"></a>
+					<h3>get<wbr>Next<wbr>Chip<wbr>ToBreak</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Next<wbr>Chip<wbr>ToBreak<span class="tsd-signature-symbol">(</span>chips<span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span>, needValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/72228d7/src/services/chipService.interface.ts#L41">services/chipService.interface.ts:41</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an <code>IChip</code> that should be
+										broken down next by calling <code>createChips</code>.
+									Useful when making change.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chips: <a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5>needValue: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="ichip.html" class="tsd-signature-type">IChip</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="makechange" class="tsd-anchor"></a>
 					<h3>make<wbr>Change</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -187,7 +186,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/0f42993/src/services/chipService.interface.ts#L18">services/chipService.interface.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/72228d7/src/services/chipService.interface.ts#L18">services/chipService.interface.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -226,7 +225,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/0f42993/src/services/chipService.interface.ts#L34">services/chipService.interface.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/72228d7/src/services/chipService.interface.ts#L34">services/chipService.interface.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -262,10 +261,10 @@
 						<a href="ichipservice.html" class="tsd-kind-icon">IChip<wbr>Service</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="ichipservice.html#chipsunderorequaltovalue" class="tsd-kind-icon">chips<wbr>Under<wbr>OrEqual<wbr>ToValue</a>
+								<a href="ichipservice.html#createchips" class="tsd-kind-icon">create<wbr>Chips</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="ichipservice.html#createchips" class="tsd-kind-icon">create<wbr>Chips</a>
+								<a href="ichipservice.html#getnextchiptobreak" class="tsd-kind-icon">get<wbr>Next<wbr>Chip<wbr>ToBreak</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="ichipservice.html#makechange" class="tsd-kind-icon">make<wbr>Change</a>
