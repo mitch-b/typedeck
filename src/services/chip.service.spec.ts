@@ -110,32 +110,16 @@ test('calculates chip sum', async t => {
   t.true(chipsValue === requestedChips, 'Amount pulled did not match requested')
 })
 
-test('get as many chips under or equal to requested value', async t => {
+test('returns lowest chip to break if all too large', async t => {
   const service = new ChipService()
-  const needValue = 101
-  const chips = service.createChips(needValue - 1)
-  const chipsUpToValue = service.chipsUnderOrEqualToValue(needValue, chips)
-  const chipsValue = service.valueOfChips(chipsUpToValue)
-  t.true(chipsValue < needValue, 'Did not return expected chip results')
-  t.true(chipsValue === needValue - 1, 'Did not pull as many chips as it could to meet needValue')
-})
-
-test('get as many chips under or equal to value', async t => {
-  const service = new ChipService()
-  const needValue = 100
-  const chips = service.createChips(needValue)
-  const chipsUpToValue = service.chipsUnderOrEqualToValue(needValue, chips)
-  const chipsValue = service.valueOfChips(chipsUpToValue)
-  t.true(chipsValue === needValue, 'Did not return expected chip results')
-})
-
-test('get as many chips under or equal to value - cant be one chip', async t => {
-  const service = new ChipService()
-  const needValue = 100
-  const chips = service.createChips(needValue, false)
-  const chipsUpToValue = service.chipsUnderOrEqualToValue(needValue, chips)
-  const chipsValue = service.valueOfChips(chipsUpToValue)
-  t.true(chipsValue === needValue, 'Did not return expected chip results')
+  const requestedValue = 7
+  const chips = [
+    new StandardChip(ChipColor.Black),
+    new StandardChip(ChipColor.Gray),
+    new StandardChip(ChipColor.Green)
+  ]
+  const breakChip = service.getNextChipToBreak(chips, requestedValue)
+  t.deepEqual(breakChip, new StandardChip(ChipColor.Gray), 'Lowest value chip not broken')
 })
 
 test('throws error if making change less than passed in', async t => {

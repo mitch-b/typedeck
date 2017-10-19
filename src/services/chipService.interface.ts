@@ -34,10 +34,9 @@ export interface IChipService {
   valueOfChips (chips: IChip[]): number
 
   /**
-   * Returns an `IChip[]` which contains
-   * chips whose sum is less than or equal
-   * to the requested amount based on provided
-   * chips.
+   * Returns an `IChip` that should be
+   * broken down next by calling `createChips`.
+   * Useful when making change.
    */
-  chipsUnderOrEqualToValue (needValue: number, chips: IChip[]): IChip[]
+  getNextChipToBreak (chips: IChip[], needValue: number): IChip
 }

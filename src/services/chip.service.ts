@@ -2,7 +2,6 @@ import { IChipService } from './chipService.interface'
 import { IChip } from '../models/chip/chip.interface'
 import { IChipCollection } from '../models/chipCollection/chipCollection.interface'
 import { ChipColor } from '../models/chip/chipColor.model'
-import { ChipCollection } from '../models/chipCollection/chipCollection.model'
 import { Chip } from '../models/chip/chip.model'
 import { StandardChip } from '../models/chip/standardChip.model'
 
@@ -26,23 +25,14 @@ export class ChipService implements IChipService {
       throw new Error(`makeChange requires a positive Chip amount needed`)
     }
 
-    const orderedChips = chipCollection.getChips()
-      .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
-    const reversedChips = [...orderedChips].reverse()
-
-    let matchedCombination = this.hasCombinationOfAmount(needValue, orderedChips)
+    let matchedCombination = this.hasCombinationOfAmount(needValue, chipCollection.getChips())
     if (matchedCombination.length > 0) {
       // success!
       chipCollection.removeChips(matchedCombination)
       return [...matchedCombination]
     }
 
-    let pulledChips: IChip[] = this.chipsUnderOrEqualToValue(needValue, reversedChips)
-    let breakChip: IChip = reversedChips[pulledChips.length]
-    if (pulledChips.length === 0) {
-      pulledChips = this.chipsUnderOrEqualToValue(needValue, orderedChips)
-      breakChip = orderedChips[pulledChips.length]
-    }
+    const breakChip = this.getNextChipToBreak(chipCollection.getChips(), needValue)
 
     chipCollection.removeChips([breakChip])
     const newChips = this.createChips(breakChip.getValue(), false, chipType)
@@ -93,23 +83,40 @@ export class ChipService implements IChipService {
     return chips.reduce((a: number, b: IChip) => a + b.getValue(), 0)
   }
 
-  public chipsUnderOrEqualToValue (needValue: number, chips: IChip[]): IChip[] {
-    const pulledChips = new ChipCollection()
+  public getNextChipToBreak (chips: IChip[], needValue: number): IChip {
+    const orderedChips = chips
+      .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
+    const reverseOrderedChips = [...orderedChips].reverse()
+
+    // find first largest chip at or under value
     let i = 0
-    while (pulledChips.getValue() < needValue) {
-      pulledChips.addChip(chips[i++])
-      if (chips[i]) {
-        if (pulledChips.getValue() + chips[i].getValue() > needValue) {
+    let runningTotal = 0
+    // TODO: can i swap out while() loops for .filter() IChip[] results?
+    while (i < reverseOrderedChips.length - 1) {
+      const currentChip = reverseOrderedChips[i]
+      const addedChipValue = runningTotal + currentChip.getValue()
+      if (addedChipValue <= needValue) {
+        runningTotal = addedChipValue
+      }
+      i++
+    }
+    if (runningTotal > 0) {
+      i = 0
+      while (i < orderedChips.length - 1) {
+        const currentChip = orderedChips[i]
+        const addedChipValue = runningTotal + currentChip.getValue()
+        if (addedChipValue <= needValue) {
+          runningTotal = addedChipValue
+        } else {
+          // we found our breakchip at orderedChips[i]
           break
         }
-      } else {
-        break
+        i++
       }
+      return orderedChips[i]
+    } else {
+      return reverseOrderedChips[i]
     }
-    if (pulledChips.getValue() > needValue) {
-      return [] as IChip[]
-    }
-    return [...pulledChips.getChips()]
   }
 
   /**
