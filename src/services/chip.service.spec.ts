@@ -76,6 +76,20 @@ test('can split chips by breaking up a chip and giving smaller denominations com
   t.true(chipCollection.getValue() === initialValue - requestedAmount, 'Chips left in collection do not match pulled')
 })
 
+test('can split chips by breaking up a chip and giving smaller denominations complex 3', async t => {
+  const service = new ChipService()
+  const chipCollection = new ChipCollection()
+    .addChips(service.createChips(300))
+    .addChips(service.createChips(63))
+    .addChips(service.createChips(67))
+    .addChips(service.createChips(84))
+  const initialValue = chipCollection.getValue()
+  const requestedAmount = 67
+  const chipsOfRequestedValue = new ChipCollection(service.makeChange(chipCollection, requestedAmount))
+  t.true(chipsOfRequestedValue.getValue() === requestedAmount, 'Amount pulled did not match requested')
+  t.true(chipCollection.getValue() === initialValue - requestedAmount, 'Chips left in collection do not match pulled')
+})
+
 test('can create chips from amount 1', async t => {
   const service = new ChipService()
   const requestedChips = 1
@@ -195,4 +209,20 @@ test('throws error if requesting chip value that cant be split into', async t =>
   } catch (err) {
     t.deepEqual(err.message, `Incompatible Chip class to fulfill a value of '${hasValue}'`)
   }
+})
+
+test('can make large complex change 1', async t => {
+  const service = new ChipService()
+  const myChips: IChip[] = service.createChips(300)
+  myChips.push(...service.createChips(67))
+  myChips.push(...service.createChips(33))
+  myChips.push(...service.createChips(63))
+  myChips.push(...service.createChips(41))
+  myChips.push(...service.createChips(82))
+  const chipCollection = new ChipCollection(myChips)
+  const initialValue = chipCollection.getValue()
+  const requestedAmount = 67
+  const chipsOfRequestedValue = new ChipCollection(service.makeChange(chipCollection, requestedAmount))
+  t.true(chipsOfRequestedValue.getValue() === requestedAmount, 'Amount pulled did not match requested')
+  t.true(chipCollection.getValue() === initialValue - requestedAmount, 'Chips left in collection do not match pulled')
 })
