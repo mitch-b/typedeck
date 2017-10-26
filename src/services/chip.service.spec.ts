@@ -210,3 +210,19 @@ test('throws error if requesting chip value that cant be split into', async t =>
     t.deepEqual(err.message, `Incompatible Chip class to fulfill a value of '${hasValue}'`)
   }
 })
+
+test('can make large complex change 1', async t => {
+  const service = new ChipService()
+  const myChips: IChip[] = service.createChips(300)
+  myChips.push(...service.createChips(67))
+  myChips.push(...service.createChips(33))
+  myChips.push(...service.createChips(63))
+  myChips.push(...service.createChips(41))
+  myChips.push(...service.createChips(82))
+  const chipCollection = new ChipCollection(myChips)
+  const initialValue = chipCollection.getValue()
+  const requestedAmount = 67
+  const chipsOfRequestedValue = new ChipCollection(service.makeChange(chipCollection, requestedAmount))
+  t.true(chipsOfRequestedValue.getValue() === requestedAmount, 'Amount pulled did not match requested')
+  t.true(chipCollection.getValue() === initialValue - requestedAmount, 'Chips left in collection do not match pulled')
+})

@@ -17,7 +17,10 @@ export class ChipService implements IChipService {
    * @param needValue Amount requested from chips
    * @param chipType Class of Chip to return
    */
-  public makeChange (chipCollection: IChipCollection, needValue: number, chipType: typeof Chip = StandardChip): IChip[] {
+  public makeChange (
+      chipCollection: IChipCollection,
+      needValue: number,
+      chipType: typeof Chip = StandardChip): IChip[] {
     const currentValue = chipCollection.getValue()
     if (needValue > currentValue) {
       throw new Error(`Not enough chips (${currentValue}) to satisfy requested amount ${needValue}`)
@@ -119,31 +122,47 @@ export class ChipService implements IChipService {
     }
   }
 
-  /**
-   * https://codereview.stackexchange.com/a/7025
-   * @param amount
-   * @param chips
-   */
-  private hasCombinationOfAmount (amount: number, chips: IChip[]): IChip[] {
+  public hasCombinationOfAmount (amount: number, chips: IChip[]): IChip[] {
     const iteratedChips = [...chips]
       .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
-    const options: IChip[][] = []
-    let fn = function (temp: IChip[], iteratedChips: IChip[], options: IChip[][]) {
-      if (iteratedChips.length === 0) {
-        options.push(temp)
-      } else {
-        fn([...temp, iteratedChips[0]], iteratedChips.slice(1), options)
-        fn(temp, iteratedChips.slice(1), options)
-      }
-      return options
-    }
-    let availableOptions = fn([] as IChip[], iteratedChips, options)
-    let matchingOptions = availableOptions
-      .filter((chipArr: IChip[]) => this.valueOfChips(chipArr) === amount)
-      .sort((a: IChip[], b: IChip[]) => b.length - a.length)
+    const matches: IChip[][] = []
 
-    if (matchingOptions.length > 0) {
-      return matchingOptions[0]
+    let valueOfChips = (chips: IChip[]): number => {
+      return chips.reduce((a: number, b: IChip) => a + b.getValue(), 0)
+    }
+
+    /**
+     * http://js-algorithms.tutorialhorizon.com/2015/10/23/combinations-of-an-array/
+     * @param chips
+     * @param singleResult
+     */
+    let combinations = (chips: IChip[]): void => {
+      let i = 0
+      let j = 0
+      let totalCombinations = Math.pow(2, chips.length)
+
+      for (i = 0; i < totalCombinations; i++) {
+        let temp: IChip[] = []
+        for (j = 0; j < chips.length; j++) {
+          if ((i & Math.pow(2, j))) {
+            temp.push(chips[j])
+            const chipsValue = valueOfChips(temp)
+            if (chipsValue === amount) {
+              matches.push([...temp])
+              return
+            } else if (chipsValue > amount) {
+              break
+            }
+          }
+        }
+      }
+      return
+    }
+
+    combinations(iteratedChips)
+
+    if (matches.length > 0) {
+      return matches[0]
     } else {
       return [] as IChip[]
     }
