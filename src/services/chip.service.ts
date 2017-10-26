@@ -126,12 +126,10 @@ export class ChipService implements IChipService {
    */
   private hasCombinationOfAmount (amount: number, chips: IChip[]): IChip[] {
     const iteratedChips = [...chips]
+      .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
     const options: IChip[][] = []
     let fn = function (temp: IChip[], iteratedChips: IChip[], options: IChip[][]) {
-      if (temp.length === 0 && iteratedChips.length === 0) {
-        return undefined
-      }
-      if (!iteratedChips || iteratedChips.length === 0) {
+      if (iteratedChips.length === 0) {
         options.push(temp)
       } else {
         fn([...temp, iteratedChips[0]], iteratedChips.slice(1), options)
@@ -140,7 +138,7 @@ export class ChipService implements IChipService {
       return options
     }
     let availableOptions = fn([] as IChip[], iteratedChips, options)
-    let matchingOptions = (availableOptions as IChip[][])
+    let matchingOptions = availableOptions
       .filter((chipArr: IChip[]) => this.valueOfChips(chipArr) === amount)
       .sort((a: IChip[], b: IChip[]) => b.length - a.length)
 
