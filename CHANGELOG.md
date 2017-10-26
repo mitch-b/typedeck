@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.3"></a>
+## [1.3.3](https://github.com/mitch-b/typedeck/compare/v1.3.2...v1.3.3) (2017-10-26)
+
+
+### Bug Fixes
+
+* **chipService:** Chip Management performance improvements ([8f7c27a](https://github.com/mitch-b/typedeck/commit/8f7c27a)), closes [#3](https://github.com/mitch-b/typedeck/issues/3)
+
+
+
 <a name="1.3.2"></a>
 ## [1.3.2](https://github.com/mitch-b/typedeck/compare/v1.3.1...v1.3.2) (2017-10-19)
 
