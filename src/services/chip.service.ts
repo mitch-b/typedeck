@@ -20,12 +20,17 @@ export class ChipService implements IChipService {
   public makeChange (
       chipCollection: IChipCollection,
       needValue: number,
-      chipType: typeof Chip = StandardChip): IChip[] {
+      chipType: typeof Chip = StandardChip,
+      colorUp: boolean = false): IChip[] {
     const currentValue = chipCollection.getValue()
     if (needValue > currentValue) {
       throw new Error(`Not enough chips (${currentValue}) to satisfy requested amount ${needValue}`)
     } else if (needValue <= 0) {
       throw new Error(`makeChange requires a positive Chip amount needed`)
+    }
+
+    if (colorUp && chipCollection.getChipCount() > 1) {
+      chipCollection.setChips(this.colorUp(chipCollection.getChips(), chipType))
     }
 
     let matchedCombination = this.hasCombinationOfAmount(needValue, chipCollection.getChips())
@@ -59,7 +64,7 @@ export class ChipService implements IChipService {
       .filter((combo: [ChipColor, number]) =>
         canBeSingleChip ? combo[1] <= amount
                         : combo[1] < amount)
-      .map<Chip>((entry: [ChipColor, number]) => new chipType(entry[0]))
+      .map<IChip>((entry: [ChipColor, number]) => new chipType(entry[0]))
 
     if (sortedChips.length < 1) {
       throw new Error(`Incompatible Chip class to fulfill a value of '${amount}'`)
@@ -120,6 +125,12 @@ export class ChipService implements IChipService {
     } else {
       return reverseOrderedChips[i]
     }
+  }
+
+  public colorUp (chips: IChip[], chipType: typeof Chip = StandardChip): IChip[] {
+    const chipsValue = this.valueOfChips(chips)
+    const singleChipAllowed = true
+    return this.createChips(chipsValue, singleChipAllowed, chipType)
   }
 
   public hasCombinationOfAmount (amount: number, chips: IChip[]): IChip[] {

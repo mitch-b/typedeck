@@ -60,6 +60,15 @@ export class ChipCollection implements IChipCollection {
     return this
   }
 
+  public colorUp (): IChipCollection {
+    if (this.getChipCount() === 0) {
+      return this
+    }
+    const newChips = this.chipService.colorUp(this.getChips(), this.getChips()[0].constructor as any)
+    this.setChips(newChips)
+    return this
+  }
+
   /**
    * Returns first identified index position of chip in
    * collection.

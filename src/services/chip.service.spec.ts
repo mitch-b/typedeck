@@ -85,7 +85,7 @@ test('can split chips by breaking up a chip and giving smaller denominations com
     .addChips(service.createChips(84))
   const initialValue = chipCollection.getValue()
   const requestedAmount = 67
-  const chipsOfRequestedValue = new ChipCollection(service.makeChange(chipCollection, requestedAmount))
+  const chipsOfRequestedValue = new ChipCollection(service.makeChange(chipCollection, requestedAmount, StandardChip, true))
   t.true(chipsOfRequestedValue.getValue() === requestedAmount, 'Amount pulled did not match requested')
   t.true(chipCollection.getValue() === initialValue - requestedAmount, 'Chips left in collection do not match pulled')
 })

@@ -39,4 +39,10 @@ export interface IChipService {
    * Useful when making change.
    */
   getNextChipToBreak (chips: IChip[], needValue: number): IChip
+
+  /**
+   * Transform smaller chips into condensed
+   * fewer larger denomination chips (if possible).
+   */
+  colorUp (chips: IChip[], chipType?: typeof Chip): IChip[]
 }
