@@ -11,4 +11,5 @@ export interface IChipCollection {
   getChipCount (): number
   isEmpty (): boolean
   takeValue (amount: number): IChip[]
+  toString (): string
 }

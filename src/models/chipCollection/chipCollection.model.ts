@@ -45,6 +45,10 @@ export class ChipCollection implements IChipCollection {
     return this.getChipCount() === 0
   }
 
+  public toString (): string {
+    return JSON.stringify(this.getChips().map((chip: IChip) => chip.getValue()))
+  }
+
   public removeChips (chips: IChip[]): IChipCollection {
     if (chips.length === 0) {
       return this

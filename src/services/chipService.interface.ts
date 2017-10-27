@@ -45,4 +45,9 @@ export interface IChipService {
    * fewer larger denomination chips (if possible).
    */
   colorUp (chips: IChip[], chipType?: typeof Chip): IChip[]
+
+  /**
+   * Sort chips by value and return ordered chips
+   */
+  sortByValue (chips: IChip[]): IChip[]
 }

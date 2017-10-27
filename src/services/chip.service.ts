@@ -30,7 +30,11 @@ export class ChipService implements IChipService {
     }
 
     if (colorUp && chipCollection.getChipCount() > 1) {
-      chipCollection.setChips(this.colorUp(chipCollection.getChips(), chipType))
+      console.log(`Looking to make change of ${needValue} from ${chipCollection.getValue()}`)
+      console.log(`Coloring Up ${chipCollection.toString()}`)
+      const coloredUp = this.sortByValue(this.colorUp(chipCollection.getChips(), chipType))
+      chipCollection.setChips(coloredUp)
+      console.log(`After coloring up: ${chipCollection.toString()}`)
     }
 
     let matchedCombination = this.hasCombinationOfAmount(needValue, chipCollection.getChips())
@@ -41,18 +45,24 @@ export class ChipService implements IChipService {
     }
 
     const breakChip = this.getNextChipToBreak(chipCollection.getChips(), needValue)
-
+    console.log(`Next chip to break is a ${breakChip.getValue()}`)
     chipCollection.removeChips([breakChip])
     const newChips = this.createChips(breakChip.getValue(), false, chipType)
     chipCollection.addChips([...newChips])
 
-    return this.makeChange(chipCollection, needValue, chipType)
+    return this.makeChange(chipCollection, needValue, chipType, false)
+  }
+
+  public sortByValue (chips: IChip[]): IChip[] {
+    return [...chips]
+      .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
   }
 
   public createChips (
       amount: number,
       canBeSingleChip: boolean = true,
       chipType: typeof Chip = StandardChip): IChip[] {
+    console.log(`Creating ${amount} chips`)
     if (amount <= 0) {
       return []
     }
@@ -61,21 +71,27 @@ export class ChipService implements IChipService {
       .sort((a: [ChipColor, number], b: [ChipColor, number]) => {
         return a[1] - b[1]
       })
+    const chipsThatCanFulfillValue = sortedChips
+      .filter((combo: [ChipColor, number]) => combo[1] <= amount).length
+    if (chipsThatCanFulfillValue === 1) {
+      canBeSingleChip = true
+    }
+    let availableChips = sortedChips
       .filter((combo: [ChipColor, number]) =>
         canBeSingleChip ? combo[1] <= amount
                         : combo[1] < amount)
       .map<IChip>((entry: [ChipColor, number]) => new chipType(entry[0]))
 
-    if (sortedChips.length < 1) {
+    if (availableChips.length < 1) {
       throw new Error(`Incompatible Chip class to fulfill a value of '${amount}'`)
     }
 
-    let index = sortedChips.length - 1
+    let index = availableChips.length - 1
     const createdChips: IChip[] = []
-    while (amount >= sortedChips[0].getValue()) {
-      if (amount >= sortedChips[index].getValue()) {
-        amount -= sortedChips[index].getValue()
-        createdChips.push(sortedChips[index])
+    while (amount >= availableChips[0].getValue()) {
+      if (amount >= availableChips[index].getValue()) {
+        amount -= availableChips[index].getValue()
+        createdChips.push(availableChips[index])
       } else {
         index--
       }
@@ -92,9 +108,13 @@ export class ChipService implements IChipService {
   }
 
   public getNextChipToBreak (chips: IChip[], needValue: number): IChip {
-    const orderedChips = chips
-      .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
+    const orderedChips = this.sortByValue(chips)
     const reverseOrderedChips = [...orderedChips].reverse()
+
+    console.log(`Breaking chips for ${needValue}`)
+    console.log(`Have: ${chips.map((chip) => chip.getValue())}`)
+    console.log(`orderedChips: ${orderedChips.map((chip) => chip.getValue())}`)
+    console.log(`reverseOrderedChips: ${reverseOrderedChips.map((chip) => chip.getValue())}`)
 
     // find first largest chip at or under value
     let i = 0
@@ -130,52 +150,68 @@ export class ChipService implements IChipService {
   public colorUp (chips: IChip[], chipType: typeof Chip = StandardChip): IChip[] {
     const chipsValue = this.valueOfChips(chips)
     const singleChipAllowed = true
+    console.log(`Coloring up! ${chipsValue}`)
     return this.createChips(chipsValue, singleChipAllowed, chipType)
   }
 
   public hasCombinationOfAmount (amount: number, chips: IChip[]): IChip[] {
-    const iteratedChips = [...chips]
-      .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
-    const matches: IChip[][] = []
+    const iteratedChips = this.sortByValue(chips)
 
-    let valueOfChips = (chips: IChip[]): number => {
-      return chips.reduce((a: number, b: IChip) => a + b.getValue(), 0)
-    }
-
-    /**
-     * http://js-algorithms.tutorialhorizon.com/2015/10/23/combinations-of-an-array/
-     * @param chips
-     * @param singleResult
-     */
-    let combinations = (chips: IChip[]): void => {
-      let i = 0
-      let j = 0
-      let totalCombinations = Math.pow(2, chips.length)
-
-      for (i = 0; i < totalCombinations; i++) {
-        let temp: IChip[] = []
-        for (j = 0; j < chips.length; j++) {
-          if ((i & Math.pow(2, j))) {
-            temp.push(chips[j])
-            const chipsValue = valueOfChips(temp)
-            if (chipsValue === amount) {
-              matches.push([...temp])
-              return
-            } else if (chipsValue > amount) {
-              break
-            }
-          }
+    let size = chips.length
+    while (size > 0) {
+      console.log(`Trying a size of ${size} of chips to fulfill ${amount} from ${iteratedChips.map((c) => c.getValue())}`)
+      for (let combination of this.combinations(iteratedChips, size)) {
+        if (this.valueOfChips(combination) === amount) {
+          console.log(`Found ${amount} in ${combination.map((c) => c.getValue())}`)
+          return [...combination]
         }
       }
-      return
+      size--
+    }
+    return []
+  }
+
+  public* combinations<T> (iterable: T[], r: number): IterableIterator<T[]> {
+    let pool = Array.from(iterable)
+    let len = pool.length
+    if (r > len) {
+      return []
     }
 
-    combinations(iteratedChips)
+    let indices = Array.from(this.range(0 , r , 1))
 
-    if (matches.length > 0) {
-      return matches[0]
+    yield Array.from(this.pick(pool, indices))
+
+    while ( true ) {
+      let i = r - 1
+      while (true) {
+        if ( i < 0 ) {
+          return []
+        }
+        if (indices[i] !== i + len - r) {
+          let pivot = ++indices[i]
+          for (++i; i < r ; ++i ) {
+            indices[i] = ++pivot
+          }
+          break
+        }
+        --i
+      }
+      yield Array.from(this.pick(pool, indices))
+    }
+  }
+
+  public* pick (object: any, iterable: any) {
+    for (let key of iterable) {
+      yield object[key]
+    }
+  }
+
+  public* range (start: number, stop: number, step: number) {
+    if (step < 0) {
+      for ( ; start > stop; start += step) yield start
     } else {
-      return [] as IChip[]
+      for ( ; start < stop; start += step) yield start
     }
   }
 }
