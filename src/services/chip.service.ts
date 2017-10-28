@@ -31,7 +31,7 @@ export class ChipService implements IChipService {
     }
 
     if (colorUp && chipCollection.getChipCount() > 1) {
-      const coloredUp = this.sortByValue(this.colorUp(chipCollection.getChips(), true, chipType))
+      const coloredUp = this.sortByValue(this.colorUp(chipCollection.getChips(), chipType))
       chipCollection.setChips(coloredUp)
     }
 
@@ -152,9 +152,9 @@ export class ChipService implements IChipService {
     }
   }
 
-  public colorUp (chips: IChip[], canBeSingleChip: boolean = true, chipType: typeof Chip = StandardChip)
-  : IChip[] {
+  public colorUp (chips: IChip[], chipType: typeof Chip = StandardChip): IChip[] {
     const chipsValue = this.valueOfChips(chips)
+    const canBeSingleChip = true
     return this.createChips(chipsValue, canBeSingleChip, chipType)
   }
 

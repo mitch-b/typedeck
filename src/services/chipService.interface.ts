@@ -44,7 +44,7 @@ export interface IChipService {
    * Transform smaller chips into condensed
    * fewer larger denomination chips (if possible).
    */
-  colorUp (chips: IChip[], canBeSingleChip?: boolean, chipType?: typeof Chip): IChip[]
+  colorUp (chips: IChip[], chipType?: typeof Chip): IChip[]
 
   /**
    * Sort chips by value and return ordered chips

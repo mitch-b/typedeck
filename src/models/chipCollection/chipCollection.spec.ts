@@ -151,3 +151,21 @@ test('getValue can have chips passed in', async t => {
   const calculatedValue = chipCollection.getValue([chip1, chip2])
   t.true(calculatedValue === 110)
 })
+
+test('can colorUp a collection with no chips', async t => {
+  const chipCollection = new ChipCollection()
+  chipCollection.colorUp()
+  t.pass('we did it!')
+})
+
+test('can colorUp a known collection of chips', async t => {
+  const chipCollection = new ChipCollection()
+  chipCollection.addChip(new StandardChip(ChipColor.White))
+  chipCollection.addChip(new StandardChip(ChipColor.White))
+  chipCollection.addChip(new StandardChip(ChipColor.White))
+  chipCollection.addChip(new StandardChip(ChipColor.White))
+  chipCollection.addChip(new StandardChip(ChipColor.White))
+  chipCollection.addChip(new StandardChip(ChipColor.Red))
+  chipCollection.colorUp()
+  t.true(chipCollection.getChipCount() === 1, 'Didnt condense chips')
+})

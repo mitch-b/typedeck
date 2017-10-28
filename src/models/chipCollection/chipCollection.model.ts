@@ -45,10 +45,6 @@ export class ChipCollection implements IChipCollection {
     return this.getChipCount() === 0
   }
 
-  public toString (): string {
-    return JSON.stringify(this.getChips().map((chip: IChip) => chip.getValue()))
-  }
-
   public removeChips (chips: IChip[]): IChipCollection {
     if (chips.length === 0) {
       return this
@@ -57,11 +53,11 @@ export class ChipCollection implements IChipCollection {
     return this
   }
 
-  public colorUp (canBeSingleChip: boolean = true): IChipCollection {
+  public colorUp (): IChipCollection {
     if (this.getChipCount() === 0) {
       return this
     }
-    const newChips = this.chipService.colorUp(this.getChips(), canBeSingleChip, this.getChips()[0].constructor as any)
+    const newChips = this.chipService.colorUp(this.getChips(), this.getChips()[0].constructor as any)
     this.setChips(newChips)
     return this
   }

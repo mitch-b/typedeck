@@ -92,7 +92,8 @@
     "exclude": [
       "**/*.spec.js",
       "build/browser/**",
-      "build/**/errors/**"
+      "build/**/errors/**",
+      "build/**/iterableExtensions.*"
     ]
   },
   "ava": {
