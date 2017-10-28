@@ -4,6 +4,7 @@ import { IChipCollection } from '../models/chipCollection/chipCollection.interfa
 import { ChipColor } from '../models/chip/chipColor.model'
 import { Chip } from '../models/chip/chip.model'
 import { StandardChip } from '../models/chip/standardChip.model'
+import { IterableExtensions } from '../common/iterableExtensions.model'
 
 export class ChipService implements IChipService {
   /**
@@ -30,22 +31,32 @@ export class ChipService implements IChipService {
     }
 
     if (colorUp && chipCollection.getChipCount() > 1) {
-      console.log(`Looking to make change of ${needValue} from ${chipCollection.getValue()}`)
-      console.log(`Coloring Up ${chipCollection.toString()}`)
-      const coloredUp = this.sortByValue(this.colorUp(chipCollection.getChips(), chipType))
+      const coloredUp = this.sortByValue(this.colorUp(chipCollection.getChips(), true, chipType))
       chipCollection.setChips(coloredUp)
-      console.log(`After coloring up: ${chipCollection.toString()}`)
     }
 
-    let matchedCombination = this.hasCombinationOfAmount(needValue, chipCollection.getChips())
+    // set aside high chips
+    let chips = this.sortByValue(chipCollection.getChips())
+    let highChips: IChip[] = []
+    if (chipCollection.getChipCount() > 1) {
+      let n = chipCollection.getChipCount() - 1
+      while (n > 0) {
+        if (this.valueOfChips(chips.slice(0, n)) >= needValue) {
+          highChips.push(...chips.splice(n, 1))
+        } else {
+          break
+        }
+        n--
+      }
+    }
+
+    let matchedCombination = this.hasCombinationOfAmount(needValue, chips)
     if (matchedCombination.length > 0) {
-      // success!
       chipCollection.removeChips(matchedCombination)
       return [...matchedCombination]
     }
 
-    const breakChip = this.getNextChipToBreak(chipCollection.getChips(), needValue)
-    console.log(`Next chip to break is a ${breakChip.getValue()}`)
+    const breakChip = this.getNextChipToBreak(chips, needValue)
     chipCollection.removeChips([breakChip])
     const newChips = this.createChips(breakChip.getValue(), false, chipType)
     chipCollection.addChips([...newChips])
@@ -54,7 +65,7 @@ export class ChipService implements IChipService {
   }
 
   public sortByValue (chips: IChip[]): IChip[] {
-    return [...chips]
+    return Array.from(chips)
       .sort((a: IChip, b: IChip) => a.getValue() - b.getValue())
   }
 
@@ -62,7 +73,6 @@ export class ChipService implements IChipService {
       amount: number,
       canBeSingleChip: boolean = true,
       chipType: typeof Chip = StandardChip): IChip[] {
-    console.log(`Creating ${amount} chips`)
     if (amount <= 0) {
       return []
     }
@@ -85,7 +95,6 @@ export class ChipService implements IChipService {
     if (availableChips.length < 1) {
       throw new Error(`Incompatible Chip class to fulfill a value of '${amount}'`)
     }
-
     let index = availableChips.length - 1
     const createdChips: IChip[] = []
     while (amount >= availableChips[0].getValue()) {
@@ -96,7 +105,6 @@ export class ChipService implements IChipService {
         index--
       }
     }
-
     return createdChips
   }
 
@@ -110,108 +118,71 @@ export class ChipService implements IChipService {
   public getNextChipToBreak (chips: IChip[], needValue: number): IChip {
     const orderedChips = this.sortByValue(chips)
     const reverseOrderedChips = [...orderedChips].reverse()
-
-    console.log(`Breaking chips for ${needValue}`)
-    console.log(`Have: ${chips.map((chip) => chip.getValue())}`)
-    console.log(`orderedChips: ${orderedChips.map((chip) => chip.getValue())}`)
-    console.log(`reverseOrderedChips: ${reverseOrderedChips.map((chip) => chip.getValue())}`)
+    const pulledChips: IChip[] = []
 
     // find first largest chip at or under value
     let i = 0
     let runningTotal = 0
-    // TODO: can i swap out while() loops for .filter() IChip[] results?
     while (i < reverseOrderedChips.length - 1) {
       const currentChip = reverseOrderedChips[i]
       const addedChipValue = runningTotal + currentChip.getValue()
       if (addedChipValue <= needValue) {
         runningTotal = addedChipValue
+        pulledChips.push(currentChip)
       }
       i++
     }
     if (runningTotal > 0) {
+      let remainingChips = this.removeChipsFromStack([...orderedChips], pulledChips)
       i = 0
-      while (i < orderedChips.length - 1) {
-        const currentChip = orderedChips[i]
+      while (i < remainingChips.length - 1) {
+        const currentChip = remainingChips[i]
         const addedChipValue = runningTotal + currentChip.getValue()
         if (addedChipValue <= needValue) {
           runningTotal = addedChipValue
         } else {
-          // we found our breakchip at orderedChips[i]
+          // we found our breakchip at remainingChips[i]
           break
         }
         i++
       }
-      return orderedChips[i]
+      return remainingChips[i]
     } else {
       return reverseOrderedChips[i]
     }
   }
 
-  public colorUp (chips: IChip[], chipType: typeof Chip = StandardChip): IChip[] {
+  public colorUp (
+      chips: IChip[],
+      canBeSingleChip: boolean = true,
+      chipType: typeof Chip = StandardChip): IChip[] {
     const chipsValue = this.valueOfChips(chips)
-    const singleChipAllowed = true
-    console.log(`Coloring up! ${chipsValue}`)
-    return this.createChips(chipsValue, singleChipAllowed, chipType)
+    return this.createChips(chipsValue, canBeSingleChip, chipType)
   }
 
   public hasCombinationOfAmount (amount: number, chips: IChip[]): IChip[] {
     const iteratedChips = this.sortByValue(chips)
-
     let size = chips.length
     while (size > 0) {
-      console.log(`Trying a size of ${size} of chips to fulfill ${amount} from ${iteratedChips.map((c) => c.getValue())}`)
-      for (let combination of this.combinations(iteratedChips, size)) {
+      for (let combination of IterableExtensions.Combinations(iteratedChips, size)) {
         if (this.valueOfChips(combination) === amount) {
-          console.log(`Found ${amount} in ${combination.map((c) => c.getValue())}`)
           return [...combination]
         }
       }
       size--
     }
-    return []
+    return [] as IChip[]
   }
 
-  public* combinations<T> (iterable: T[], r: number): IterableIterator<T[]> {
-    let pool = Array.from(iterable)
-    let len = pool.length
-    if (r > len) {
-      return []
-    }
-
-    let indices = Array.from(this.range(0 , r , 1))
-
-    yield Array.from(this.pick(pool, indices))
-
-    while ( true ) {
-      let i = r - 1
-      while (true) {
-        if ( i < 0 ) {
-          return []
-        }
-        if (indices[i] !== i + len - r) {
-          let pivot = ++indices[i]
-          for (++i; i < r ; ++i ) {
-            indices[i] = ++pivot
-          }
+  public removeChipsFromStack (chips: IChip[], removeChips: IChip[]): IChip[] {
+    removeChips.forEach((chip: IChip) => {
+      for (let i = 0; i < chips.length; i++) {
+        if (chips[i].getIndex() === chip.getIndex()) {
+          chips.splice(i, 1)
           break
         }
-        --i
       }
-      yield Array.from(this.pick(pool, indices))
-    }
-  }
-
-  public* pick (object: any, iterable: any) {
-    for (let key of iterable) {
-      yield object[key]
-    }
-  }
-
-  public* range (start: number, stop: number, step: number) {
-    if (step < 0) {
-      for ( ; start > stop; start += step) yield start
-    } else {
-      for ( ; start < stop; start += step) yield start
-    }
+    })
+    return chips
   }
 }

@@ -226,3 +226,16 @@ test('can make large complex change 1', async t => {
   t.true(chipsOfRequestedValue.getValue() === requestedAmount, 'Amount pulled did not match requested')
   t.true(chipCollection.getValue() === initialValue - requestedAmount, 'Chips left in collection do not match pulled')
 })
+
+test('can deal with large chip arrays', async t => {
+  const service = new ChipService()
+  const chipCollection = new ChipCollection()
+  for (let i = 0; i < 67; i++) {
+    chipCollection.addChips(service.createChips(1))
+  }
+  const initialValue = chipCollection.getValue()
+  const requestedAmount = 67
+  const chipsOfRequestedValue = new ChipCollection(service.makeChange(chipCollection, requestedAmount))
+  t.true(chipsOfRequestedValue.getValue() === requestedAmount, 'Amount pulled did not match requested')
+  t.true(chipCollection.getValue() === initialValue - requestedAmount, 'Chips left in collection do not match pulled')
+})

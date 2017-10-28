@@ -53,22 +53,15 @@ export class ChipCollection implements IChipCollection {
     if (chips.length === 0) {
       return this
     }
-    chips.forEach((chip: IChip) => {
-      const position: number = this.indexOfChip(chip)
-      if (position > -1) {
-        this.getChips().splice(position, 1)
-      } else {
-        throw new Error('Chip does not exist in collection')
-      }
-    })
+    this.chipService.removeChipsFromStack(this.getChips(), chips)
     return this
   }
 
-  public colorUp (): IChipCollection {
+  public colorUp (canBeSingleChip: boolean = true): IChipCollection {
     if (this.getChipCount() === 0) {
       return this
     }
-    const newChips = this.chipService.colorUp(this.getChips(), this.getChips()[0].constructor as any)
+    const newChips = this.chipService.colorUp(this.getChips(), canBeSingleChip, this.getChips()[0].constructor as any)
     this.setChips(newChips)
     return this
   }
@@ -98,7 +91,7 @@ export class ChipCollection implements IChipCollection {
     if (chips === undefined) {
       chips = this.getChips()
     }
-    return chips.reduce((a: number, b: IChip) => a + b.getValue(), 0)
+    return this.chipService.valueOfChips(chips)
   }
 
   /**
