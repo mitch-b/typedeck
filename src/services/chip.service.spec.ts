@@ -4,7 +4,8 @@ import {
   StandardChip,
   ChipColor,
   ChipCollection,
-  ChipService
+  ChipService,
+  CaliforniaChip
 } from 'typedeck'
 
 test('can split chips from collection', async t => {
@@ -238,4 +239,63 @@ test('can deal with large chip arrays', async t => {
   const chipsOfRequestedValue = new ChipCollection(service.makeChange(chipCollection, requestedAmount))
   t.true(chipsOfRequestedValue.getValue() === requestedAmount, 'Amount pulled did not match requested')
   t.true(chipCollection.getValue() === initialValue - requestedAmount, 'Chips left in collection do not match pulled')
+})
+
+test('can make small change', async t => {
+  const service = new ChipService()
+  const chipCollection = new ChipCollection(service.createChips(25))
+  const initialValue = chipCollection.getValue()
+  const requestedAmount = 5
+  const chipsOfRequestedValue = new ChipCollection(service.makeChange(chipCollection, requestedAmount))
+  t.true(chipsOfRequestedValue.getValue() === requestedAmount, 'Amount pulled did not match requested')
+  t.true(chipCollection.getValue() === initialValue - requestedAmount, 'Chips left in collection do not match pulled')
+})
+
+test('can colorUp without single chip', async t => {
+  const service = new ChipService()
+  const chipCollection = new ChipCollection()
+  const initialValueOfOnes = 10
+  for (let i = 0; i < initialValueOfOnes; i++) {
+    chipCollection.addChips(service.createChips(1))
+  }
+  const coloredUpChipCollection = new ChipCollection(service.colorUp(chipCollection.getChips(), false))
+  t.true(coloredUpChipCollection.getValue() === initialValueOfOnes, 'Amount colorUp-d did not match requested')
+  t.true(coloredUpChipCollection.getChipCount() === 2, 'Splitting 10 1s as StandardChip didnt result in two 5s')
+})
+
+test('can colorUp with a single chip', async t => {
+  const service = new ChipService()
+  const chipCollection = new ChipCollection()
+  const initialValueOfOnes = 10
+  for (let i = 0; i < initialValueOfOnes; i++) {
+    chipCollection.addChips(service.createChips(1))
+  }
+  const coloredUpChipCollection = new ChipCollection(service.colorUp(chipCollection.getChips(), true))
+  t.true(coloredUpChipCollection.getValue() === initialValueOfOnes, 'Amount colorUp-d did not match requested')
+  t.true(coloredUpChipCollection.getChipCount() === 1, 'Splitting 10 1s as StandardChip didnt result in one 10')
+})
+
+test('can colorUp with a different chip type', async t => {
+  const service = new ChipService()
+  const chipCollection = new ChipCollection()
+  const initialValueOfOnes = 10
+  for (let i = 0; i < initialValueOfOnes; i++) {
+    chipCollection.addChips(service.createChips(1))
+  }
+  const coloredUpChipCollection = new ChipCollection(service.colorUp(chipCollection.getChips(), true, CaliforniaChip))
+  t.true(coloredUpChipCollection.getValue() === initialValueOfOnes, 'Amount colorUp-d did not match requested')
+  t.true(coloredUpChipCollection.getChipCount() === 1, 'Splitting 10 1s as StandardChip didnt result in one 10')
+  t.true(coloredUpChipCollection.getChips()[0].color === ChipColor.Brown, 'California Chip Brown not equivalent to 10')
+})
+
+test('can colorUp with a different chip type and not a single chip', async t => {
+  const service = new ChipService()
+  const chipCollection = new ChipCollection()
+  const initialValueOfOnes = 10
+  for (let i = 0; i < initialValueOfOnes; i++) {
+    chipCollection.addChips(service.createChips(1))
+  }
+  const coloredUpChipCollection = new ChipCollection(service.colorUp(chipCollection.getChips(), false, CaliforniaChip))
+  t.true(coloredUpChipCollection.getValue() === initialValueOfOnes, 'Amount colorUp-d did not match requested')
+  t.true(coloredUpChipCollection.getChipCount() === 2, 'Splitting 10 1s as CaliforniaChip didnt result in two 5s')
 })

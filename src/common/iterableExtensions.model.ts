@@ -18,7 +18,7 @@ export class IterableExtensions {
     while (true) {
       let i = size - 1
       while (true) {
-        if ( i < 0 ) {
+        if (i < 0) {
           return []
         }
         if (indices[i] !== (i + len - size)) {
@@ -42,9 +42,9 @@ export class IterableExtensions {
 
   public static * Range (start: number, stop: number, step: number) {
     if (step < 0) {
-      for ( ; start > stop; start += step) yield start
+      for (; start > stop; start += step) yield start
     } else {
-      for ( ; start < stop; start += step) yield start
+      for (; start < stop; start += step) yield start
     }
   }
 }

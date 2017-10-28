@@ -73,7 +73,7 @@ export class ChipCollection implements IChipCollection {
    */
   public indexOfChip (chip: IChip): number {
     for (let i = 0; i < this.getChipCount(); i++) {
-      const loopCard = this.getChips()[i] as IChip
+      const loopCard = this.getChips()[i]
       if (this.objectComparer.areEquivalent(chip, loopCard)) {
         return i
       }

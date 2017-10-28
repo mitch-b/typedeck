@@ -14,16 +14,16 @@ export class PokerScoreService implements IPokerScoreService {
   private gameType = new TexasHoldEmPokerGameType()
 
   public scoreHand (hand: IHand, communityCards: PlayingCard[] = []): PokerHandResult {
-    const playerHand = [...hand.getCards().concat(communityCards)] as PlayingCard[]
+    const playerHand = [...hand.getCards().concat(communityCards)]
     if (playerHand.length < 5) {
       throw new PokerScoringError('Invalid cards provided. Please send at least 5 cards.')
     }
-    return this.scoreCards(playerHand)
+    return this.scoreCards(playerHand as PlayingCard[])
   }
 
   public scoreCards (cards: PlayingCard[], communityCards: PlayingCard[] = []): PokerHandResult {
     let bestHand = new PokerHandResult()
-    const playerCards = [...cards.concat(communityCards)] as PlayingCard[]
+    const playerCards = [...cards.concat(communityCards)]
     if (playerCards.length < 5) {
       throw new PokerScoringError('Invalid cards provided. Please send at least 5 cards.')
     }

@@ -152,10 +152,8 @@ export class ChipService implements IChipService {
     }
   }
 
-  public colorUp (
-      chips: IChip[],
-      canBeSingleChip: boolean = true,
-      chipType: typeof Chip = StandardChip): IChip[] {
+  public colorUp (chips: IChip[], canBeSingleChip: boolean = true, chipType: typeof Chip = StandardChip)
+  : IChip[] {
     const chipsValue = this.valueOfChips(chips)
     return this.createChips(chipsValue, canBeSingleChip, chipType)
   }
