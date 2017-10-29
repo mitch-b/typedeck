@@ -1,13 +1,14 @@
 export class IterableExtensions {
   /**
    * Generator function to return combinations of an iterable object
+   * Intended for use in `for..of` loops.
    * @param iterable object array to produce combinations of
    * @param size returns combination results of specified size
    */
+  /* istanbul ignore next */
   public static * Combinations<T> (iterable: T[], size: number): IterableIterator<T[]> {
     let pool = Array.from(iterable)
-    let len = pool.length
-    if (size > len) {
+    if (size > pool.length) {
       return []
     }
 
@@ -21,7 +22,7 @@ export class IterableExtensions {
         if (i < 0) {
           return []
         }
-        if (indices[i] !== (i + len - size)) {
+        if (indices[i] !== (i + pool.length - size)) {
           let pivot = ++indices[i]
           for (++i; i < size; ++i) {
             indices[i] = ++pivot
@@ -34,12 +35,25 @@ export class IterableExtensions {
     }
   }
 
+  /**
+   * Generator function to yield objects in list.
+   * Intended for use in `for..of` loops.
+   * @param object object to pick from
+   * @param keys indexes of the object
+   */
   public static * Pick<T> (object: T[], keys: any) {
     for (let key of keys) {
       yield object[key]
     }
   }
 
+  /**
+   * Create an iterable range of numbers
+   * Intended for use in `for..of` loops.
+   * @param start First number returned from iterated range
+   * @param stop Will stop before this number
+   * @param step Steps between `start` and `stop`
+   */
   public static * Range (start: number, stop: number, step: number) {
     if (step < 0) {
       for (; start > stop; start += step) yield start
