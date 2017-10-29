@@ -6,7 +6,7 @@ export interface IChipCollection {
   addChips (chips: IChip[]): IChipCollection
   setChips (chips: IChip[]): IChipCollection
   removeChips (chips: IChip[]): IChipCollection
-  colorUp (canBeSingleChip?: boolean): IChipCollection
+  colorUp (): IChipCollection
   getValue (chips?: IChip[]): number
   getChipCount (): number
   isEmpty (): boolean
