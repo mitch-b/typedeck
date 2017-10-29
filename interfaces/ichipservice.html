@@ -69,8 +69,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Every theme should be a new instance
-						of an ICardImageService.</p>
+						<p>Provides services for Chip management</p>
 					</div>
 				</div>
 			</section>
@@ -95,9 +94,11 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="ichipservice.html#colorup" class="tsd-kind-icon">color<wbr>Up</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="ichipservice.html#createchips" class="tsd-kind-icon">create<wbr>Chips</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="ichipservice.html#getnextchiptobreak" class="tsd-kind-icon">get<wbr>Next<wbr>Chip<wbr>ToBreak</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="ichipservice.html#makechange" class="tsd-kind-icon">make<wbr>Change</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="ichipservice.html#removechipsfromstack" class="tsd-kind-icon">remove<wbr>Chips<wbr>From<wbr>Stack</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="ichipservice.html#sortbyvalue" class="tsd-kind-icon">sort<wbr>ByValue</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="ichipservice.html#valueofchips" class="tsd-kind-icon">value<wbr>OfChips</a></li>
 							</ul>
 						</section>
@@ -106,6 +107,38 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="colorup" class="tsd-anchor"></a>
+					<h3>color<wbr>Up</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">color<wbr>Up<span class="tsd-signature-symbol">(</span>chips<span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span>, chipType<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../classes/chip.html" class="tsd-signature-type">Chip</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/a444667/src/services/chipService.interface.ts#L39">services/chipService.interface.ts:39</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Transform smaller chips into condensed
+									fewer larger denomination chips (if possible).</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chips: <a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> chipType: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../classes/chip.html" class="tsd-signature-type">Chip</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 					<a name="createchips" class="tsd-anchor"></a>
 					<h3>create<wbr>Chips</h3>
@@ -116,7 +149,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/8f7c27a/src/services/chipService.interface.ts#L26">services/chipService.interface.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/a444667/src/services/chipService.interface.ts#L25">services/chipService.interface.ts:25</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -144,39 +177,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="getnextchiptobreak" class="tsd-anchor"></a>
-					<h3>get<wbr>Next<wbr>Chip<wbr>ToBreak</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Next<wbr>Chip<wbr>ToBreak<span class="tsd-signature-symbol">(</span>chips<span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span>, needValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/8f7c27a/src/services/chipService.interface.ts#L41">services/chipService.interface.ts:41</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an <code>IChip</code> that should be
-										broken down next by calling <code>createChips</code>.
-									Useful when making change.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>chips: <a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5>needValue: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="ichip.html" class="tsd-signature-type">IChip</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 					<a name="makechange" class="tsd-anchor"></a>
 					<h3>make<wbr>Change</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
@@ -186,7 +186,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/8f7c27a/src/services/chipService.interface.ts#L18">services/chipService.interface.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/a444667/src/services/chipService.interface.ts#L17">services/chipService.interface.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -216,6 +216,66 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="removechipsfromstack" class="tsd-anchor"></a>
+					<h3>remove<wbr>Chips<wbr>From<wbr>Stack</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Chips<wbr>From<wbr>Stack<span class="tsd-signature-symbol">(</span>chips<span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span>, removeChips<span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/a444667/src/services/chipService.interface.ts#L50">services/chipService.interface.ts:50</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Given a stack of chips, remove several chips from it.
+									The original stack of chips is modified.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chips: <a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5>removeChips: <a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="sortbyvalue" class="tsd-anchor"></a>
+					<h3>sort<wbr>ByValue</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">sort<wbr>ByValue<span class="tsd-signature-symbol">(</span>chips<span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/a444667/src/services/chipService.interface.ts#L44">services/chipService.interface.ts:44</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sort chips by value and return ordered chips</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chips: <a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="ichip.html" class="tsd-signature-type">IChip</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 					<a name="valueofchips" class="tsd-anchor"></a>
 					<h3>value<wbr>OfChips</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
@@ -225,7 +285,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/8f7c27a/src/services/chipService.interface.ts#L34">services/chipService.interface.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/a444667/src/services/chipService.interface.ts#L33">services/chipService.interface.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -261,13 +321,19 @@
 						<a href="ichipservice.html" class="tsd-kind-icon">IChip<wbr>Service</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="ichipservice.html#colorup" class="tsd-kind-icon">color<wbr>Up</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 								<a href="ichipservice.html#createchips" class="tsd-kind-icon">create<wbr>Chips</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="ichipservice.html#getnextchiptobreak" class="tsd-kind-icon">get<wbr>Next<wbr>Chip<wbr>ToBreak</a>
+								<a href="ichipservice.html#makechange" class="tsd-kind-icon">make<wbr>Change</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="ichipservice.html#makechange" class="tsd-kind-icon">make<wbr>Change</a>
+								<a href="ichipservice.html#removechipsfromstack" class="tsd-kind-icon">remove<wbr>Chips<wbr>From<wbr>Stack</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="ichipservice.html#sortbyvalue" class="tsd-kind-icon">sort<wbr>ByValue</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 								<a href="ichipservice.html#valueofchips" class="tsd-kind-icon">value<wbr>OfChips</a>
