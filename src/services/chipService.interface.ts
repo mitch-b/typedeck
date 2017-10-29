@@ -3,8 +3,7 @@ import { Chip } from '../models/chip/chip.model'
 import { IChipCollection } from '../models/chipCollection/chipCollection.interface'
 
 /**
- * Every theme should be a new instance
- * of an ICardImageService.
+ * Provides services for Chip management
  */
 export interface IChipService {
   /**
@@ -32,13 +31,6 @@ export interface IChipService {
    * Return sum of each `IChip.getValue()`
    */
   valueOfChips (chips: IChip[]): number
-
-  /**
-   * Returns an `IChip` that should be
-   * broken down next by calling `createChips`.
-   * Useful when making change.
-   */
-  getNextChipToBreak (chips: IChip[], needValue: number): IChip
 
   /**
    * Transform smaller chips into condensed

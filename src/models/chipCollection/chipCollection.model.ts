@@ -53,6 +53,10 @@ export class ChipCollection implements IChipCollection {
     return this
   }
 
+  /**
+   * Condense chips into fewer but larger denominations.
+   * Uses the first chip's class to create new colored chips with.
+   */
   public colorUp (): IChipCollection {
     if (this.getChipCount() === 0) {
       return this

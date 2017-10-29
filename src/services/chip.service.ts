@@ -115,7 +115,39 @@ export class ChipService implements IChipService {
     return chips.reduce((a: number, b: IChip) => a + b.getValue(), 0)
   }
 
-  public getNextChipToBreak (chips: IChip[], needValue: number): IChip {
+  public colorUp (chips: IChip[], chipType: typeof Chip = StandardChip): IChip[] {
+    const chipsValue = this.valueOfChips(chips)
+    const canBeSingleChip = true
+    return this.createChips(chipsValue, canBeSingleChip, chipType)
+  }
+
+  public hasCombinationOfAmount (amount: number, chips: IChip[]): IChip[] {
+    const iteratedChips = this.sortByValue(chips)
+    let size = chips.length
+    while (size > 0) {
+      for (let combination of IterableExtensions.Combinations(iteratedChips, size)) {
+        if (this.valueOfChips(combination) === amount) {
+          return [...combination]
+        }
+      }
+      size--
+    }
+    return [] as IChip[]
+  }
+
+  public removeChipsFromStack (chips: IChip[], removeChips: IChip[]): IChip[] {
+    removeChips.forEach((chip: IChip) => {
+      for (let i = 0; i < chips.length; i++) {
+        if (chips[i].getIndex() === chip.getIndex()) {
+          chips.splice(i, 1)
+          break
+        }
+      }
+    })
+    return chips
+  }
+
+  private getNextChipToBreak (chips: IChip[], needValue: number): IChip {
     const orderedChips = this.sortByValue(chips)
     const reverseOrderedChips = [...orderedChips].reverse()
     const pulledChips: IChip[] = []
@@ -150,37 +182,5 @@ export class ChipService implements IChipService {
     } else {
       return reverseOrderedChips[i]
     }
-  }
-
-  public colorUp (chips: IChip[], chipType: typeof Chip = StandardChip): IChip[] {
-    const chipsValue = this.valueOfChips(chips)
-    const canBeSingleChip = true
-    return this.createChips(chipsValue, canBeSingleChip, chipType)
-  }
-
-  public hasCombinationOfAmount (amount: number, chips: IChip[]): IChip[] {
-    const iteratedChips = this.sortByValue(chips)
-    let size = chips.length
-    while (size > 0) {
-      for (let combination of IterableExtensions.Combinations(iteratedChips, size)) {
-        if (this.valueOfChips(combination) === amount) {
-          return [...combination]
-        }
-      }
-      size--
-    }
-    return [] as IChip[]
-  }
-
-  public removeChipsFromStack (chips: IChip[], removeChips: IChip[]): IChip[] {
-    removeChips.forEach((chip: IChip) => {
-      for (let i = 0; i < chips.length; i++) {
-        if (chips[i].getIndex() === chip.getIndex()) {
-          chips.splice(i, 1)
-          break
-        }
-      }
-    })
-    return chips
   }
 }

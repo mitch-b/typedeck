@@ -46,6 +46,9 @@ export { Deck } from './models/cardCollection/deck.model'
 export { Chip } from './models/chip/chip.model'
 export { StandardChip } from './models/chip/standardChip.model'
 export { CaliforniaChip } from './models/chip/californiaChip.model'
+
+export { IChipService } from './services/chipService.interface'
+export { ChipService } from './services/chip.service'
 export { ChipCollection } from './models/chipCollection/chipCollection.model'
 
 export { BaseGameType } from './models/gameType/gameType.model'
@@ -61,6 +64,3 @@ export { ICardImageService } from './services/cardImageService.interface'
 
 export { IPokerScoreService } from './services/pokerScoreService.interface'
 export { PokerScoreService } from './services/pokerScore.service'
-
-export { IChipService } from './services/chipService.interface'
-export { ChipService } from './services/chip.service'

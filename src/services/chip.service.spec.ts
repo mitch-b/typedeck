@@ -125,18 +125,6 @@ test('calculates chip sum', async t => {
   t.true(chipsValue === requestedChips, 'Amount pulled did not match requested')
 })
 
-test('returns lowest chip to break if all too large', async t => {
-  const service = new ChipService()
-  const requestedValue = 7
-  const chips = [
-    new StandardChip(ChipColor.Black),
-    new StandardChip(ChipColor.Gray),
-    new StandardChip(ChipColor.Green)
-  ]
-  const breakChip = service.getNextChipToBreak(chips, requestedValue)
-  t.deepEqual(breakChip, new StandardChip(ChipColor.Gray), 'Lowest value chip not broken')
-})
-
 test('throws error if making change less than passed in', async t => {
   const service = new ChipService()
   const hasValue = 84
