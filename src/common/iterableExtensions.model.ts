@@ -1,3 +1,11 @@
+/**
+ * Contains `static` methods which expose
+ * iterable helpers. These methods can be found
+ * in `aureooms/js-itertools` - https://aureooms.github.io/js-itertools/.
+ *
+ * The functions were adapted to fit needs, including adding generics support for
+ * tooling assistance.
+ */
 export class IterableExtensions {
   /**
    * Generator function to return combinations of an iterable object
