@@ -12,6 +12,7 @@
     "forceConsistentCasingInFileNames": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
     "listFiles": false,
     "traceResolution": false,
     "pretty": true,

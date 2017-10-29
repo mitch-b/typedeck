@@ -109,7 +109,7 @@ export class CardCollection implements ICardCollection {
 
   public indexOfCard (card: ICard): number {
     for (let i = 0; i < this.getCount(); i++) {
-      const loopCard = this.getCards()[i] as ICard
+      const loopCard = this.getCards()[i]
       if (this.objectComparer.areEquivalent(card, loopCard)) {
         return i
       }
@@ -119,7 +119,7 @@ export class CardCollection implements ICardCollection {
 
   public cardAtIndex (index: number): ICard {
     if (index >= 0 && index <= (this.getCount() - 1)) {
-      return this.getCards()[index] as ICard
+      return this.getCards()[index]
     } else {
       throw new Error('Card collection does not contain card at index')
     }

@@ -49,14 +49,20 @@ export class ChipCollection implements IChipCollection {
     if (chips.length === 0) {
       return this
     }
-    chips.forEach((chip: IChip) => {
-      const position: number = this.indexOfChip(chip)
-      if (position > -1) {
-        this.getChips().splice(position, 1)
-      } else {
-        throw new Error('Chip does not exist in collection')
-      }
-    })
+    this.chipService.removeChipsFromStack(this.getChips(), chips)
+    return this
+  }
+
+  /**
+   * Condense chips into fewer but larger denominations.
+   * Uses the first chip's class to create new colored chips with.
+   */
+  public colorUp (): IChipCollection {
+    if (this.getChipCount() === 0) {
+      return this
+    }
+    const newChips = this.chipService.colorUp(this.getChips(), this.getChips()[0].constructor as any)
+    this.setChips(newChips)
     return this
   }
 
@@ -67,7 +73,7 @@ export class ChipCollection implements IChipCollection {
    */
   public indexOfChip (chip: IChip): number {
     for (let i = 0; i < this.getChipCount(); i++) {
-      const loopCard = this.getChips()[i] as IChip
+      const loopCard = this.getChips()[i]
       if (this.objectComparer.areEquivalent(chip, loopCard)) {
         return i
       }
@@ -85,7 +91,7 @@ export class ChipCollection implements IChipCollection {
     if (chips === undefined) {
       chips = this.getChips()
     }
-    return chips.reduce((a: number, b: IChip) => a + b.getValue(), 0)
+    return this.chipService.valueOfChips(chips)
   }
 
   /**

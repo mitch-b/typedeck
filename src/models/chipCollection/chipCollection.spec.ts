@@ -99,19 +99,6 @@ test('removes one chip', async t => {
   t.deepEqual(chipCollection.getChips(), [chip2])
 })
 
-test('throws error when removing chip that doesnt exist', async t => {
-  const chipCollection = new ChipCollection()
-  const chip1 = new StandardChip(ChipColor.Blue)
-  const chip2 = new StandardChip(ChipColor.Black)
-  chipCollection.setChips([chip1, chip2])
-  try {
-    chipCollection.removeChips([new StandardChip(ChipColor.White)])
-    t.fail('Error should have thrown')
-  } catch (err) {
-    t.deepEqual(err.message, `Chip does not exist in collection`)
-  }
-})
-
 test('index of chip is provided', async t => {
   const chipCollection = new ChipCollection()
   const chip1 = new StandardChip(ChipColor.Blue)
@@ -163,4 +150,22 @@ test('getValue can have chips passed in', async t => {
   const chip2 = new StandardChip(ChipColor.Black)
   const calculatedValue = chipCollection.getValue([chip1, chip2])
   t.true(calculatedValue === 110)
+})
+
+test('can colorUp a collection with no chips', async t => {
+  const chipCollection = new ChipCollection()
+  chipCollection.colorUp()
+  t.pass('we did it!')
+})
+
+test('can colorUp a known collection of chips', async t => {
+  const chipCollection = new ChipCollection()
+  chipCollection.addChip(new StandardChip(ChipColor.White))
+  chipCollection.addChip(new StandardChip(ChipColor.White))
+  chipCollection.addChip(new StandardChip(ChipColor.White))
+  chipCollection.addChip(new StandardChip(ChipColor.White))
+  chipCollection.addChip(new StandardChip(ChipColor.White))
+  chipCollection.addChip(new StandardChip(ChipColor.Red))
+  chipCollection.colorUp()
+  t.true(chipCollection.getChipCount() === 1, 'Didnt condense chips')
 })

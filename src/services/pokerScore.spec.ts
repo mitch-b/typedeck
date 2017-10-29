@@ -24,7 +24,7 @@ let getHands = (type: PokerHandType): PlayingCard[][] => {
           new PlayingCard(CardName.Ten, Suit.Spades), new PlayingCard(CardName.Four, Suit.Diamonds),
           new PlayingCard(CardName.Five, Suit.Hearts), new PlayingCard(CardName.Queen, Suit.Diamonds),
           new PlayingCard(CardName.Eight, Suit.Clubs)]
-      ] as PlayingCard[][]
+      ]
     case PokerHandType.OnePair:
       return [
         [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Seven, Suit.Diamonds),
@@ -34,19 +34,19 @@ let getHands = (type: PokerHandType): PlayingCard[][] => {
           new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Ten, Suit.Diamonds),
           new PlayingCard(CardName.Three, Suit.Hearts), new PlayingCard(CardName.Four, Suit.Clubs),
           new PlayingCard(CardName.Queen, Suit.Hearts)]
-      ] as PlayingCard[][]
+      ]
     case PokerHandType.TwoPair:
       return [
         [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Seven, Suit.Diamonds),
           new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Ten, Suit.Diamonds),
           new PlayingCard(CardName.Nine, Suit.Hearts)]
-      ] as PlayingCard[][]
+      ]
     case PokerHandType.ThreeOfAKind:
       return [
         [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Six, Suit.Diamonds),
           new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Nine, Suit.Diamonds),
           new PlayingCard(CardName.Nine, Suit.Hearts)]
-      ] as PlayingCard[][]
+      ]
     case PokerHandType.Straight:
       return [
         [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Eight, Suit.Diamonds),
@@ -62,39 +62,39 @@ let getHands = (type: PokerHandType): PlayingCard[][] => {
           new PlayingCard(CardName.Ten, Suit.Spades), new PlayingCard(CardName.Four, Suit.Diamonds),
           new PlayingCard(CardName.Five, Suit.Hearts), new PlayingCard(CardName.Ace, Suit.Diamonds),
           new PlayingCard(CardName.Eight, Suit.Clubs)]
-      ] as PlayingCard[][]
+      ]
     case PokerHandType.Flush:
       return [
         [new PlayingCard(CardName.King, Suit.Spades), new PlayingCard(CardName.Five, Suit.Spades),
           new PlayingCard(CardName.Two, Suit.Spades), new PlayingCard(CardName.Ten, Suit.Spades),
           new PlayingCard(CardName.Jack, Suit.Spades)]
-      ] as PlayingCard[][]
+      ]
     case PokerHandType.FullHouse:
       return [
         [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Seven, Suit.Diamonds),
           new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Nine, Suit.Diamonds),
           new PlayingCard(CardName.Nine, Suit.Hearts)]
-      ] as PlayingCard[][]
+      ]
     case PokerHandType.FourOfAKind:
       return [
         [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Nine, Suit.Clubs),
           new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Nine, Suit.Diamonds),
           new PlayingCard(CardName.Nine, Suit.Hearts)]
-      ] as PlayingCard[][]
+      ]
     case PokerHandType.StraightFlush:
       return [
         [new PlayingCard(CardName.Four, Suit.Clubs), new PlayingCard(CardName.Five, Suit.Clubs),
           new PlayingCard(CardName.Six, Suit.Clubs), new PlayingCard(CardName.Seven, Suit.Clubs),
           new PlayingCard(CardName.Eight, Suit.Clubs)]
-      ] as PlayingCard[][]
+      ]
     case PokerHandType.RoyalFlush:
       return [
         [new PlayingCard(CardName.Ten, Suit.Clubs), new PlayingCard(CardName.Queen, Suit.Clubs),
           new PlayingCard(CardName.King, Suit.Clubs), new PlayingCard(CardName.Jack, Suit.Clubs),
           new PlayingCard(CardName.Ace, Suit.Clubs)]
-      ] as PlayingCard[][]
+      ]
     default:
-      return [] as PlayingCard[][]
+      return []
   }
 }
 
