@@ -41,7 +41,7 @@ export class ChipService implements IChipService {
     if (chipCollection.getChipCount() > 1) {
       let n = chipCollection.getChipCount() - 1
       while (n > 0) {
-        if (this.valueOfChips(chips.slice(0, n)) >= needValue) {
+        if (this.valueOfChips(chips.slice(0, n)) > needValue) {
           highChips.push(...chips.splice(n, 1))
         } else {
           break
@@ -124,11 +124,16 @@ export class ChipService implements IChipService {
   public hasCombinationOfAmount (amount: number, chips: IChip[]): IChip[] {
     const iteratedChips = this.sortByValue(chips)
     let size = chips.length
+    let foundCombination: IChip[] = []
     while (size > 0) {
       for (let combination of IterableExtensions.Combinations(iteratedChips, size)) {
-        if (this.valueOfChips(combination) === amount) {
-          return [...combination]
+        if (this.valueOfChips([...combination]) === amount) {
+          foundCombination = [...combination]
+          break // close iterator
         }
+      }
+      if (foundCombination.length > 0) {
+        return foundCombination
       }
       size--
     }
