@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.3"></a>
+## [1.4.3](https://github.com/mitch-b/typedeck/compare/v1.4.2...v1.4.3) (2017-11-07)
+
+
+### Bug Fixes
+
+* **chipService:** Chip splitting logic too aggressive, could cause infinite loops ([a7693fb](https://github.com/mitch-b/typedeck/commit/a7693fb))
+
+
+
 <a name="1.4.2"></a>
 ## [1.4.2](https://github.com/mitch-b/typedeck/compare/v1.4.1...v1.4.2) (2017-10-29)
 

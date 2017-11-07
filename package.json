@@ -1,6 +1,6 @@
 {
   "name": "typedeck",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "A TypeScript library for playing cards",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
