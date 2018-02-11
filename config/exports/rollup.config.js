@@ -4,7 +4,9 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 
 export default {
     input: 'build/module/index.js',
-    sourcemap: true,
+    output: {
+      sourcemap: true
+    },
     plugins: [
         nodeResolve({
             browser: true

@@ -54,30 +54,30 @@
     "node": ">=4.5"
   },
   "devDependencies": {
-    "@types/node": "^8.0.49",
-    "ava": "^0.23.0",
-    "browserify": "^14.5.0",
+    "@types/node": "^9.4.5",
+    "ava": "^0.25.0",
+    "browserify": "^16.0.0",
     "codecov": "^3.0.0",
-    "concurrently": "^3.5.0",
+    "concurrently": "^3.5.1",
     "cpx": "^1.5.0",
-    "gh-pages": "^1.0.0",
+    "gh-pages": "^1.1.0",
     "mkdirp": "^0.5.1",
     "npm-scripts-info": "^0.3.6",
-    "nyc": "^11.3.0",
+    "nyc": "^11.4.1",
     "opn-cli": "^3.1.0",
-    "rollup": "^0.51.5",
+    "rollup": "^0.55.5",
     "rollup-plugin-alias": "^1.4.0",
-    "rollup-plugin-commonjs": "^8.2.6",
-    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-commonjs": "^8.3.0",
+    "rollup-plugin-node-resolve": "^3.0.2",
     "rollup-watch": "^4.3.1",
     "sleep-ms": "^2.0.1",
     "sorcery": "^0.10.0",
-    "standard-version": "^4.2.0",
+    "standard-version": "^4.3.0",
     "trash-cli": "^1.4.0",
-    "tslint": "^5.8.0",
+    "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
-    "typedoc": "^0.9.0",
-    "typescript": "^2.6.1"
+    "typedoc": "^0.10.0",
+    "typescript": "^2.7.1"
   },
   "keywords": [
     "card",
@@ -102,6 +102,6 @@
     ]
   },
   "dependencies": {
-    "tslib": "^1.8.0"
+    "tslib": "^1.9.0"
   }
 }
