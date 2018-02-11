@@ -11,8 +11,10 @@ A [TypeScript](https://www.typescriptlang.org/) library for playing cards.
 ## Getting Started
 
 * See the [documentation](https://mitch-b.github.io/typedeck/).
+* [Examples on RunKit](https://runkit.com/mitch-b/typedeck-examples).
+  * Includes examples on extending classes and using common components!
 * See code on [GitHub](https://github.com/mitch-b/typedeck/).
-* Try it yourself!
+* Try it out in your project!
 
 ## Features
 
