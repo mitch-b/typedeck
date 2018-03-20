@@ -2,6 +2,7 @@ import { PokerHandType } from './pokerHandType.model'
 import { PlayingCard } from '../card/playingCard.model'
 import { IRankSet } from '../card/rankSet.interface'
 import { AceHighRankSet } from '../card/aceHighRankSet.model'
+import { CardName } from '../card/cardName.model'
 
 export class PokerHandResult {
   /**
@@ -41,19 +42,12 @@ export class PokerHandResult {
     return [...cardsNotUsedInResult]
   }
 
-  // public get scoringHandCardNames (): string[] {
-  //   const pullSingleCardForDescription =
-  //     [PokerHandType.FourOfAKind, PokerHandType.ThreeOfAKind, PokerHandType.OnePair]
-  //   if (pullSingleCardForDescription.indexOf(this.handType) >= 0) {
-  //     return [CardName[this.cardsUsed[0].cardName]]
-  //   } else if (this.handType === PokerHandType.TwoPair) {
-  //     return [CardName[this.cardsUsed[0].cardName], CardName[this.cardsUsed[2].cardName]]
-  //   } else if (this.handType === PokerHandType.FullHouse) {
-  //     return [CardName[this.cardsUsed[0].cardName], CardName[this.cardsUsed[3].cardName]]
-  //   } else {
-  //     return this.cardsUsed.map(c => CardName[c.cardName].toString())
-  //   }
-  // }
+  public get scoringHandCardNames (): CardName[] {
+    const sortedCardsUsed =
+      this.cardsUsed.sort((a, b) => this.rankSet.getRankValue(b) - this.rankSet.getRankValue(a))
+    const uniqueCardNames = new Set<CardName>(sortedCardsUsed.map(c => c.cardName))
+    return [...uniqueCardNames]
+  }
 
   constructor (
     cards: PlayingCard[] = [],
