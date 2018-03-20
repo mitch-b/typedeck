@@ -1,5 +1,5 @@
 import { test } from 'ava'
-import { PokerHandResult, PokerHandType } from 'typedeck'
+import { Suit, PlayingCard, CardName, PokerHandResult, PokerHandType, AceLowRankSet, AceHighRankSet } from 'typedeck'
 
 test('test tostring of hand types', async t => {
   const handResult = new PokerHandResult()
@@ -21,4 +21,34 @@ test('test tostring of hand types', async t => {
   t.deepEqual(handResult.toString(), 'Straight Flush')
   handResult.setHandType(PokerHandType.RoyalFlush)
   t.deepEqual(handResult.toString(), 'Royal Flush')
+})
+
+test('kickers should be cards which do not exist in cardsUsed', t => {
+  const cardsInPlay = [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Six, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Nine, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Hearts)]
+  const cardsUsed = [new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Nine, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Hearts)]
+  const handResult = new PokerHandResult(cardsInPlay, 0, cardsUsed)
+  t.true(handResult.kickers.length === 2)
+  t.true(handResult.kickers[0].cardName === CardName.Seven)
+  t.true(handResult.kickers[1].cardName === CardName.Six)
+})
+
+test('kickers should be empty if all cards used', t => {
+  const cardsInPlay = [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Seven, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Nine, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Hearts)]
+  const cardsUsed = [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Seven, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Nine, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Hearts)]
+  const handResult = new PokerHandResult(cardsInPlay, 0, cardsUsed)
+  t.true(handResult.kickers.length === 0)
+})
+
+test('can be created with different RankSets', t => {
+  const handResult1 = new PokerHandResult([], 0, [], new AceHighRankSet())
+  t.true(handResult1.rankSet instanceof AceHighRankSet)
+  const handResult2 = new PokerHandResult([], 0, [], new AceLowRankSet())
+  t.true(handResult2.rankSet instanceof AceLowRankSet)
 })

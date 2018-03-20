@@ -215,6 +215,7 @@ test('evaluates a OnePair', async t => {
   for (const hand of getHands(testForHandType)) {
     let result = service.scoreCards(hand)
     t.true(result.handType === testForHandType)
+    t.true(result.cardsUsed.length === 2)
   }
 })
 
@@ -224,6 +225,7 @@ test('evaluates a TwoPair', async t => {
   for (const hand of getHands(testForHandType)) {
     let result = service.scoreCards(hand)
     t.true(result.handType === testForHandType)
+    t.true(result.cardsUsed.length === 4)
   }
 })
 
@@ -233,6 +235,7 @@ test('evaluates a ThreeOfAKind', async t => {
   for (const hand of getHands(testForHandType)) {
     let result = service.scoreCards(hand)
     t.true(result.handType === testForHandType)
+    t.true(result.cardsUsed.length === 3)
   }
 })
 
@@ -242,51 +245,57 @@ test('evaluates a Straight', async t => {
   for (const hand of getHands(testForHandType)) {
     let result = service.scoreCards(hand)
     t.true(result.handType === testForHandType)
+    t.true(result.cardsUsed.length === 5)
   }
 })
 
-test('evaluates a Straight', async t => {
+test('evaluates a Flush', async t => {
   const service = new PokerScoreService()
   const testForHandType = PokerHandType.Flush
   for (const hand of getHands(testForHandType)) {
     let result = service.scoreCards(hand)
     t.true(result.handType === testForHandType)
+    t.true(result.cardsUsed.length === 5)
   }
 })
 
-test('evaluates a Straight', async t => {
+test('evaluates a FullHouse', async t => {
   const service = new PokerScoreService()
   const testForHandType = PokerHandType.FullHouse
   for (const hand of getHands(testForHandType)) {
     let result = service.scoreCards(hand)
     t.true(result.handType === testForHandType)
+    t.true(result.cardsUsed.length === 5)
   }
 })
 
-test('evaluates a Straight', async t => {
+test('evaluates a FourOfAKind', async t => {
   const service = new PokerScoreService()
   const testForHandType = PokerHandType.FourOfAKind
   for (const hand of getHands(testForHandType)) {
     let result = service.scoreCards(hand)
     t.true(result.handType === testForHandType)
+    t.true(result.cardsUsed.length === 4)
   }
 })
 
-test('evaluates a Straight', async t => {
+test('evaluates a StraightFlush', async t => {
   const service = new PokerScoreService()
   const testForHandType = PokerHandType.StraightFlush
   for (const hand of getHands(testForHandType)) {
     let result = service.scoreCards(hand)
     t.true(result.handType === testForHandType)
+    t.true(result.cardsUsed.length === 5)
   }
 })
 
-test('evaluates a Straight', async t => {
+test('evaluates a RoyalFlush', async t => {
   const service = new PokerScoreService()
   const testForHandType = PokerHandType.RoyalFlush
   for (const hand of getHands(testForHandType)) {
     let result = service.scoreCards(hand)
     t.true(result.handType === testForHandType)
+    t.true(result.cardsUsed.length === 5)
   }
 })
 

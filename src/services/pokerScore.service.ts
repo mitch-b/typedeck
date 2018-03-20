@@ -153,29 +153,37 @@ export class PokerScoreService implements IPokerScoreService {
   }
 
   private calculate (cards: PlayingCard[]): PokerHandResult {
+    let result: PokerHandResult
     const ranked: PlayingCard[][] = this.ranked(cards)
     const isFlush = this.isFlush(cards)
     const isStraight = this.isStraight(ranked)
-    if (isStraight && isFlush && ranked[0][0].cardName === CardName.Ace) {
-      return new PokerHandResult(cards, this.value(ranked, 9)).setHandType(PokerHandType.RoyalFlush)
+    const highestPlayedCards = ranked[0]
+    const rankSet = this.gameType.rankSet
+    if (isStraight && isFlush && highestPlayedCards[0].cardName === CardName.Ace) {
+      const royalFlushCards = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
+      result = new PokerHandResult(cards, this.value(ranked, 9), royalFlushCards, rankSet).setHandType(PokerHandType.RoyalFlush)
     } else if (isStraight && isFlush) {
-      return new PokerHandResult(cards, this.value(ranked, 8)).setHandType(PokerHandType.StraightFlush)
-    } else if (ranked[0].length === 4) {
-      return new PokerHandResult(cards, this.value(ranked, 7)).setHandType(PokerHandType.FourOfAKind)
+      const straightFlushCards = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
+      result = new PokerHandResult(cards, this.value(ranked, 8), straightFlushCards, rankSet).setHandType(PokerHandType.StraightFlush)
+    } else if (highestPlayedCards.length === 4) {
+      result = new PokerHandResult(cards, this.value(ranked, 7), highestPlayedCards, rankSet).setHandType(PokerHandType.FourOfAKind)
     } else if (ranked[0].length === 3 && ranked[1].length === 2) {
-      return new PokerHandResult(cards, this.value(ranked, 6)).setHandType(PokerHandType.FullHouse)
+      result = new PokerHandResult(cards, this.value(ranked, 6), ranked[0].concat(ranked[1]), rankSet).setHandType(PokerHandType.FullHouse)
     } else if (isFlush) {
-      return new PokerHandResult(cards, this.value(ranked, 5)).setHandType(PokerHandType.Flush)
+      const flushCards = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
+      result = new PokerHandResult(cards, this.value(ranked, 5), flushCards, rankSet).setHandType(PokerHandType.Flush)
     } else if (isStraight) {
-      return new PokerHandResult(cards, this.value(ranked, 4)).setHandType(PokerHandType.Straight)
-    } else if (ranked[0].length === 3) {
-      return new PokerHandResult(cards, this.value(ranked, 3)).setHandType(PokerHandType.ThreeOfAKind)
+      const straightCards = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
+      result = new PokerHandResult(cards, this.value(ranked, 4), straightCards, rankSet).setHandType(PokerHandType.Straight)
+    } else if (highestPlayedCards.length === 3) {
+      result = new PokerHandResult(cards, this.value(ranked, 3), highestPlayedCards, rankSet).setHandType(PokerHandType.ThreeOfAKind)
     } else if (ranked[0].length === 2 && ranked[1].length === 2) {
-      return new PokerHandResult(cards, this.value(ranked, 2)).setHandType(PokerHandType.TwoPair)
-    } else if (ranked[0].length === 2) {
-      return new PokerHandResult(cards, this.value(ranked, 1)).setHandType(PokerHandType.OnePair)
+      result = new PokerHandResult(cards, this.value(ranked, 2), ranked[0].concat(ranked[1]), rankSet).setHandType(PokerHandType.TwoPair)
+    } else if (highestPlayedCards.length === 2) {
+      result = new PokerHandResult(cards, this.value(ranked, 1), highestPlayedCards, rankSet).setHandType(PokerHandType.OnePair)
     } else {
-      return new PokerHandResult(cards, this.value(ranked, 0)).setHandType(PokerHandType.HighCard)
+      result = new PokerHandResult(cards, this.value(ranked, 0), highestPlayedCards, rankSet).setHandType(PokerHandType.HighCard)
     }
+    return result
   }
 }
