@@ -52,3 +52,53 @@ test('can be created with different RankSets', t => {
   const handResult2 = new PokerHandResult([], 0, [], new AceLowRankSet())
   t.true(handResult2.rankSet instanceof AceLowRankSet)
 })
+
+test('returns card names used in scoring FullHouse', t => {
+  const cardsInPlay = [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Seven, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Nine, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Hearts)]
+  const cardsUsed = [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Seven, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Nine, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Hearts)]
+  const handResult = new PokerHandResult(cardsInPlay, 0, cardsUsed).setHandType(PokerHandType.FullHouse)
+  t.true(handResult.scoringHandCardNames.map(cn => CardName[cn]).join(' ') === 'Nine Seven')
+})
+
+test('returns card names used in scoring TwoPair', t => {
+  const cardsInPlay = [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Seven, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Ten, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Hearts)]
+  const cardsUsed = [new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Nine, Suit.Hearts),
+    new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Seven, Suit.Diamonds)]
+  const handResult = new PokerHandResult(cardsInPlay, 0, cardsUsed).setHandType(PokerHandType.TwoPair)
+  t.true(handResult.scoringHandCardNames.map(cn => CardName[cn]).join(' ') === 'Nine Seven')
+})
+
+test('returns card names used in scoring Straight', t => {
+  const cardsInPlay = [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Eight, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Ten, Suit.Diamonds),
+    new PlayingCard(CardName.Jack, Suit.Hearts)]
+  const cardsUsed = [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Eight, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Ten, Suit.Diamonds),
+    new PlayingCard(CardName.Jack, Suit.Hearts)]
+  const handResult = new PokerHandResult(cardsInPlay, 0, cardsUsed).setHandType(PokerHandType.Straight)
+  t.true(handResult.scoringHandCardNames.map(cn => CardName[cn]).join(' ') === 'Jack Ten Nine Eight Seven')
+})
+
+test('returns card names used in scoring OnePair', t => {
+  const cardsInPlay = [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Seven, Suit.Diamonds),
+    new PlayingCard(CardName.Nine, Suit.Spades), new PlayingCard(CardName.Ten, Suit.Diamonds),
+    new PlayingCard(CardName.Three, Suit.Hearts)]
+  const cardsUsed = [new PlayingCard(CardName.Seven, Suit.Spades), new PlayingCard(CardName.Seven, Suit.Diamonds)]
+  const handResult = new PokerHandResult(cardsInPlay, 0, cardsUsed).setHandType(PokerHandType.OnePair)
+  t.true(handResult.scoringHandCardNames.map(cn => CardName[cn]).join(' ') === 'Seven')
+})
+
+test('returns card names used in scoring HighCard', t => {
+  const cardsInPlay = [new PlayingCard(CardName.Three, Suit.Spades), new PlayingCard(CardName.Two, Suit.Diamonds),
+    new PlayingCard(CardName.Ten, Suit.Spades), new PlayingCard(CardName.Four, Suit.Diamonds),
+    new PlayingCard(CardName.Five, Suit.Hearts)]
+  const cardsUsed = [new PlayingCard(CardName.Ten, Suit.Spades)]
+  const handResult = new PokerHandResult(cardsInPlay, 0, cardsUsed).setHandType(PokerHandType.HighCard)
+  t.true(handResult.scoringHandCardNames.map(cn => CardName[cn]).join(' ') === 'Ten')
+})
