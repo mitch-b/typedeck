@@ -3,6 +3,7 @@ import { Suit, PlayingCard, CardName, PokerHandResult, PokerHandType, AceLowRank
 
 test('test tostring of hand types', async t => {
   const handResult = new PokerHandResult()
+  t.deepEqual(handResult.toString(), '')
   handResult.setHandType(PokerHandType.HighCard)
   t.deepEqual(handResult.toString(), 'High Card')
   handResult.setHandType(PokerHandType.OnePair)

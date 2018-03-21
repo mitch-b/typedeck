@@ -19,7 +19,7 @@ export class CardCollection implements ICardCollection {
    * means something: "Hand", "Discard Pile",
    * "In Play", etc.
    */
-  public name: string
+  public name: string = ''
   private shuffleService: IShuffleService = new DurstenfeldShuffleService()
   private objectComparer: IObjectComparer = new StringifyComparer()
 

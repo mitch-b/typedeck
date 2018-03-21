@@ -9,7 +9,7 @@ export class PokerHandResult {
    * Type of hand created with
    * `cardsUsed`.
    */
-  public handType: PokerHandType
+  public handType: PokerHandType | undefined
   /**
    * Comparable value of current hand
    * to rank above or below another
@@ -67,6 +67,10 @@ export class PokerHandResult {
   }
 
   toString (): string {
+    if(this.handType === undefined) {
+      return '';
+    }
+
     return PokerHandType[this.handType]
       // Look for long acronyms and filter out the last letter
       .replace(/([A-Z]+)([A-Z][a-z])/g, ' $1 $2')
