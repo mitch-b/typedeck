@@ -8,6 +8,7 @@ import { PokerHandType } from '../models/poker/pokerHandType.model'
 import { PokerScoringError } from '../errors/pokerScoring.error'
 import { TexasHoldEmPokerGameType } from '../models/gameType/texasHoldEmGameType.model'
 import { CardName } from '../models/card/cardName.model'
+import { IterableExtensions } from '../common/iterableExtensions.model'
 
 export class PokerScoreService implements IPokerScoreService {
 
@@ -28,7 +29,7 @@ export class PokerScoreService implements IPokerScoreService {
       throw new PokerScoringError('Invalid cards provided. Please send at least 5 cards.')
     }
     // find best hand
-    for (const combination of this.combinations(cards, 5)) {
+    for (const combination of IterableExtensions.Combinations(cards, 5)) {
       const result = this.calculate(combination)
       if (result.value > bestHand.value) {
         bestHand = result
@@ -44,7 +45,8 @@ export class PokerScoreService implements IPokerScoreService {
       if (playerHand.length < 5) {
         throw new PokerScoringError(`Invalid cards provided for ${player}. Please send at least 5 cards.`)
       }
-      result.add(player, this.scoreCards(playerHand))
+      const playerScore = this.scoreCards(playerHand)
+      result.add(player, playerScore)
     })
     return result
   }
@@ -55,32 +57,6 @@ export class PokerScoreService implements IPokerScoreService {
     }
     result.value = this.value(this.ranked(result.cards), result.handType as number)
     return result.value
-  }
-
-  private combinations (cards: PlayingCard[], groups: number): PlayingCard[][] {
-    // card combinations with the given size
-    let result: PlayingCard[][] = []
-
-    // one group
-    if (groups === cards.length) {
-      return [cards]
-    }
-
-    // one card in each group
-    if (groups === 1) {
-      return cards.map((card) => [card])
-    }
-
-    // everything else
-    for (let i = 0; i < cards.length - groups; i++) {
-      let head = cards.slice(i, (i + 1))
-      let tails = this.combinations(cards.slice(i + 1), (groups - 1))
-      for (let tail of tails) {
-        result.push(head.concat(tail))
-      }
-    }
-
-    return result
   }
 
   private ranked (cards: PlayingCard[]): PlayingCard[][] {
@@ -154,36 +130,48 @@ export class PokerScoreService implements IPokerScoreService {
 
   private calculate (cards: PlayingCard[]): PokerHandResult {
     let result: PokerHandResult
+    let cardsUsed: PlayingCard[] = []
+    let handType: PokerHandType
+
     const ranked: PlayingCard[][] = this.ranked(cards)
     const isFlush = this.isFlush(cards)
     const isStraight = this.isStraight(ranked)
     const highestPlayedCards = ranked[0]
     const rankSet = this.gameType.rankSet
+
     if (isStraight && isFlush && highestPlayedCards[0].cardName === CardName.Ace) {
-      const royalFlushCards = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
-      result = new PokerHandResult(cards, this.value(ranked, 9), royalFlushCards, rankSet).setHandType(PokerHandType.RoyalFlush)
+      cardsUsed = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
+      handType = PokerHandType.RoyalFlush
     } else if (isStraight && isFlush) {
-      const straightFlushCards = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
-      result = new PokerHandResult(cards, this.value(ranked, 8), straightFlushCards, rankSet).setHandType(PokerHandType.StraightFlush)
+      cardsUsed = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
+      handType = PokerHandType.StraightFlush
     } else if (highestPlayedCards.length === 4) {
-      result = new PokerHandResult(cards, this.value(ranked, 7), highestPlayedCards, rankSet).setHandType(PokerHandType.FourOfAKind)
+      cardsUsed = ranked[0]
+      handType = PokerHandType.FourOfAKind
     } else if (ranked[0].length === 3 && ranked[1].length === 2) {
-      result = new PokerHandResult(cards, this.value(ranked, 6), ranked[0].concat(ranked[1]), rankSet).setHandType(PokerHandType.FullHouse)
+      cardsUsed = ranked[0].concat(ranked[1])
+      handType = PokerHandType.FullHouse
     } else if (isFlush) {
-      const flushCards = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
-      result = new PokerHandResult(cards, this.value(ranked, 5), flushCards, rankSet).setHandType(PokerHandType.Flush)
+      cardsUsed = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
+      handType = PokerHandType.Flush
     } else if (isStraight) {
-      const straightCards = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
-      result = new PokerHandResult(cards, this.value(ranked, 4), straightCards, rankSet).setHandType(PokerHandType.Straight)
+      cardsUsed = [ranked[0][0], ranked[1][0], ranked[2][0], ranked[3][0], ranked[4][0]]
+      handType = PokerHandType.Straight
     } else if (highestPlayedCards.length === 3) {
-      result = new PokerHandResult(cards, this.value(ranked, 3), highestPlayedCards, rankSet).setHandType(PokerHandType.ThreeOfAKind)
+      cardsUsed = ranked[0]
+      handType = PokerHandType.ThreeOfAKind
     } else if (ranked[0].length === 2 && ranked[1].length === 2) {
-      result = new PokerHandResult(cards, this.value(ranked, 2), ranked[0].concat(ranked[1]), rankSet).setHandType(PokerHandType.TwoPair)
+      cardsUsed = ranked[0].concat(ranked[1])
+      handType = PokerHandType.TwoPair
     } else if (highestPlayedCards.length === 2) {
-      result = new PokerHandResult(cards, this.value(ranked, 1), highestPlayedCards, rankSet).setHandType(PokerHandType.OnePair)
+      cardsUsed = ranked[0]
+      handType = PokerHandType.OnePair
     } else {
-      result = new PokerHandResult(cards, this.value(ranked, 0), highestPlayedCards, rankSet).setHandType(PokerHandType.HighCard)
+      cardsUsed = ranked[0]
+      handType = PokerHandType.HighCard
     }
+    result = new PokerHandResult(cards, this.value(ranked, handType), cardsUsed, rankSet)
+      .setHandType(handType)
     return result
   }
 }
