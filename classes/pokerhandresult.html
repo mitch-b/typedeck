@@ -90,7 +90,15 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="pokerhandresult.html#cards" class="tsd-kind-icon">cards</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="pokerhandresult.html#cardsused" class="tsd-kind-icon">cards<wbr>Used</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="pokerhandresult.html#handtype" class="tsd-kind-icon">hand<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="pokerhandresult.html#rankset" class="tsd-kind-icon">rank<wbr>Set</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="pokerhandresult.html#value" class="tsd-kind-icon">value</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="pokerhandresult.html#kickers" class="tsd-kind-icon">kickers</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="pokerhandresult.html#scoringhandcardnames" class="tsd-kind-icon">scoring<wbr>Hand<wbr>Card<wbr>Names</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
@@ -109,13 +117,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Poker<wbr>Hand<wbr>Result<span class="tsd-signature-symbol">(</span>cards<span class="tsd-signature-symbol">?: </span><a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span>, value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="pokerhandresult.html" class="tsd-signature-type">PokerHandResult</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Poker<wbr>Hand<wbr>Result<span class="tsd-signature-symbol">(</span>cards<span class="tsd-signature-symbol">?: </span><a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span>, value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, cardsUsed<span class="tsd-signature-symbol">?: </span><a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span>, rankSet<span class="tsd-signature-symbol">?: </span><a href="acehighrankset.html" class="tsd-signature-type">AceHighRankSet</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="pokerhandresult.html" class="tsd-signature-type">PokerHandResult</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/89a1b09/src/models/poker/pokerHandResult.model.ts#L24">models/poker/pokerHandResult.model.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/40bbc02/src/models/poker/pokerHandResult.model.ts#L56">models/poker/pokerHandResult.model.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -125,6 +133,12 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> value: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> cardsUsed: <a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rankSet: <a href="acehighrankset.html" class="tsd-signature-type">AceHighRankSet</a><span class="tsd-signature-symbol"> =&nbsp;new AceHighRankSet()</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="pokerhandresult.html" class="tsd-signature-type">PokerHandResult</a></h4>
@@ -140,7 +154,7 @@
 					<div class="tsd-signature tsd-kind-icon">cards<span class="tsd-signature-symbol">:</span> <a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/89a1b09/src/models/poker/pokerHandResult.model.ts#L20">models/poker/pokerHandResult.model.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/40bbc02/src/models/poker/pokerHandResult.model.ts#L23">models/poker/pokerHandResult.model.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -156,7 +170,7 @@
 					<div class="tsd-signature tsd-kind-icon">cards<wbr>Used<span class="tsd-signature-symbol">:</span> <a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/89a1b09/src/models/poker/pokerHandResult.model.ts#L24">models/poker/pokerHandResult.model.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/40bbc02/src/models/poker/pokerHandResult.model.ts#L27">models/poker/pokerHandResult.model.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -168,10 +182,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
 					<a name="handtype" class="tsd-anchor"></a>
 					<h3>hand<wbr>Type</h3>
-					<div class="tsd-signature tsd-kind-icon">hand<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/pokerhandtype.html" class="tsd-signature-type">PokerHandType</a></div>
+					<div class="tsd-signature tsd-kind-icon">hand<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/pokerhandtype.html" class="tsd-signature-type">PokerHandType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/89a1b09/src/models/poker/pokerHandResult.model.ts#L9">models/poker/pokerHandResult.model.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/40bbc02/src/models/poker/pokerHandResult.model.ts#L12">models/poker/pokerHandResult.model.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -182,12 +196,28 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="rankset" class="tsd-anchor"></a>
+					<h3>rank<wbr>Set</h3>
+					<div class="tsd-signature tsd-kind-icon">rank<wbr>Set<span class="tsd-signature-symbol">:</span> <a href="../interfaces/irankset.html" class="tsd-signature-type">IRankSet</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/40bbc02/src/models/poker/pokerHandResult.model.ts#L32">models/poker/pokerHandResult.model.ts:32</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>RankSet used to help determine highest ranked kickers
+							not used in hand score</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
 					<a name="value" class="tsd-anchor"></a>
 					<h3>value</h3>
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/89a1b09/src/models/poker/pokerHandResult.model.ts#L15">models/poker/pokerHandResult.model.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/40bbc02/src/models/poker/pokerHandResult.model.ts#L18">models/poker/pokerHandResult.model.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -197,6 +227,58 @@
 							<code>PokerHandResult</code>.</p>
 						</div>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+					<a name="kickers" class="tsd-anchor"></a>
+					<h3>kickers</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> kickers<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/40bbc02/src/models/poker/pokerHandResult.model.ts#L38">models/poker/pokerHandResult.model.ts:38</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Cards that were used when scoring the hand
+										but had no impact on the score itself. Used to
+									help determine a winner in event of a tied score value.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="playingcard.html" class="tsd-signature-type">PlayingCard</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+					<a name="scoringhandcardnames" class="tsd-anchor"></a>
+					<h3>scoring<wbr>Hand<wbr>Card<wbr>Names</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> scoringHandCardNames<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/cardname.html" class="tsd-signature-type">CardName</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/40bbc02/src/models/poker/pokerHandResult.model.ts#L51">models/poker/pokerHandResult.model.ts:51</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Unique list of <code>CardName</code> objects that had a play
+									in <code>PokerHandResult.value</code>.</p>
+								</div>
+								<p>If you want every card that played a part
+								in the value, see the <code>PokerHandResult.cardsUsed</code> property.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../enums/cardname.html" class="tsd-signature-type">CardName</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
@@ -211,7 +293,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/89a1b09/src/models/poker/pokerHandResult.model.ts#L33">models/poker/pokerHandResult.model.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/40bbc02/src/models/poker/pokerHandResult.model.ts#L70">models/poker/pokerHandResult.model.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -234,7 +316,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/89a1b09/src/models/poker/pokerHandResult.model.ts#L38">models/poker/pokerHandResult.model.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/mitch-b/typedeck/blob/40bbc02/src/models/poker/pokerHandResult.model.ts#L75">models/poker/pokerHandResult.model.ts:75</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -271,7 +353,16 @@
 								<a href="pokerhandresult.html#handtype" class="tsd-kind-icon">hand<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="pokerhandresult.html#rankset" class="tsd-kind-icon">rank<wbr>Set</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="pokerhandresult.html#value" class="tsd-kind-icon">value</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+								<a href="pokerhandresult.html#kickers" class="tsd-kind-icon">kickers</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
+								<a href="pokerhandresult.html#scoringhandcardnames" class="tsd-kind-icon">scoring<wbr>Hand<wbr>Card<wbr>Names</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="pokerhandresult.html#sethandtype" class="tsd-kind-icon">set<wbr>Hand<wbr>Type</a>
