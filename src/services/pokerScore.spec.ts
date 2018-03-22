@@ -7,7 +7,8 @@ import {
   PokerScoreService,
   Hand,
   Player,
-  PokerHandResult
+  PokerHandResult,
+  CardPile
 } from 'typedeck'
 
 let getHands = (type: PokerHandType): PlayingCard[][] => {
@@ -318,6 +319,29 @@ test('evaluates a Score from cards', async t => {
     t.true(score > 0)
     t.true(score.toString()[0] === testForHandType.toString())
   }
+})
+
+test('evaluates scores from players', t => {
+  const service = new PokerScoreService()
+  const communityCards = new CardPile([
+    new PlayingCard(CardName.Seven, Suit.Spades),
+    new PlayingCard(CardName.Three, Suit.Spades),
+    new PlayingCard(CardName.Four, Suit.Clubs),
+    new PlayingCard(CardName.Five, Suit.Hearts),
+    new PlayingCard(CardName.Six, Suit.Diamonds)
+  ])
+  const bob = new Player('Bob', new Hand([
+    new PlayingCard(CardName.Two, Suit.Clubs),
+    new PlayingCard(CardName.Eight, Suit.Diamonds)
+  ]))
+  const jane = new Player('Jane', new Hand([
+    new PlayingCard(CardName.Eight, Suit.Spades),
+    new PlayingCard(CardName.Nine, Suit.Clubs)
+  ]))
+  const scoring = service.scorePlayers([jane, bob], communityCards.getCards() as PlayingCard[])
+  t.true(scoring.get(bob).handType === PokerHandType.Straight)
+  t.true(scoring.get(jane).handType === PokerHandType.Straight)
+  t.true(scoring.get(jane).value > scoring.get(bob).value)
 })
 
 test('throws error when scoring if less than 5 cards sent', async t => {
