@@ -67,8 +67,8 @@ export class PokerHandResult {
   }
 
   toString (): string {
-    if(this.handType === undefined) {
-      return '';
+    if (this.handType === undefined) {
+      return ''
     }
 
     return PokerHandType[this.handType]
