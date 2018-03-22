@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/mitch-b/typedeck/compare/v1.4.4...v1.5.0) (2018-03-22)
+
+
+### Bug Fixes
+
+* **Poker:** Resolve issue with not all combination of hands checked ([df58a85](https://github.com/mitch-b/typedeck/commit/df58a85)), closes [#9](https://github.com/mitch-b/typedeck/issues/9)
+
+
+### Features
+
+* **Poker:** Improve poker hand result details with kicker cards ([fa3211b](https://github.com/mitch-b/typedeck/commit/fa3211b))
+* **Poker:** Readable CardNames in order of rank/utility of scored hand ([454a6ca](https://github.com/mitch-b/typedeck/commit/454a6ca))
+
+
+
 <a name="1.4.4"></a>
 ## [1.4.4](https://github.com/mitch-b/typedeck/compare/v1.4.3...v1.4.4) (2018-02-11)
 
