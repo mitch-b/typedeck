@@ -41,7 +41,13 @@ export class PokerHandResult {
         .sort((a, b) => this.rankSet.getRankValue(b) - this.rankSet.getRankValue(a))
     return [...cardsNotUsedInResult]
   }
-
+  /**
+   * Unique list of `CardName` objects that had a play
+   * in `PokerHandResult.value`.
+   *
+   * If you want every card that played a part
+   * in the value, see the `PokerHandResult.cardsUsed` property.
+   */
   public get scoringHandCardNames (): CardName[] {
     const sortedCardsUsed =
       this.cardsUsed.sort((a, b) => this.rankSet.getRankValue(b) - this.rankSet.getRankValue(a))
