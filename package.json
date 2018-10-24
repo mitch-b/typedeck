@@ -1,6 +1,6 @@
 {
   "name": "typedeck",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "A TypeScript library for playing cards",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "info": "npm-scripts-info",
-    "build": "trash build && yarn build:main && yarn build:module && yarn build:browser-deps && yarn build:browser && yarn build:browser-cjs && yarn build:resolve-sourcemaps",
+    "build": "trash build && npm run-s build:main && npm run-s build:module && npm run-s build:browser-deps && npm run-s build:browser && npm run-s build:browser-cjs && npm run-s build:resolve-sourcemaps",
     "build:main": "tsc -p tsconfig.json",
     "build:module": "tsc -p config/exports/tsconfig.module.json",
     "build:browser-deps": "mkdirp build/temp && browserify node_modules/hash.js/lib/hash.js --standalone hash -o build/temp/hash.js",
@@ -20,20 +20,20 @@
     "build:resolve-sourcemaps": "sorcery -i build/browser/index.js && sorcery -i build/browser/index.cjs.js",
     "build:tests": "trash test && node config/exports/build-tests.js",
     "lint": "tslint --project . src/**/*.ts",
-    "unit": "yarn build && yarn build:tests && nyc ava",
+    "unit": "npm run-s build && npm run-s build:tests && nyc ava",
     "check-coverage": "nyc check-coverage --lines 100 --functions 100 --branches 100",
-    "test": "yarn lint && yarn unit && yarn check-coverage",
-    "watch": "yarn build && yarn build:tests -- --no-browser && concurrently -r --kill-others \"npm run --silent build:main -- -w\" \"npm run --silent build:tests -- -w --no-browser\" \"sleepms 2000 && ava --watch\"",
-    "cov": "yarn unit && yarn html-coverage && opn coverage/index.html",
+    "test": "npm run-s lint && npm run-s unit && npm run-s check-coverage",
+    "watch": "npm run-s build && npm run-s build:tests -- --no-browser && concurrently -r --kill-others \"npm run --silent build:main -- -w\" \"npm run --silent build:tests -- -w --no-browser\" \"sleepms 2000 && ava --watch\"",
+    "cov": "npm run-s unit && npm run-s html-coverage && opn coverage/index.html",
     "html-coverage": "nyc report --reporter=html",
     "send-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
-    "docs": "yarn docs:html && opn build/docs/index.html",
+    "docs": "npm run-s docs:html && opn build/docs/index.html",
     "docs:html": "typedoc src/index.ts --exclude **/*.spec.ts --excludePrivate --mode file --theme default --out build/docs",
     "docs:json": "typedoc --mode file --json build/docs/typedoc.json src/index.ts",
-    "docs:publish": "yarn docs:html && gh-pages -d build/docs",
+    "docs:publish": "npm run-s docs:html && gh-pages -d build/docs",
     "changelog": "standard-version",
-    "release": "yarn reset && yarn build && yarn test && yarn docs:publish && yarn changelog",
-    "reset": "git clean -dfx && git reset --hard && yarn"
+    "release": "npm run-s reset && npm run-s build && npm run-s test && npm run-s docs:publish && npm run-s changelog",
+    "reset": "git clean -dfx && git reset --hard"
   },
   "scripts-info": {
     "info": "Display information about the scripts",
@@ -54,30 +54,30 @@
     "node": ">=4.5"
   },
   "devDependencies": {
-    "@types/node": "^9.4.7",
+    "@types/node": "^10.12.0",
     "ava": "^0.25.0",
-    "browserify": "^16.1.1",
-    "codecov": "^3.0.0",
-    "concurrently": "^3.5.1",
+    "browserify": "^16.2.3",
+    "codecov": "^3.1.0",
+    "concurrently": "^4.0.1",
     "cpx": "^1.5.0",
-    "gh-pages": "^1.1.0",
+    "gh-pages": "^2.0.1",
     "mkdirp": "^0.5.1",
-    "npm-scripts-info": "^0.3.7",
-    "nyc": "^11.6.0",
+    "npm-scripts-info": "^0.3.9",
+    "nyc": "^13.1.0",
     "opn-cli": "^3.1.0",
-    "rollup": "^0.57.1",
+    "rollup": "^0.66.6",
     "rollup-plugin-alias": "^1.4.0",
-    "rollup-plugin-commonjs": "^9.1.0",
-    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-watch": "^4.3.1",
     "sleep-ms": "^2.0.1",
     "sorcery": "^0.10.0",
-    "standard-version": "^4.3.0",
+    "standard-version": "^4.4.0",
     "trash-cli": "^1.4.0",
-    "tslint": "^5.9.1",
-    "tslint-config-standard": "^7.0.0",
-    "typedoc": "^0.11.1",
-    "typescript": "^2.7.2"
+    "tslint": "^5.11.0",
+    "tslint-config-standard": "^8.0.1",
+    "typedoc": "^0.13.0",
+    "typescript": "^3.1.3"
   },
   "keywords": [
     "card",
@@ -104,6 +104,6 @@
     ]
   },
   "dependencies": {
-    "tslib": "^1.9.0"
+    "tslib": "^1.9.3"
   }
 }
