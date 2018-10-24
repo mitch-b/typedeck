@@ -1,20 +1,20 @@
-import { Card } from './card.model'
-import { Suit } from './suit.model'
-import { CardName } from './cardName.model'
+import { Card } from './card.model';
+import { Suit } from './suit.model';
+import { CardName } from './cardName.model';
 
 /**
  * Represents a card that contains a Suit
  * and a Value (Rank).
  */
 export class PlayingCard extends Card {
-  public suit: Suit
+  public suit: Suit;
 
   constructor (cardName: CardName, suit: Suit) {
-    super(cardName)
-    this.suit = suit
+    super(cardName);
+    this.suit = suit;
   }
 
   public toString (): string {
-    return `${CardName[this.cardName]} of ${Suit[this.suit]}`
+    return `${CardName[this.cardName]} of ${Suit[this.suit]}`;
   }
 }

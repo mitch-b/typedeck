@@ -1,15 +1,15 @@
-import { BaseGameType } from './gameType.model'
-import { ICard } from '../card/card.interface'
-import { AceLowRankSet } from '../card/aceLowRankSet.model'
-import { PlayingCard } from '../card/playingCard.model'
-import { CardName } from '../card/cardName.model'
-import { Suit } from '../card/suit.model'
+import { BaseGameType } from './gameType.model';
+import { ICard } from '../card/card.interface';
+import { AceLowRankSet } from '../card/aceLowRankSet.model';
+import { PlayingCard } from '../card/playingCard.model';
+import { CardName } from '../card/cardName.model';
+import { Suit } from '../card/suit.model';
 
 /**
  * GameType with Solitaire configuration
  */
 export class SolitaireGameType extends BaseGameType {
-  public rankSet = new AceLowRankSet()
+  public rankSet = new AceLowRankSet();
   public cardsAllowed: ICard[] = [
     new PlayingCard(CardName.Ace, Suit.Clubs),
     new PlayingCard(CardName.Two, Suit.Clubs),
@@ -66,5 +66,5 @@ export class SolitaireGameType extends BaseGameType {
     new PlayingCard(CardName.Jack, Suit.Hearts),
     new PlayingCard(CardName.Queen, Suit.Hearts),
     new PlayingCard(CardName.King, Suit.Hearts)
-  ]
+  ];
 }

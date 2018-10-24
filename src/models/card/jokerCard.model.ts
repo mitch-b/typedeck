@@ -1,5 +1,5 @@
-import { Card } from './card.model'
-import { CardName } from './cardName.model'
+import { Card } from './card.model';
+import { CardName } from './cardName.model';
 
 /**
  * Represents a Joker card which is
@@ -8,6 +8,6 @@ import { CardName } from './cardName.model'
  */
 export class JokerCard extends Card {
   constructor (cardName: CardName = CardName.Joker) {
-    super(cardName)
+    super(cardName);
   }
 }

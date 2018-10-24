@@ -1,6 +1,6 @@
-import { IChip } from '../models/chip/chip.interface'
-import { Chip } from '../models/chip/chip.model'
-import { IChipCollection } from '../models/chipCollection/chipCollection.interface'
+import { IChip } from '../models/chip/chip.interface';
+import { Chip } from '../models/chip/chip.model';
+import { IChipCollection } from '../models/chipCollection/chipCollection.interface';
 
 /**
  * Provides services for Chip management
@@ -14,7 +14,7 @@ export interface IChipService {
    * `chipCollection` and the return value are chips that
    * match the `needValue` requested.
    */
-  makeChange (chipCollection: IChipCollection, needValue: number, chipType?: typeof Chip): IChip[]
+  makeChange (chipCollection: IChipCollection, needValue: number, chipType?: typeof Chip): IChip[];
 
   /**
    * Given an amount, and a `Chip` class
@@ -25,27 +25,27 @@ export interface IChipService {
   createChips (
     amount: number,
     canBeSingleChip?: boolean,
-    chipType?: typeof Chip): IChip[]
+    chipType?: typeof Chip): IChip[];
 
   /**
    * Return sum of each `IChip.getValue()`
    */
-  valueOfChips (chips: IChip[]): number
+  valueOfChips (chips: IChip[]): number;
 
   /**
    * Transform smaller chips into condensed
    * fewer larger denomination chips (if possible).
    */
-  colorUp (chips: IChip[], chipType?: typeof Chip): IChip[]
+  colorUp (chips: IChip[], chipType?: typeof Chip): IChip[];
 
   /**
    * Sort chips by value and return ordered chips
    */
-  sortByValue (chips: IChip[]): IChip[]
+  sortByValue (chips: IChip[]): IChip[];
 
   /**
    * Given a stack of chips, remove several chips from it.
    * The original stack of chips is modified.
    */
-  removeChipsFromStack (chips: IChip[], removeChips: IChip[]): IChip[]
+  removeChipsFromStack (chips: IChip[], removeChips: IChip[]): IChip[];
 }

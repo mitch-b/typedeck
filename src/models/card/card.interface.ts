@@ -1,6 +1,6 @@
-import { CardName } from './cardName.model'
-import { MapIndexable } from '../../common/mapIndexable.interface'
+import { CardName } from './cardName.model';
+import { MapIndexable } from '../../common/mapIndexable.interface';
 
 export interface ICard extends MapIndexable {
-  cardName: CardName
+  cardName: CardName;
 }

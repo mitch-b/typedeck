@@ -1,3 +1,3 @@
 export interface IRandomStringService {
-  get (length: number, charSet?: string): string
+  get (length: number, charSet?: string): string;
 }

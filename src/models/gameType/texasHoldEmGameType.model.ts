@@ -1,15 +1,15 @@
-import { BaseGameType } from './gameType.model'
-import { ICard } from '../card/card.interface'
-import { AceHighRankSet } from '../card/aceHighRankSet.model'
-import { PlayingCard } from '../card/playingCard.model'
-import { CardName } from '../card/cardName.model'
-import { Suit } from '../card/suit.model'
+import { BaseGameType } from './gameType.model';
+import { ICard } from '../card/card.interface';
+import { AceHighRankSet } from '../card/aceHighRankSet.model';
+import { PlayingCard } from '../card/playingCard.model';
+import { CardName } from '../card/cardName.model';
+import { Suit } from '../card/suit.model';
 
 /**
  * GameType with Texas Hold'Em Poker configuration
  */
 export class TexasHoldEmPokerGameType extends BaseGameType {
-  public rankSet = new AceHighRankSet()
+  public rankSet = new AceHighRankSet();
   public cardsAllowed: ICard[] = [
     new PlayingCard(CardName.Ace, Suit.Clubs),
     new PlayingCard(CardName.Two, Suit.Clubs),
@@ -66,5 +66,5 @@ export class TexasHoldEmPokerGameType extends BaseGameType {
     new PlayingCard(CardName.Jack, Suit.Hearts),
     new PlayingCard(CardName.Queen, Suit.Hearts),
     new PlayingCard(CardName.King, Suit.Hearts)
-  ]
+  ];
 }

@@ -1,6 +1,6 @@
-import { ChipColorType } from './chipColorType.model'
-import { ChipColor } from './chipColor.model'
-import { Chip } from './chip.model'
+import { ChipColorType } from './chipColorType.model';
+import { ChipColor } from './chipColor.model';
+import { Chip } from './chip.model';
 
 /**
  * Represents a California valuing Chip
@@ -10,8 +10,8 @@ export class CaliforniaChip extends Chip {
     color: ChipColor,
     colorType: ChipColorType = ChipColorType.California,
     overrideValue: number = 0) {
-    super(color, colorType, overrideValue)
-    this.configureDefaultColorValues()
+    super(color, colorType, overrideValue);
+    this.configureDefaultColorValues();
   }
 
   private configureDefaultColorValues (): void {
@@ -24,6 +24,6 @@ export class CaliforniaChip extends Chip {
       .setColorValue(ChipColor.Black, 20)
       .setColorValue(ChipColor.Purple, 25)
       .setColorValue(ChipColor.White, 100)
-      .setColorValue(ChipColor.Gray, 500)
+      .setColorValue(ChipColor.Gray, 500);
   }
 }

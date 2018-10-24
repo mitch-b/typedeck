@@ -1,5 +1,5 @@
-import { CardName } from './cardName.model'
-import { RankSet } from './cardRanks.model'
+import { CardName } from './cardName.model';
+import { RankSet } from './cardRanks.model';
 
 export class AceHighRankSet extends RankSet {
   public rankSet: CardName[] = [
@@ -17,5 +17,5 @@ export class AceHighRankSet extends RankSet {
     CardName.Queen,
     CardName.King,
     CardName.Ace
-  ]
+  ];
 }

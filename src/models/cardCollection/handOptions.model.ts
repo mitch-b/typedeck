@@ -1,3 +1,3 @@
 export class HandOptions {
-  public size = 7
+  public size = 7;
 }

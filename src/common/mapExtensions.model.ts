@@ -13,16 +13,16 @@ export class MapExtensions {
    * @param keyGetter Key to group by. "obj => obj.key"
    */
   public static GroupBy<T> (list: T[], keyGetter: any): Map<any, T[]> {
-    const map = new Map<any, T[]>()
+    const map = new Map<any, T[]>();
     list.forEach((item) => {
-      const key = keyGetter(item)
-      const collection = map.get(key)
+      const key = keyGetter(item);
+      const collection = map.get(key);
       if (!collection) {
-        map.set(key, [item])
+        map.set(key, [item]);
       } else {
-        collection.push(item)
+        collection.push(item);
       }
-    })
-    return map
+    });
+    return map;
   }
 }

@@ -1,6 +1,6 @@
-import { CardCollection } from './cardCollection.model'
-import { ICardPile } from './cardPile.interface'
-import { ICard } from '../card/card.interface'
+import { CardCollection } from './cardCollection.model';
+import { ICardPile } from './cardPile.interface';
+import { ICard } from '../card/card.interface';
 
 /**
  * Extending the basic CardCollection, this class supports
@@ -9,27 +9,27 @@ import { ICard } from '../card/card.interface'
  * class.
  */
 export class CardPile extends CardCollection implements ICardPile {
-  public name = 'Pile'
+  public name = 'Pile';
   constructor (cards: ICard[] = []) {
-    super(cards) // CardCollection.constructor
+    super(cards); // CardCollection.constructor
   }
 
   public addCardsToBottom (cards: ICard[]): void {
-    this.setCards(this.getCards().concat(cards))
+    this.setCards(this.getCards().concat(cards));
   }
 
   public takeCardFromBottom (): ICard {
     if (!this.isEmpty()) {
-      return this.getCards().pop() as ICard
+      return this.getCards().pop() as ICard;
     }
-    throw new Error('No cards remaining in pile')
+    throw new Error('No cards remaining in pile');
   }
 
   public takeCardsFromBottom (amount: number): ICard[] {
-    let pulledCards: ICard[] = []
+    let pulledCards: ICard[] = [];
     while (!this.isEmpty() && pulledCards.length < amount) {
-      pulledCards.push(this.getCards().pop() as ICard)
+      pulledCards.push(this.getCards().pop() as ICard);
     }
-    return pulledCards
+    return pulledCards;
   }
 }

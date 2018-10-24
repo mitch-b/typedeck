@@ -15,31 +15,31 @@ export class IterableExtensions {
    */
   /* istanbul ignore next */
   public static * Combinations<T> (iterable: T[], size: number): IterableIterator<T[]> {
-    let pool = Array.from(iterable)
+    let pool = Array.from(iterable);
     if (size > pool.length) {
-      return []
+      return [];
     }
 
-    let indices = Array.from(this.Range(0, size, 1))
+    let indices = Array.from(this.Range(0, size, 1));
 
-    yield Array.from(this.Pick(pool, indices))
+    yield Array.from(this.Pick(pool, indices));
 
     while (true) {
-      let i = size - 1
+      let i = size - 1;
       while (true) {
         if (i < 0) {
-          return []
+          return [];
         }
         if (indices[i] !== (i + pool.length - size)) {
-          let pivot = ++indices[i]
+          let pivot = ++indices[i];
           for (++i; i < size; ++i) {
-            indices[i] = ++pivot
+            indices[i] = ++pivot;
           }
-          break
+          break;
         }
-        --i
+        --i;
       }
-      yield Array.from(this.Pick(pool, indices))
+      yield Array.from(this.Pick(pool, indices));
     }
   }
 
@@ -51,7 +51,7 @@ export class IterableExtensions {
    */
   public static * Pick<T> (object: T[], keys: any) {
     for (let key of keys) {
-      yield object[key]
+      yield object[key];
     }
   }
 
@@ -64,9 +64,9 @@ export class IterableExtensions {
    */
   public static * Range (start: number, stop: number, step: number) {
     if (step < 0) {
-      for (; start > stop; start += step) yield start
+      for (; start > stop; start += step) yield start;
     } else {
-      for (; start < stop; start += step) yield start
+      for (; start < stop; start += step) yield start;
     }
   }
 }

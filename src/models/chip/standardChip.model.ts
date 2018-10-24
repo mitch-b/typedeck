@@ -1,6 +1,6 @@
-import { ChipColorType } from './chipColorType.model'
-import { ChipColor } from './chipColor.model'
-import { Chip } from './chip.model'
+import { ChipColorType } from './chipColorType.model';
+import { ChipColor } from './chipColor.model';
+import { Chip } from './chip.model';
 
 /**
  * Represents a Standard valuing Chip
@@ -10,8 +10,8 @@ export class StandardChip extends Chip {
     color: ChipColor,
     colorType: ChipColorType = ChipColorType.Standard,
     overrideValue: number = 0) {
-    super(color, colorType, overrideValue)
-    this.configureDefaultColorValues()
+    super(color, colorType, overrideValue);
+    this.configureDefaultColorValues();
   }
 
   private configureDefaultColorValues (): void {
@@ -21,6 +21,6 @@ export class StandardChip extends Chip {
       .setColorValue(ChipColor.Blue, 10)
       .setColorValue(ChipColor.Gray, 20)
       .setColorValue(ChipColor.Green, 25)
-      .setColorValue(ChipColor.Black, 100)
+      .setColorValue(ChipColor.Black, 100);
   }
 }

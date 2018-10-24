@@ -1,5 +1,5 @@
 export class InvalidArgumentError extends Error {
   constructor (message?: string) {
-    super(`Invalid Argument: ${message || ''}`)
+    super(`Invalid Argument: ${message || ''}`);
   }
 }
