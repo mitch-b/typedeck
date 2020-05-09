@@ -1,6 +1,6 @@
 {
   "name": "typedeck",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A TypeScript library for playing cards",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
@@ -32,7 +32,7 @@
     "docs:json": "typedoc --mode file --json build/docs/typedoc.json src/index.ts",
     "docs:publish": "npm run-s docs:html && gh-pages -d build/docs",
     "changelog": "standard-version",
-    "release": "npm run-s reset && npm run-s build && npm run-s test && npm run-s docs:publish && npm run-s changelog",
+    "release": "npm run-s reset && npm run-s build && npm run-s test && npm run-s changelog",
     "reset": "git clean -dfx && git reset --hard"
   },
   "scripts-info": {

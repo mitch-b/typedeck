@@ -1,6 +1,13 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="1.5.2"></a>
+## [1.5.2](https://github.com/mitch-b/typedeck/compare/v1.5.0...v1.5.2) (2020-05-09)
+
+* Simple dev dependency updates in `1.5.2`
+* Duplicate tests removed
+
 
 <a name="1.5.1"></a>
 ## [1.5.1](https://github.com/mitch-b/typedeck/compare/v1.5.0...v1.5.1) (2018-10-24)
