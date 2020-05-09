@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { Suit, PlayingCard, CardName, PokerHandResult, PokerHandType, AceLowRankSet, AceHighRankSet } from 'typedeck';
 
 test('test tostring of hand types', async t => {

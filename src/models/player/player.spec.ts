@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { Player, Hand, PlayingCard, CardName, Suit, MathRandomStringService } from 'typedeck';
 
 test('create player with hand', async t => {

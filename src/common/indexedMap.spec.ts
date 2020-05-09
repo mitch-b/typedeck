@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { CardName, Card, IndexedMap } from 'typedeck';
 
 test('add card', async t => {

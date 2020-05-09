@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import {
   IChip,
   StandardChip,
@@ -138,19 +138,6 @@ test('throws error if making change less than passed in', async t => {
   }
 });
 
-test('throws error if making change less than passed in', async t => {
-  const service = new ChipService();
-  const hasValue = 84;
-  const needValue = 100;
-  const chipCollection = new ChipCollection(service.createChips(hasValue));
-  try {
-    service.makeChange(chipCollection, needValue);
-    t.fail('Error should have thrown');
-  } catch (err) {
-    t.deepEqual(err.message, `Not enough chips (${hasValue}) to satisfy requested amount ${needValue}`);
-  }
-});
-
 test('throws error if requesting negative values', async t => {
   const service = new ChipService();
   const hasValue = 10;
@@ -164,7 +151,7 @@ test('throws error if requesting negative values', async t => {
   }
 });
 
-test('throws error if requesting negative values', async t => {
+test('throws error if requesting zero value', async t => {
   const service = new ChipService();
   const hasValue = 10;
   const needValue = 0;
@@ -184,7 +171,7 @@ test('value of chips is 0', async t => {
   t.true(service.valueOfChips(chips) === 0);
 });
 
-test('value of chips is 0', async t => {
+test('value of chips is 0 by default', async t => {
   const service = new ChipService();
   t.true(service.valueOfChips([]) === 0);
 });

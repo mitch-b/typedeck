@@ -16,6 +16,7 @@
     "listFiles": false,
     "traceResolution": false,
     "pretty": true,
+    "noImplicitAny": false,
     "lib" : [
       "es6"
     ],

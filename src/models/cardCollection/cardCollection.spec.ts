@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { ICard, CardCollection, CardName, Suit, PlayingCard } from 'typedeck';
 
 test('empty without cards in constructor', async t => {
@@ -73,19 +73,6 @@ test('can check and remove multiple cards', async t => {
   cardCollection.removeCards([card3, card4]);
   t.false(cardCollection.hasCards([card3, card4]));
   t.true(cardCollection.hasCards([card1, card2]));
-});
-
-test('can chain addCard commands', async t => {
-  const cardCollection = new CardCollection();
-  const card1 = new PlayingCard(CardName.Ace, Suit.Spades);
-  const card2 = new PlayingCard(CardName.Ace, Suit.Clubs);
-  const card3 = new PlayingCard(CardName.Ace, Suit.Hearts);
-  const card4 = new PlayingCard(CardName.Ace, Suit.Diamonds);
-  cardCollection
-    .addCard(card1)
-    .addCard(card2)
-    .addCards([card3, card4]);
-  t.true(cardCollection.hasCards([card1, card2, card3, card4]));
 });
 
 test('can chain addCard commands', async t => {

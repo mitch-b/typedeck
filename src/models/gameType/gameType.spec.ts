@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { BaseGameType, DeckOptions, ICard, PlayingCard, CardName, Suit } from 'typedeck';
 
 test('basegametype has empty allowed cards', async t => {

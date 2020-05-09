@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { Chip, ChipColorType, ChipColor } from 'typedeck';
 
 test('chip has type of Standard if not specified', async t => {

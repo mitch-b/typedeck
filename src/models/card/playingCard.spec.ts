@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { PlayingCard, CardName, Suit } from 'typedeck';
 
 test('parameters are set', async t => {

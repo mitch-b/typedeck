@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { ICard, Hand, CardName, Suit, PlayingCard, AceHighRankSet, AceLowRankSet } from 'typedeck';
 
 test('empty without cards in constructor', async t => {

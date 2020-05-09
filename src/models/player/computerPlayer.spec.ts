@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { ComputerPlayer, Hand, Difficulty } from 'typedeck';
 
 test('create ComputerPlayer with hand', async t => {
