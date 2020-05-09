@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { HeartsGameType } from 'typedeck';
 
 test('HeartsGameType has allowed cards', async t => {

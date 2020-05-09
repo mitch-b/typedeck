@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { JokerCard, CardName } from 'typedeck';
 
 test('CardName is set', async t => {

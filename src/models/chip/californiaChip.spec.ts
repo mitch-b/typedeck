@@ -1,4 +1,4 @@
-import { test } from 'ava';
+import test from 'ava';
 import { CaliforniaChip, ChipColorType, ChipColor } from 'typedeck';
 
 test('chip has type of CaliforniaChip', async t => {
