@@ -29,7 +29,7 @@ export class PokerScoreService implements IPokerScoreService {
       throw new PokerScoringError('Invalid cards provided. Please send at least 5 cards.');
     }
     // find best hand
-    for (const combination of IterableExtensions.Combinations(cards, 5)) {
+    for (const combination of IterableExtensions.Combinations(playerCards, 5)) {
       const result = this.calculate(combination);
       if (result.value > bestHand.value) {
         bestHand = result;
