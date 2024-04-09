@@ -110,11 +110,41 @@ test('exception thrown for invalid card amount tested', async t => {
   }
 });
 
-test('evaluates from cards with community cards', async t => {
+test('score hand requiring community cards to value', async t => {
   const service = new PokerScoreService();
   const testForHandType = PokerHandType.OnePair;
-  const handToTest: Hand = new Hand(getHands(testForHandType)[0].slice(0, 5));
-  const handResult: PokerHandResult = service.scoreCards(handToTest.getCards() as PlayingCard[], [new PlayingCard(CardName.Jack, Suit.Clubs)]);
+  const handToTest: Hand = new Hand([
+    new PlayingCard(CardName.Seven, Suit.Spades),
+    new PlayingCard(CardName.Queen, Suit.Diamonds),
+    new PlayingCard(CardName.Two, Suit.Spades),
+    new PlayingCard(CardName.Ten, Suit.Diamonds),
+    new PlayingCard(CardName.Five, Suit.Hearts)
+  ]);
+  const handResult: PokerHandResult = service.scoreCards(
+    handToTest.getCards() as PlayingCard[],
+    [
+      new PlayingCard(CardName.Jack, Suit.Clubs),
+      new PlayingCard(CardName.Two, Suit.Clubs),
+    ]);
+  t.deepEqual(handResult.handType, testForHandType);
+});
+
+test('score hand not requiring community cards to value', async t => {
+  const service = new PokerScoreService();
+  const testForHandType = PokerHandType.OnePair;
+  const handToTest: Hand = new Hand([
+    new PlayingCard(CardName.Seven, Suit.Spades),
+    new PlayingCard(CardName.Queen, Suit.Diamonds),
+    new PlayingCard(CardName.Two, Suit.Spades),
+    new PlayingCard(CardName.Ten, Suit.Diamonds),
+    new PlayingCard(CardName.Two, Suit.Hearts)
+  ]);
+  const handResult: PokerHandResult = service.scoreCards(
+    handToTest.getCards() as PlayingCard[],
+    [
+      new PlayingCard(CardName.Jack, Suit.Clubs),
+      new PlayingCard(CardName.Five, Suit.Hearts),
+    ]);
   t.deepEqual(handResult.handType, testForHandType);
 });
 
