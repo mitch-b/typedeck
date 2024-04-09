@@ -19,7 +19,8 @@
     "vscode": {
       "extensions": [
         "GitHub.copilot-chat",
-        "EditorConfig.EditorConfig"
+        "EditorConfig.EditorConfig",
+        "dbaeumer.vscode-eslint"
       ]
     }
   }
